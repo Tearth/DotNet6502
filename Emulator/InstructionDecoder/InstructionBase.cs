@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using Emulator.Instructions;
 
 namespace Emulator.InstructionDecoder
 {
     public abstract class InstructionBase
     {
+        public string Name { get; }
         public ushort OpCode { get; }
         public AddressingMode AddressingMode { get; }
 
         private readonly Dictionary<AddressingMode, InstructionExecutor> _executors;
 
-        protected InstructionBase(ushort opCode, AddressingMode addressingMode)
+        protected InstructionBase(string name, ushort opCode, AddressingMode addressingMode)
         {
+            Name = name;
             OpCode = opCode;
             AddressingMode = addressingMode;
 
@@ -41,67 +42,72 @@ namespace Emulator.InstructionDecoder
 
         protected virtual void ExecuteInImplicitMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Implicit");
         }
 
         protected virtual void ExecuteInAccumulatorMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Accumulator");
         }
 
         protected virtual void ExecuteInImmediateMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Immediate");
         }
 
         protected virtual void ExecuteInZeroPageMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Zero Page");
         }
 
         protected virtual void ExecuteInZeroPageXMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Zero Page X");
         }
 
         protected virtual void ExecuteInZeroPageYMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Zero Page Y");
         }
 
         protected virtual void ExecuteInRelativeMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Relative");
         }
 
         protected virtual void ExecuteInAbsoluteMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Absolute");
         }
 
         protected virtual void ExecuteInAbsoluteXMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Absolute X");
         }
 
         protected virtual void ExecuteInAbsoluteYMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Absolute Y");
         }
 
         protected virtual void ExecuteInIndirectMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Indirect");
         }
 
         protected virtual void ExecuteInIndexedIndirectMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Indexed Indirect");
         }
 
         protected virtual void ExecuteInIndirectIndexedMode()
         {
-            throw new NotImplementedException();
+            ThrowNotImplementedException("Indirect Indexed");
+        }
+
+        private void ThrowNotImplementedException(string requestedAddressingMode)
+        {
+            throw new NotImplementedException($"{requestedAddressingMode} mode for {Name} {OpCode:X} not supported.");
         }
     }
 }
