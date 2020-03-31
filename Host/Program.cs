@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Emulator;
 
 namespace Host
 {
@@ -6,7 +6,7 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new Mos6502Core().Run();
         }
     }
 }
