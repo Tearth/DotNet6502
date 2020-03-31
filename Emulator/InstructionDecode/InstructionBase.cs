@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Emulator.InstructionDecoder
+namespace Emulator.InstructionDecode
 {
     public abstract class InstructionBase
     {

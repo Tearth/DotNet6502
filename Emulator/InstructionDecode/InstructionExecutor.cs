@@ -1,4 +1,4 @@
-﻿namespace Emulator.InstructionDecoder
+﻿namespace Emulator.InstructionDecode
 {
     public delegate void InstructionExecutor();
 }

@@ -1,4 +1,4 @@
-﻿namespace Emulator.Instructions
+﻿namespace Emulator.InstructionDecode
 {
     public enum AddressingMode
     {
