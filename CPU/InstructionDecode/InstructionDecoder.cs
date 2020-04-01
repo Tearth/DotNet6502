@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Emulator.InstructionDecode.Instructions;
+using CPU.InstructionDecode.Instructions;
 
-namespace Emulator.InstructionDecode
+namespace CPU.InstructionDecode
 {
     public class InstructionDecoder
     {

@@ -1,4 +1,4 @@
-﻿namespace Emulator.InstructionDecode.Instructions
+﻿namespace CPU.InstructionDecode.Instructions
 {
     public class BrkInstruction : InstructionBase
     {

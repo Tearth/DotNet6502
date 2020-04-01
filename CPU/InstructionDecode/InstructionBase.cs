@@ -1,7 +1,7 @@
 ﻿using System;
-using Emulator.Helpers.Extensions;
+using CPU.Helpers.Extensions;
 
-namespace Emulator.InstructionDecode
+namespace CPU.InstructionDecode
 {
     public abstract class InstructionBase
     {

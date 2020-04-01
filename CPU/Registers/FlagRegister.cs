@@ -1,4 +1,4 @@
-﻿namespace Emulator.Registers
+﻿namespace CPU.Registers
 {
     public struct FlagRegister
     {

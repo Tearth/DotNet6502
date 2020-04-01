@@ -1,9 +1,9 @@
-﻿using Emulator.Helpers.Extensions;
-using Emulator.InstructionDecode;
-using Emulator.InstructionDecode.Instructions;
-using Emulator.Registers;
+﻿using CPU.Helpers.Extensions;
+using CPU.InstructionDecode;
+using CPU.InstructionDecode.Instructions;
+using CPU.Registers;
 
-namespace Emulator
+namespace CPU
 {
     public class Mos6502Core
     {

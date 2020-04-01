@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Emulator.Helpers.Extensions
+namespace CPU.Helpers.Extensions
 {
     public static class StringExtensions
     {
