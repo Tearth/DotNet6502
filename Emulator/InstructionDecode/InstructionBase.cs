@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using Emulator.Helpers.Extensions;
 
 namespace Emulator.InstructionDecode
 {
@@ -9,7 +9,7 @@ namespace Emulator.InstructionDecode
         public ushort OpCode { get; }
         public AddressingMode AddressingMode { get; }
 
-        private readonly Dictionary<AddressingMode, InstructionExecutor> _executors;
+        private readonly InstructionExecutor _executor;
 
         protected InstructionBase(string name, ushort opCode, AddressingMode addressingMode)
         {
@@ -17,27 +17,17 @@ namespace Emulator.InstructionDecode
             OpCode = opCode;
             AddressingMode = addressingMode;
 
-            _executors = new Dictionary<AddressingMode, InstructionExecutor>
-            {
-                { AddressingMode.Implicit, ExecuteInImplicitMode },
-                { AddressingMode.Accumulator, ExecuteInAccumulatorMode },
-                { AddressingMode.Immediate, ExecuteInImmediateMode },
-                { AddressingMode.ZeroPage, ExecuteInZeroPageMode },
-                { AddressingMode.ZeroPageX, ExecuteInZeroPageXMode },
-                { AddressingMode.ZeroPageY, ExecuteInZeroPageYMode },
-                { AddressingMode.Relative, ExecuteInRelativeMode },
-                { AddressingMode.Absolute, ExecuteInAbsoluteMode },
-                { AddressingMode.AbsoluteX, ExecuteInAbsoluteXMode },
-                { AddressingMode.AbsoluteY, ExecuteInAbsoluteYMode },
-                { AddressingMode.Indirect, ExecuteInIndirectMode },
-                { AddressingMode.IndexedIndirect, ExecuteInIndexedIndirectMode },
-                { AddressingMode.IndirectIndexed, ExecuteInIndirectIndexedMode },
-            };
+            _executor = GetExecutor();
         }
 
         public void Execute()
         {
-            _executors[AddressingMode]();
+            _executor();
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} (0x{OpCode:X2})";
         }
 
         protected virtual void ExecuteInImplicitMode()
@@ -107,7 +97,29 @@ namespace Emulator.InstructionDecode
 
         private void ThrowNotImplementedException(string requestedAddressingMode)
         {
-            throw new NotImplementedException($"{requestedAddressingMode} mode for {Name} {OpCode:X} not supported.");
+            throw new NotImplementedException($"{requestedAddressingMode} mode for {this} instruction is not supported.");
+        }
+
+        private InstructionExecutor GetExecutor()
+        {
+            switch (AddressingMode)
+            {
+                case AddressingMode.Implicit: return ExecuteInImplicitMode;
+                case AddressingMode.Accumulator: return ExecuteInAccumulatorMode;
+                case AddressingMode.Immediate: return ExecuteInImmediateMode;
+                case AddressingMode.ZeroPage: return ExecuteInZeroPageMode;
+                case AddressingMode.ZeroPageX: return ExecuteInZeroPageXMode;
+                case AddressingMode.ZeroPageY: return ExecuteInZeroPageYMode;
+                case AddressingMode.Relative: return ExecuteInRelativeMode;
+                case AddressingMode.Absolute: return ExecuteInAbsoluteMode;
+                case AddressingMode.AbsoluteX: return ExecuteInAbsoluteXMode;
+                case AddressingMode.AbsoluteY: return ExecuteInAbsoluteYMode;
+                case AddressingMode.Indirect: return ExecuteInIndirectMode;
+                case AddressingMode.IndexedIndirect: return ExecuteInIndexedIndirectMode;
+                case AddressingMode.IndirectIndexed: return ExecuteInIndirectIndexedMode;
+            }
+
+            throw new ArgumentOutOfRangeException($"Can't find proper instruction executor for {AddressingMode.ToString().Smash()} in {this} instruction.");
         }
     }
 }

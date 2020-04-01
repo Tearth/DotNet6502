@@ -1,4 +1,7 @@
-﻿using Emulator.InstructionDecode;
+﻿using Emulator.Helpers.Extensions;
+using Emulator.InstructionDecode;
+using Emulator.InstructionDecode.Instructions;
+using Emulator.Registers;
 
 namespace Emulator
 {

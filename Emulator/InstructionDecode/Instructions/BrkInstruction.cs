@@ -2,7 +2,7 @@
 {
     public class BrkInstruction : InstructionBase
     {
-        public BrkInstruction(string name, ushort opCode, AddressingMode addressingMode) : base(name, opCode, addressingMode)
+        public BrkInstruction(ushort opCode, AddressingMode addressingMode) : base("BRK", opCode, addressingMode)
         {
 
         }

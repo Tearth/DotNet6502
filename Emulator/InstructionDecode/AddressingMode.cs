@@ -15,6 +15,6 @@
         AbsoluteY,
         Indirect,
         IndexedIndirect,
-        IndirectIndexed,
+        IndirectIndexed
     }
 }

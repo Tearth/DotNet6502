@@ -12,7 +12,7 @@ namespace Emulator.InstructionDecode
         {
             _instructions = new Dictionary<ushort, InstructionBase>();
 
-            AddInstruction(new BrkInstruction("BRK", 0x00, AddressingMode.Immediate));
+            AddInstruction(new BrkInstruction(0x00, AddressingMode.Immediate));
         }
 
         private void AddInstruction(InstructionBase instruction)
