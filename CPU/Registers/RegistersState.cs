@@ -1,6 +1,6 @@
 ﻿namespace CPU.Registers
 {
-    public struct RegistersState
+    public class RegistersState
     {
         public ushort ProgramCounter { get; set; }
         public byte StackPointer { get; set; }

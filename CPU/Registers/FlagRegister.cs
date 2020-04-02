@@ -1,6 +1,6 @@
 ﻿namespace CPU.Registers
 {
-    public struct FlagRegister
+    public class FlagRegister
     {
         public bool Carry { get; set; }
         public bool Zero { get; set; }

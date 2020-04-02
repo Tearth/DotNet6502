@@ -1,4 +1,4 @@
 ﻿namespace CPU.InstructionDecode
 {
-    public delegate void InstructionExecutor();
+    public delegate uint InstructionExecutor();
 }

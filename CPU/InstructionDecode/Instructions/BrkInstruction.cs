@@ -7,9 +7,10 @@
 
         }
 
-        protected override void ExecuteInImplicitMode()
+        protected override uint ExecuteInImplicitMode()
         {
             // TODO: add implementation
+            return 0;
         }
     }
 }
