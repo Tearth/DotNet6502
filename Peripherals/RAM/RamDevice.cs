@@ -19,27 +19,32 @@ namespace RAM
 
         public byte Read(ushort address)
         {
-            var relativeAddress = GetRelativeAddress(address);
-            if (relativeAddress >= Size)
+            if (IsAddressValid(address))
             {
-                return 0;
+                var relativeAddress = GetRelativeAddress(address);
+                return _memory[relativeAddress];
             }
 
-            return _memory[relativeAddress];
+            return 0;
         }
 
         public void Write(ushort address, byte value)
         {
-            var relativeAddress = GetRelativeAddress(address);
-            if (relativeAddress < Size)
+            if (IsAddressValid(address))
             {
+                var relativeAddress = GetRelativeAddress(address);
                 _memory[relativeAddress] = value;
             }
         }
 
+        private bool IsAddressValid(ushort address)
+        {
+            return address >= _startAddress && address <= _endAddress;
+        }
+
         private ushort GetRelativeAddress(ushort address)
         {
-            return (ushort)(Size - address);
+            return (ushort)(address - _startAddress);
         }
     }
 }
