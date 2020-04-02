@@ -6,13 +6,20 @@ namespace CPU.InstructionDecode
 {
     public class InstructionDecoder
     {
+        private readonly CycleContext _cycleContext;
         private readonly Dictionary<ushort, InstructionBase> _instructions;
 
-        public InstructionDecoder()
+        public InstructionDecoder(CycleContext cycleContext)
         {
             _instructions = new Dictionary<ushort, InstructionBase>();
+            _cycleContext = cycleContext;
 
             AddInstruction(new BrkInstruction(0x00, AddressingMode.Immediate));
+        }
+
+        public uint DecodeAndExecute()
+        {
+            return 0;
         }
 
         private void AddInstruction(InstructionBase instruction)

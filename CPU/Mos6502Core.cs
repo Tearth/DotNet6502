@@ -8,9 +8,10 @@ namespace CPU
 {
     public class Mos6502Core
     {
-        private readonly RegistersState _registersState;
-        private readonly InstructionDecoder _instructionDecoder;
         private readonly Bus _bus;
+        private readonly RegistersState _registersState;
+        private readonly CycleContext _cycleContext;
+        private readonly InstructionDecoder _instructionDecoder;
 
         private uint _frequency;
         private double _timePerCycle;
@@ -20,9 +21,10 @@ namespace CPU
 
         public Mos6502Core(uint frequency)
         {
-            _registersState = new RegistersState();
-            _instructionDecoder = new InstructionDecoder();
             _bus = new Bus();
+            _registersState = new RegistersState();
+            _cycleContext = new CycleContext(_bus, _registersState);
+            _instructionDecoder = new InstructionDecoder(_cycleContext);
 
             _frequency = frequency;
             _timePerCycle = 1000.0 / frequency;
@@ -35,7 +37,7 @@ namespace CPU
             while (WaitForAvailableCycle())
             {
                 _cyclesTimer.Restart();
-                _cyclesSinceLastOperation = 1;
+                _cyclesSinceLastOperation = _instructionDecoder.DecodeAndExecute();
                 _cyclesCounter += _cyclesSinceLastOperation;
             }
         }

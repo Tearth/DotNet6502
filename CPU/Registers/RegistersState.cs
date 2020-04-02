@@ -8,5 +8,10 @@
         public byte IndexRegisterX { get; set; }
         public byte IndexRegisterY { get; set; }
         public FlagRegister Flags { get; set; }
+
+        public RegistersState()
+        {
+            Flags = new FlagRegister();
+        }
     }
 }
