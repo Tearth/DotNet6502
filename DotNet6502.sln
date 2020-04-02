@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPU", "CPU\CPU.csproj", "{5AB82A16-355D-463D-95DF-235F41B68B58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPU", "CPU\CPU.csproj", "{5AB82A16-355D-463D-95DF-235F41B68B58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host", "Host\Host.csproj", "{924BC3DF-E2D0-4F81-91A3-EE1EBBFC447E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peripherals", "Peripherals", "{5B4928F4-1B99-4D3F-9F9A-97EE442003F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAM", "Peripherals\RAM\RAM.csproj", "{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAM", "Peripherals\RAM\RAM.csproj", "{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROM", "Peripherals\ROM\ROM.csproj", "{98EB9A6F-89E8-4728-9850-FA35984C721A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98EB9A6F-89E8-4728-9850-FA35984C721A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98EB9A6F-89E8-4728-9850-FA35984C721A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98EB9A6F-89E8-4728-9850-FA35984C721A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98EB9A6F-89E8-4728-9850-FA35984C721A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7} = {5B4928F4-1B99-4D3F-9F9A-97EE442003F7}
+		{98EB9A6F-89E8-4728-9850-FA35984C721A} = {5B4928F4-1B99-4D3F-9F9A-97EE442003F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AE13254-E5F7-4DA4-9914-0992AE5283B7}
