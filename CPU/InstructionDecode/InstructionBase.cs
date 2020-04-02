@@ -20,9 +20,9 @@ namespace CPU.InstructionDecode
             _executor = GetExecutor();
         }
 
-        public void Execute()
+        public uint Execute()
         {
-            _executor();
+            return _executor();
         }
 
         public override string ToString()

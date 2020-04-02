@@ -2,9 +2,11 @@
 {
     public class BrkInstruction : InstructionBase
     {
-        public BrkInstruction(ushort opCode, AddressingMode addressingMode) : base("BRK", opCode, addressingMode)
-        {
+        private CycleContext _cycleContext;
 
+        public BrkInstruction(ushort opCode, AddressingMode addressingMode, CycleContext cycleContext) : base("BRK", opCode, addressingMode)
+        {
+            _cycleContext = cycleContext;
         }
 
         protected override uint ExecuteInImplicitMode()

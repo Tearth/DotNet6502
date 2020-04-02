@@ -14,19 +14,22 @@ namespace CPU.InstructionDecode
             _instructions = new Dictionary<ushort, InstructionBase>();
             _cycleContext = cycleContext;
 
-            AddInstruction(new BrkInstruction(0x00, AddressingMode.Immediate));
+            AddInstruction(new BrkInstruction(0x00, AddressingMode.Implicit, _cycleContext));
         }
 
         public uint DecodeAndExecute()
         {
-            return 0;
+            var opCode = _cycleContext.Bus.Read(_cycleContext.RegistersState.ProgramCounter);
+            var instruction = _instructions[opCode];
+
+            return instruction.Execute();
         }
 
         private void AddInstruction(InstructionBase instruction)
         {
             if (_instructions.ContainsKey(instruction.OpCode))
             {
-                throw new ArgumentException($"Instruction {instruction.Name} (${instruction.OpCode}) already exists.");
+                throw new ArgumentException($"Instruction {instruction.Name} (${instruction.OpCode}) already exists.", nameof(instruction));
             }
 
             _instructions[instruction.OpCode] = instruction;
