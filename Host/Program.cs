@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Loader;
@@ -29,6 +30,12 @@ namespace Host
 
                 var emulator = new Mos6502Core(options.Frequency);
                 loadedDevices.ForEach(d => emulator.AttachDeviceToBus(d));
+
+                if (options.ProgramCounter != null)
+                {
+                    var programCounter = ushort.Parse(options.ProgramCounter.Replace("0x", ""), NumberStyles.HexNumber, null);
+                    emulator.SetProgramCounter(programCounter);
+                }
 
                 emulator.Run();
             });

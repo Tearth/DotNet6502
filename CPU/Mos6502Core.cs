@@ -47,6 +47,11 @@ namespace CPU
             _bus.AttachDevice(device);
         }
 
+        public void SetProgramCounter(ushort programCounter)
+        {
+            _registersState.ProgramCounter = programCounter;
+        }
+
         private bool WaitForAvailableCycle()
         {
             var expectedTime = _cyclesSinceLastOperation * _timePerCycle;
