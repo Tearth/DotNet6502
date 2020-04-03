@@ -28,8 +28,8 @@ namespace Host
                 var devices = ParseDevices(string.Join(" ", args));
                 var loadedDevices = LoadDevices(devices);
 
-                var emulator = new Mos6502Core(options.Frequency);
-                loadedDevices.ForEach(d => emulator.AttachDeviceToBus(d));
+                var emulator = new Mos6502Emulator(options.Frequency);
+                loadedDevices.ForEach(d => emulator.Core.Bus.AttachDevice(d));
 
                 if (options.ProgramCounter != null)
                 {

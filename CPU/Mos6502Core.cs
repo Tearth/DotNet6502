@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using CPU.InstructionDecode;
 using CPU.IO;
 using CPU.Registers;
@@ -8,56 +7,41 @@ namespace CPU
 {
     public class Mos6502Core
     {
-        private readonly Bus _bus;
-        private readonly RegistersState _registersState;
-        private readonly CycleContext _cycleContext;
+        public readonly Bus Bus;
+        public readonly RegistersState Registers;
+
         private readonly InstructionDecoder _instructionDecoder;
 
         private uint _frequency;
-        private double _timePerCycle;
+        private ulong _ticksPerCycle;
         private ulong _cyclesCounter;
-        private ulong _cyclesSinceLastOperation;
-        private readonly Stopwatch _cyclesTimer;
+        private DateTime _startTime;
 
         public Mos6502Core(uint frequency)
         {
-            _bus = new Bus();
-            _registersState = new RegistersState();
-            _cycleContext = new CycleContext(_bus, _registersState);
-            _instructionDecoder = new InstructionDecoder(_cycleContext);
+            Bus = new Bus();
+            Registers = new RegistersState();
+            _instructionDecoder = new InstructionDecoder(this);
 
             _frequency = frequency;
-            _timePerCycle = 1000.0 / frequency;
-            _cyclesTimer = new Stopwatch();
+            _ticksPerCycle = TimeSpan.TicksPerSecond / (ulong)_frequency;
         }
 
         public void Run()
         {
-            _cyclesTimer.Start();
-            while (WaitForAvailableCycle())
+            _startTime = DateTime.Now;
+            while (true)
             {
-                _cyclesTimer.Restart();
-                _cyclesSinceLastOperation = _instructionDecoder.DecodeAndExecute();
-                _cyclesCounter += _cyclesSinceLastOperation;
+                _instructionDecoder.DecodeAndExecute();
             }
         }
 
-        public void AttachDeviceToBus(IDevice device)
+        public void YieldCycle()
         {
-            _bus.AttachDevice(device);
-        }
+            var ticksToWait = _cyclesCounter * _ticksPerCycle;
+            while ((ulong)(DateTime.Now - _startTime).Ticks < ticksToWait) ;
 
-        public void SetProgramCounter(ushort programCounter)
-        {
-            _registersState.ProgramCounter = programCounter;
-        }
-
-        private bool WaitForAvailableCycle()
-        {
-            var expectedTime = _cyclesSinceLastOperation * _timePerCycle;
-            while (_cyclesTimer.Elapsed.TotalMilliseconds < expectedTime);
-
-            return true;
+            _cyclesCounter++;
         }
     }
 }
