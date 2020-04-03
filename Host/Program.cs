@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Text.RegularExpressions;
 using CommandLine;
 using CPU;
@@ -48,9 +50,36 @@ namespace Host
             return definitionsList;
         }
 
-        private static List<IDevice> LoadDevices(IEnumerable<DeviceDefinition> definitions)
+        private static List<IDevice> LoadDevices(List<DeviceDefinition> definitions)
         {
-            return null;
+            var devices = new List<IDevice>();
+            foreach (var definition in definitions)
+            {
+                if (!File.Exists(definition.AbsoluteDllNameWithExtension))
+                {
+                    throw new DllNotFoundException($"Can't find device DLL ({definition.DllNameWithExtension}).");
+                }
+
+                var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(definition.AbsoluteDllNameWithExtension);
+                var assemblyTypes = assembly.GetTypes();
+                var deviceInterfaceType = typeof(IDevice);
+
+                var deviceClassType = assemblyTypes.FirstOrDefault(d => deviceInterfaceType.IsAssignableFrom(d));
+                if (deviceClassType == null)
+                {
+                    throw new EntryPointNotFoundException($"Can't find device class ({definition.DllNameWithExtension}).");
+                }
+
+                var deviceInstance = (IDevice)Activator.CreateInstance(deviceClassType);
+                if (!deviceInstance.Configure(definition.SplitParameters))
+                {
+                    throw new InvalidOperationException($"Can't configure device class ({definition.DllNameWithExtension}).");
+                }
+
+                devices.Add(deviceInstance);
+            }
+
+            return devices;
         }
     }
 }
