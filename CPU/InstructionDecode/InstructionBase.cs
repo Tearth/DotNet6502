@@ -20,9 +20,9 @@ namespace CPU.InstructionDecode
             _executor = GetExecutor();
         }
 
-        public uint Execute()
+        public void Execute()
         {
-            return _executor();
+            _executor();
         }
 
         public override string ToString()
@@ -30,82 +30,69 @@ namespace CPU.InstructionDecode
             return $"{Name} (0x{OpCode:X2})";
         }
 
-        protected virtual uint ExecuteInImplicitMode()
+        protected virtual void ExecuteInImplicitMode()
         {
             ThrowNotImplementedException("Implicit");
-            return 0;
         }
 
-        protected virtual uint ExecuteInAccumulatorMode()
+        protected virtual void ExecuteInAccumulatorMode()
         {
             ThrowNotImplementedException("Accumulator");
-            return 0;
         }
 
-        protected virtual uint ExecuteInImmediateMode()
+        protected virtual void ExecuteInImmediateMode()
         {
             ThrowNotImplementedException("Immediate");
-            return 0;
         }
 
-        protected virtual uint ExecuteInZeroPageMode()
+        protected virtual void ExecuteInZeroPageMode()
         {
             ThrowNotImplementedException("Zero Page");
-            return 0;
         }
 
-        protected virtual uint ExecuteInZeroPageXMode()
+        protected virtual void ExecuteInZeroPageXMode()
         {
             ThrowNotImplementedException("Zero Page X");
-            return 0;
         }
 
-        protected virtual uint ExecuteInZeroPageYMode()
+        protected virtual void ExecuteInZeroPageYMode()
         {
             ThrowNotImplementedException("Zero Page Y");
-            return 0;
         }
 
-        protected virtual uint ExecuteInRelativeMode()
+        protected virtual void ExecuteInRelativeMode()
         {
             ThrowNotImplementedException("Relative");
-            return 0;
         }
 
-        protected virtual uint ExecuteInAbsoluteMode()
+        protected virtual void ExecuteInAbsoluteMode()
         {
             ThrowNotImplementedException("Absolute");
-            return 0;
         }
 
-        protected virtual uint ExecuteInAbsoluteXMode()
+        protected virtual void ExecuteInAbsoluteXMode()
         {
             ThrowNotImplementedException("Absolute X");
-            return 0;
         }
 
-        protected virtual uint ExecuteInAbsoluteYMode()
+        protected virtual void ExecuteInAbsoluteYMode()
         {
             ThrowNotImplementedException("Absolute Y");
-            return 0;
         }
 
-        protected virtual uint ExecuteInIndirectMode()
+        protected virtual void ExecuteInIndirectMode()
         {
             ThrowNotImplementedException("Indirect");
-            return 0;
         }
 
-        protected virtual uint ExecuteInIndexedIndirectMode()
+        protected virtual void ExecuteInIndexedIndirectMode()
         {
             ThrowNotImplementedException("Indexed Indirect");
-            return 0;
         }
 
-        protected virtual uint ExecuteInIndirectIndexedMode()
+        protected virtual void ExecuteInIndirectIndexedMode()
         {
             ThrowNotImplementedException("Indirect Indexed");
-            return 0;
         }
 
         private void ThrowNotImplementedException(string requestedAddressingMode)

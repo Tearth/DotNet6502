@@ -9,5 +9,10 @@
         public bool BrkCommand { get; set; }
         public bool Overflow { get; set; }
         public bool Negative { get; set; }
+
+        public FlagRegister()
+        {
+            IrqDisable = true;
+        }
     }
 }

@@ -22,6 +22,11 @@ namespace CPU.IO
             return _devices.Aggregate((byte)0, (result, p) => (byte)(result | p.Read(address)));
         }
 
+        public ushort ReadTwo(ushort address)
+        {
+            return (ushort)(Read(address) | (Read((ushort)(address + 1)) << 8));
+        }
+
         public void Write(ushort address, byte value)
         {
             _devices.ForEach(p => p.Write(address, value));

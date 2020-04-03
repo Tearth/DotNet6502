@@ -6,23 +6,30 @@ namespace CPU.InstructionDecode
 {
     public class InstructionDecoder
     {
-        private readonly CycleContext _cycleContext;
+        private readonly Mos6502Core _core;
         private readonly Dictionary<ushort, InstructionBase> _instructions;
 
-        public InstructionDecoder(CycleContext cycleContext)
+        public InstructionDecoder(Mos6502Core core)
         {
             _instructions = new Dictionary<ushort, InstructionBase>();
-            _cycleContext = cycleContext;
+            _core = core;
 
-            AddInstruction(new BrkInstruction(0x00, AddressingMode.Implicit, _cycleContext));
+            AddInstruction(new AdcInstruction(0x69, AddressingMode.Immediate, _core));
+            AddInstruction(new AdcInstruction(0x65, AddressingMode.ZeroPage, _core));
+            AddInstruction(new AdcInstruction(0x75, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new AdcInstruction(0x6D, AddressingMode.Absolute, _core));
+            AddInstruction(new AdcInstruction(0x7D, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new AdcInstruction(0x79, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new AdcInstruction(0x61, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new AdcInstruction(0x71, AddressingMode.IndexedIndirect, _core));
         }
 
-        public uint DecodeAndExecute()
+        public void DecodeAndExecute()
         {
-            var opCode = _cycleContext.Bus.Read(_cycleContext.RegistersState.ProgramCounter);
+            var opCode = _core.Bus.Read(_core.Registers.ProgramCounter);
             var instruction = _instructions[opCode];
 
-            return instruction.Execute();
+            instruction.Execute();
         }
 
         private void AddInstruction(InstructionBase instruction)
