@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CPU\CPU.csproj" />
+    <ProjectReference Include="..\Peripherals\RAM\RAM.csproj" />
+    <ProjectReference Include="..\Peripherals\ROM\ROM.csproj" />
   </ItemGroup>
 
 </Project>
