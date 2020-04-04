@@ -7,11 +7,6 @@
         public byte Accumulator { get; set; }
         public byte IndexRegisterX { get; set; }
         public byte IndexRegisterY { get; set; }
-        public FlagRegister Flags { get; set; }
-
-        public RegistersState()
-        {
-            Flags = new FlagRegister();
-        }
+        public StatusFlags Flags { get; set; }
     }
 }

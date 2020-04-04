@@ -90,7 +90,7 @@
         {
             return 0;
         }
-        */
+        
         private void AddWithCarry(byte number)
         {
             var a = _core.Registers.Accumulator;
@@ -103,5 +103,6 @@
             _core.Registers.Flags.Carry = result > byte.MaxValue || result < byte.MinValue;
             _core.Registers.Flags.Overflow = ((a ^ (sbyte)result) & (number ^ (sbyte)result) & 0x80) != 0;
         }
+        */
     }
 }
