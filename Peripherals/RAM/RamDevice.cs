@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using CPU;
 using CPU.IO;
 
 namespace RAM
 {
     public class RamDevice : IDevice
     {
+        private Mos6502Core _core;
         private ushort _startAddress;
         private ushort _endAddress;
         private uint Size => (uint)(_endAddress - _startAddress + 1);
 
         private byte[] _memory;
 
-        public bool Configure(List<string> parameters)
+        public bool Configure(Mos6502Core core, List<string> parameters)
         {
+            _core = core;
+
             if (parameters.Count < 2)
             {
                 return false;
@@ -62,23 +66,33 @@ namespace RAM
             return true;
         }
 
-        public byte Read(ushort address)
+        public void Process()
         {
-            if (IsAddressValid(address))
+            if (_core.Pins.Rw)
             {
-                var relativeAddress = GetRelativeAddress(address);
-                return _memory[relativeAddress];
+                Read();
             }
-
-            return 0;
+            else
+            {
+                Write();
+            }
         }
 
-        public void Write(ushort address, byte value)
+        private void Read()
         {
-            if (IsAddressValid(address))
+            if (IsAddressValid(_core.Pins.A))
             {
-                var relativeAddress = GetRelativeAddress(address);
-                _memory[relativeAddress] = value;
+                var relativeAddress = GetRelativeAddress(_core.Pins.A);
+                _core.Pins.D |= _memory[relativeAddress];
+            }
+        }
+
+        private void Write()
+        {
+            if (IsAddressValid(_core.Pins.A))
+            {
+                var relativeAddress = GetRelativeAddress(_core.Pins.A);
+                _memory[relativeAddress] = _core.Pins.D;
             }
         }
 

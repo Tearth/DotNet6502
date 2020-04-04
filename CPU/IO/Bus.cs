@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace CPU.IO
 {
@@ -19,22 +18,23 @@ namespace CPU.IO
             _devices.Add(device);
         }
 
-        public byte Read(ushort address)
+        public byte Read(ushort address, bool? forcedRw = null)
         {
-            _core.Pins.Rw = true;
+            _core.Pins.Rw = forcedRw ?? true;
             _core.Pins.A = address;
-            _core.Pins.D = _devices.Aggregate((byte)0, (result, p) => (byte)(result | p.Read(address)));
+            _core.Pins.D = 0;
+            _devices.ForEach(p => p.Process());
             _core.YieldCycle();
             
             return _core.Pins.D;
         }
 
-        public void Write(ushort address, byte value)
+        public void Write(ushort address, byte value, bool? forcedRw = null)
         {
-            _core.Pins.Rw = false;
+            _core.Pins.Rw = forcedRw ?? false;
             _core.Pins.A = address;
             _core.Pins.D = value;
-            _devices.ForEach(p => p.Write(_core.Pins.A, _core.Pins.D));
+            _devices.ForEach(p => p.Process());
             _core.YieldCycle();
         }
     }
