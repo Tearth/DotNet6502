@@ -40,6 +40,9 @@ namespace CPU
 
         public void Reset()
         {
+            Pins.Reset = false;
+            Pins.Rdy = true;
+            _interruptsLogic.Process();
             Pins.Reset = true;
         }
 
@@ -53,7 +56,10 @@ namespace CPU
                     continue;
                 }
 
-                _instructionDecoder.DecodeAndExecute();
+                if (Pins.Reset)
+                {
+                    _instructionDecoder.DecodeAndExecute();
+                }
             }
         }
 

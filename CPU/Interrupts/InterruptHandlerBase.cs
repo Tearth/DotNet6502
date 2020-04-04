@@ -9,6 +9,15 @@
             _core = core;
         }
 
+        protected void PreExecute(bool? forcedRw)
+        {
+            _core.Bus.Write(_core.Registers.StackPointer--, (byte)(_core.Registers.ProgramCounter >> 8), forcedRw);
+            _core.Bus.Write(_core.Registers.StackPointer--, (byte)_core.Registers.ProgramCounter, forcedRw);
+            _core.Bus.Write(_core.Registers.StackPointer--, _core.Registers.Flags.Value, forcedRw);
+
+            _core.Registers.Flags.IrqDisable = true;
+        }
+
         public abstract void Execute();
     }
 }

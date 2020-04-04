@@ -9,7 +9,16 @@
 
         public override void Execute()
         {
-            throw new System.NotImplementedException();
+            // Internal operations (2 cycles)
+            _core.YieldCycle();
+            _core.YieldCycle();
+
+            // Store (faked) registers onto stack (3 cycles)
+            PreExecute(true);
+
+            // Read RESET vector (2 cycles)
+            var vector = (ushort) (_core.Bus.Read(0xFFFC) | (_core.Bus.Read(0xFFFD) << 8));
+            _core.Registers.ProgramCounter = vector;
         }
     }
 }
