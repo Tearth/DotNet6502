@@ -15,6 +15,6 @@ deploy:
     local_dir: docs/html
     github_token: $GH_REPO_TOKEN
     on:
-      branch: develop
+      branch: master
 notifications:
   email: false
