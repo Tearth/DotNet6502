@@ -1,5 +1,6 @@
 ﻿using System;
 using CPU.InstructionDecode;
+using CPU.Interrupts;
 using CPU.IO;
 using CPU.Registers;
 
@@ -12,6 +13,7 @@ namespace CPU
         public readonly RegistersState Registers;
 
         private readonly InstructionDecoder _instructionDecoder;
+        private readonly InterruptsLogic _interruptsLogic;
 
         private uint _frequency;
         private ulong _ticksPerCycle;
@@ -25,6 +27,7 @@ namespace CPU
             Registers = new RegistersState();
 
             _instructionDecoder = new InstructionDecoder(this);
+            _interruptsLogic = new InterruptsLogic(this);
 
             _frequency = frequency;
             _ticksPerCycle = TimeSpan.TicksPerSecond / (ulong)_frequency;
@@ -35,6 +38,7 @@ namespace CPU
             _startTime = DateTime.Now;
             while (Pins.Vcc)
             {
+                _interruptsLogic.Process();
                 _instructionDecoder.DecodeAndExecute();
             }
         }

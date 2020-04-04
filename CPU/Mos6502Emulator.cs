@@ -13,6 +13,7 @@
         {
             Core.Pins.Vcc = true;
             Core.Pins.Rdy = true;
+            Core.Pins.Reset = true;
             Core.Run();
         }
     }

@@ -3,7 +3,7 @@
     public class PinsState
     {
         public bool Vcc { get; set; }
-        public bool Res { get; set; }
+        public bool Reset { get; set; }
         public bool Rdy { get; set; }
         public bool Irq { get; set; }
         public bool Nmi { get; set; }
