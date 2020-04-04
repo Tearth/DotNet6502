@@ -25,18 +25,14 @@ namespace Host
             var result = parser.ParseArguments<CommandLineOptions>(args);
             result.WithParsed(options =>
             {
-                var devices = ParseDevices(string.Join(" ", args));
-                var loadedDevices = LoadDevices(devices);
-
                 var emulator = new Mos6502Emulator(options.Frequency);
+                var devices = ParseDevices(string.Join(" ", args));
+                var loadedDevices = LoadDevices(emulator.Core, devices);
+
                 loadedDevices.ForEach(d => emulator.Core.Bus.AttachDevice(d));
 
-                if (options.ProgramCounter != null)
-                {
-                    var programCounter = ushort.Parse(options.ProgramCounter.Replace("0x", ""), NumberStyles.HexNumber, null);
-                    emulator.SetProgramCounter(programCounter);
-                }
-
+                emulator.PowerUp();
+                emulator.Reset();
                 emulator.Run();
             });
         }
@@ -57,7 +53,7 @@ namespace Host
             return definitionsList;
         }
 
-        private static List<IDevice> LoadDevices(List<DeviceDefinition> definitions)
+        private static List<IDevice> LoadDevices(Mos6502Core core, List<DeviceDefinition> definitions)
         {
             var devices = new List<IDevice>();
             foreach (var definition in definitions)
@@ -78,7 +74,7 @@ namespace Host
                 }
 
                 var deviceInstance = (IDevice)Activator.CreateInstance(deviceClassType);
-                if (!deviceInstance.Configure(definition.SplitParameters))
+                if (!deviceInstance.Configure(core, definition.SplitParameters))
                 {
                     throw new InvalidOperationException($"Can't configure device class ({definition.DllNameWithExtension}).");
                 }
