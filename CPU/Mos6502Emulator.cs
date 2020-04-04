@@ -9,11 +9,23 @@
             Core = new Mos6502Core(frequency);
         }
 
+        public void PowerUp()
+        {
+            Core.SetPowerState(true);
+        }
+
+        public void PowerDown()
+        {
+            Core.SetPowerState(true);
+        }
+
+        public void Reset()
+        {
+            Core.Reset();
+        }
+
         public void Run()
         {
-            Core.Pins.Vcc = true;
-            Core.Pins.Rdy = true;
-            Core.Pins.Reset = true;
             Core.Run();
         }
     }

@@ -33,12 +33,26 @@ namespace CPU
             _ticksPerCycle = TimeSpan.TicksPerSecond / (ulong)_frequency;
         }
 
+        public void SetPowerState(bool state)
+        {
+            Pins.Vcc = state;
+        }
+
+        public void Reset()
+        {
+            Pins.Reset = true;
+        }
+
         public void Run()
         {
             _startTime = DateTime.Now;
             while (Pins.Vcc)
             {
-                _interruptsLogic.Process();
+                if (_interruptsLogic.Process())
+                {
+                    continue;
+                }
+
                 _instructionDecoder.DecodeAndExecute();
             }
         }
