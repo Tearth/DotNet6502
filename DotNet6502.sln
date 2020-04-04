@@ -11,12 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peripherals", "Peripherals"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAM", "Peripherals\RAM\RAM.csproj", "{B86AE90F-D279-4B8F-988B-B8B0ECF3AEC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROM", "Peripherals\ROM\ROM.csproj", "{98EB9A6F-89E8-4728-9850-FA35984C721A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ROM", "Peripherals\ROM\ROM.csproj", "{98EB9A6F-89E8-4728-9850-FA35984C721A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{711395E3-7FE0-4D57-84CE-0C8618EAC8FD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
+		Doxyfile = Doxyfile
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
