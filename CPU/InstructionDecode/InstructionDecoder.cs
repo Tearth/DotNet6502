@@ -26,8 +26,10 @@ namespace CPU.InstructionDecode
 
         public void DecodeAndExecute()
         {
+            _core.Pins.Sync = true;
             var opCode = _core.Bus.Read(_core.Registers.ProgramCounter);
             var instruction = _instructions[opCode];
+            _core.Pins.Sync = false;
 
             instruction.Execute();
         }

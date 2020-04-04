@@ -11,12 +11,9 @@
 
         public void Run()
         {
+            Core.Pins.Vcc = true;
+            Core.Pins.Rdy = true;
             Core.Run();
-        }
-
-        public void SetProgramCounter(ushort programCounter)
-        {
-            Core.Registers.ProgramCounter = programCounter;
         }
     }
 }

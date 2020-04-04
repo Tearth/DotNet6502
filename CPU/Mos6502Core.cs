@@ -7,6 +7,7 @@ namespace CPU
 {
     public class Mos6502Core
     {
+        public readonly PinsState Pins;
         public readonly Bus Bus;
         public readonly RegistersState Registers;
 
@@ -19,8 +20,10 @@ namespace CPU
 
         public Mos6502Core(uint frequency)
         {
-            Bus = new Bus();
+            Pins = new PinsState();
+            Bus = new Bus(this);
             Registers = new RegistersState();
+
             _instructionDecoder = new InstructionDecoder(this);
 
             _frequency = frequency;
@@ -30,7 +33,7 @@ namespace CPU
         public void Run()
         {
             _startTime = DateTime.Now;
-            while (true)
+            while (Pins.Vcc)
             {
                 _instructionDecoder.DecodeAndExecute();
             }
@@ -38,6 +41,12 @@ namespace CPU
 
         public void YieldCycle()
         {
+            if (!Pins.Rdy)
+            {
+                while (!Pins.Rdy) ;
+                _startTime = DateTime.Now;
+            }
+
             var ticksToWait = _cyclesCounter * _ticksPerCycle;
             while ((ulong)(DateTime.Now - _startTime).Ticks < ticksToWait) ;
 
