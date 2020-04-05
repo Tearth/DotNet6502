@@ -8,11 +8,44 @@
         Title="DotNet6502 Monitor" Width="800" Height="600" WindowStartupLocation="CenterScreen" Background="#FF484848">
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Background" Value="#FF666666" />
-            <Setter Property="Foreground" Value="#FFC5C5C5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="#FF666666">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF666666" Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF505050" Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF3A3A3A" Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="#FFC5C5C5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="Header" TargetType="Label">
             <Setter Property="Foreground" Value="#FF8E8E8E" />
+            <Setter Property="Background" Value="#FF505050" />
+        </Style>
+        <Style TargetType="GridSplitter">
+            <Setter Property="Background" Value="#FF7F7F7F" />
         </Style>
     </Window.Resources>
     <Grid>
@@ -28,8 +61,43 @@
                 <ColumnDefinition Width="*" MinWidth="26"/>
                 <ColumnDefinition Width="*" MinWidth="26"/>
             </Grid.ColumnDefinitions>
-            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" Background="#FF7F7F7F"/>
-            <GridSplitter Grid.Column="2" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" Background="#FF7F7F7F"/>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Pins" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Disassembled code" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MinHeight="26"/>
+                    <RowDefinition Height="*" MinHeight="26"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Registers" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Stack" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
+                </Grid>
+                <GridSplitter Grid.Row="0" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" />
+            </Grid>
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" />
+            <GridSplitter Grid.Column="2" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" />
         </Grid>
         <Grid HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
@@ -47,6 +115,6 @@
             <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
             <Button Content="Go to address" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" />
         </Grid>
-        <GridSplitter Grid.Row="2" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" ResizeDirection="Rows" Background="#FF7F7F7F"/>
+        <GridSplitter Grid.Row="2" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" ResizeDirection="Rows" />
     </Grid>
 </Window>
