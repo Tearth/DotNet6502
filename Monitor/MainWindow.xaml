@@ -47,6 +47,15 @@
         <Style TargetType="GridSplitter">
             <Setter Property="Background" Value="#FF7F7F7F" />
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFC5C5C5" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#FF484848" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="#FFC5C5C5" />
+            <Setter Property="CaretBrush" Value="#FFC5C5C5" />
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -77,8 +86,8 @@
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" MinHeight="26"/>
-                    <RowDefinition Height="*" MinHeight="26"/>
+                    <RowDefinition Height="3*" MinHeight="26"/>
+                    <RowDefinition Height="2*" MinHeight="26"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
@@ -86,6 +95,66 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Content="Registers" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
+                    <Grid Grid.Row="1" Margin="3,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="General:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBlock Text="Flags:" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <TextBlock Text="PC:" Grid.Row="1" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x0000" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" />
+
+                        <TextBlock Text="SP:" Grid.Row="2" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" />
+
+                        <TextBlock Text="Acc:" Grid.Row="3" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" />
+
+                        <TextBlock Text="X:" Grid.Row="4" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" />
+
+                        <TextBlock Text="Y:" Grid.Row="5" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" />
+
+                        <TextBlock Text="Flags:" Grid.Row="6" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" />
+                        <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" />
+
+                        <CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[C] Carry" Grid.Row="1" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[Z] Zero" Grid.Row="2" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[I] Interrupts off" Grid.Row="3" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[D] Decimal mode" Grid.Row="4" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[B] BRK interrupt" Grid.Row="5" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[V] Overflow" Grid.Row="6" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+
+                        <CheckBox Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="[S] Signed" Grid.Row="7" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
+                    </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -96,24 +165,26 @@
                 </Grid>
                 <GridSplitter Grid.Row="0" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" />
             </Grid>
-            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" />
-            <GridSplitter Grid.Column="2" Width="3" HorizontalAlignment="Left" ResizeDirection="Columns" />
+            <GridSplitter Grid.Column="0" Width="3" HorizontalAlignment="Right" ResizeDirection="Columns" />
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Right" ResizeDirection="Columns" />
         </Grid>
         <Grid HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsEnabled="False" BorderThickness="0" Grid.ColumnSpan="3" Margin="0,0.6,-0.4,23.6" Grid.RowSpan="2"/>
-            <Label Content="Memory viewer" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" Grid.ColumnSpan="3" />
-            <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
-            <Button Content="Go to address" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" />
+            <Label Content="Memory viewer" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
+            <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Grid.ColumnSpan="3"/>
+            <Grid Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
+                <Button Content="Go to address" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" />
+            </Grid>
         </Grid>
         <GridSplitter Grid.Row="2" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" ResizeDirection="Rows" />
     </Grid>
