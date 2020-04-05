@@ -76,6 +76,124 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Pins" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
+                <Grid Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="1" Grid.RowSpan="20" Grid.Column="1" Fill="#FF7A7A7A" HorizontalAlignment="Stretch" Stroke="#FF1D1D1D"/>
+                    <TextBlock Grid.Row="1" Grid.RowSpan="20" Grid.Column="1" HorizontalAlignment="Center" Text="MOS 6502" VerticalAlignment="Center" Foreground="#FFF7F7F7" FontWeight="Bold"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="13" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="14" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="15" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="16" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="17" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="18" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="19" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="20" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                    <CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="13" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="14" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="15" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="16" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="17" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="18" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="19" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="20" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="VSS" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="RDY" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Φ1" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="IRQ" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="N.C." TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="NMI" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="SYNC" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="VCC" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="9" Grid.Column="0" Text="A0" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="10" Grid.Column="0" Text="A1" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="11" Grid.Column="0" Text="A2" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="12" Grid.Column="0" Text="A3" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="13" Grid.Column="0" Text="A4" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="14" Grid.Column="0" Text="A5" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="15" Grid.Column="0" Text="A6" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="16" Grid.Column="0" Text="A7" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="17" Grid.Column="0" Text="A8" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="18" Grid.Column="0" Text="A9" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="19" Grid.Column="0" Text="A10" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+                    <TextBlock Grid.Row="20" Grid.Column="0" Text="A11" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="RES" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Φ2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="S0" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="Φ3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="N.C." TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="6" Grid.Column="2" Text="N.C." TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="7" Grid.Column="2" Text="R/W" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="8" Grid.Column="2" Text="D0" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="9" Grid.Column="2" Text="D1" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="10" Grid.Column="2" Text="D2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="11" Grid.Column="2" Text="D3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="12" Grid.Column="2" Text="D4" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="13" Grid.Column="2" Text="D5" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="14" Grid.Column="2" Text="D6" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="15" Grid.Column="2" Text="D7" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="16" Grid.Column="2" Text="A15" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="17" Grid.Column="2" Text="A14" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="18" Grid.Column="2" Text="A13" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="19" Grid.Column="2" Text="A12" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+                    <TextBlock Grid.Row="20" Grid.Column="2" Text="VSS" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
+
+                </Grid>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
