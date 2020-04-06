@@ -18,7 +18,38 @@ namespace Monitor.Windows
 
         private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            _viewModel.Stack +=
+@"{\rtf1\ansi\deff0
+{\fonttbl {\f0 Consolas;}}
+{\colortbl;\red255\green255\blue255;\red150\green150\blue150;}
+\fs18
+\cf2 0x12: \cf1 0x23 <- stack pointer\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+}";
+
+            _viewModel.DisassembledCode +=
+                @"{\rtf1\ansi\deff0
+{\fonttbl {\f0 Consolas;}}
+{\colortbl;\red255\green255\blue255;\red150\green150\blue150;}
+\fs18
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+}";
+
+            _viewModel.Memory +=
+                @"{\rtf1\ansi\deff0
+{\fonttbl {\f0 Consolas;}}
+{\colortbl;\red255\green255\blue255;\red150\green150\blue150;}
+\fs18
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+\cf2 0x12: \cf1 0x23\line
+}";
         }
     }
 }
