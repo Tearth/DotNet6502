@@ -119,7 +119,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Pins" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
-                <Grid Row="1">
+                <Grid Row="1" DataContext="{Binding Path=Pins}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -152,47 +152,47 @@
                     <Rectangle Grid.Row="1" Grid.RowSpan="20" Grid.Column="1" Fill="#FF7A7A7A" HorizontalAlignment="Stretch" Stroke="#FF1D1D1D"/>
                     <TextBlock Grid.Row="1" Grid.RowSpan="20" Grid.Column="1" HorizontalAlignment="Center" Text="MOS 6502" VerticalAlignment="Center" Foreground="#FFF7F7F7" FontWeight="Bold"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=Vss}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Path=Rdy}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
+                    <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding Path=Irq}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
+                    <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=Nmi}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding Path=Sync}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="13" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="14" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="15" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="16" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="17" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="18" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="19" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="20" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="9" Grid.Column="0" IsChecked="{Binding Path=A0}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="10" Grid.Column="0" IsChecked="{Binding Path=A1}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="11" Grid.Column="0" IsChecked="{Binding Path=A2}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="12" Grid.Column="0" IsChecked="{Binding Path=A3}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="13" Grid.Column="0" IsChecked="{Binding Path=A4}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="14" Grid.Column="0" IsChecked="{Binding Path=A5}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="15" Grid.Column="0" IsChecked="{Binding Path=A6}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="16" Grid.Column="0" IsChecked="{Binding Path=A7}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="17" Grid.Column="0" IsChecked="{Binding Path=A8}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="18" Grid.Column="0" IsChecked="{Binding Path=A9}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="19" Grid.Column="0" IsChecked="{Binding Path=A10}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="20" Grid.Column="0" IsChecked="{Binding Path=A11}" HorizontalAlignment="Right" VerticalAlignment="Center" />
 
-                    <CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=Res}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="13" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="14" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="15" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="16" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="17" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="18" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="19" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="20" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                    <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                    <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                    <CheckBox Grid.Row="7" Grid.Column="2" IsChecked="{Binding Path=Rw}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="8" Grid.Column="2" IsChecked="{Binding Path=D0}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="9" Grid.Column="2" IsChecked="{Binding Path=D1}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="10" Grid.Column="2" IsChecked="{Binding Path=D2}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="11" Grid.Column="2" IsChecked="{Binding Path=D3}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="12" Grid.Column="2" IsChecked="{Binding Path=D4}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="13" Grid.Column="2" IsChecked="{Binding Path=D5}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="14" Grid.Column="2" IsChecked="{Binding Path=D6}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="15" Grid.Column="2" IsChecked="{Binding Path=D7}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="16" Grid.Column="2" IsChecked="{Binding Path=A15}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="17" Grid.Column="2" IsChecked="{Binding Path=A14}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="18" Grid.Column="2" IsChecked="{Binding Path=A13}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="19" Grid.Column="2" IsChecked="{Binding Path=A12}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="20" Grid.Column="2" IsChecked="{Binding Path=Vss}" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="VSS" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="RDY" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="0,0,20,0" />
@@ -346,7 +346,7 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
-                <Button Content="Go to address" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" />
+                <Button x:Name="GoToAddressButton" Content="Go to address" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" Click="GoToAddressButton_Click" />
                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status: connected at localhost:9999" VerticalAlignment="Center" Margin="8,0,0,0" />
             </Grid>
         </Grid>
