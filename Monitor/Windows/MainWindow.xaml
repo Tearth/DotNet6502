@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor"
+        xmlns:converters="clr-namespace:Monitor.Converters"
         mc:Ignorable="d"
         Title="DotNet6502 Monitor" Width="800" Height="600" WindowStartupLocation="CenterScreen" Background="#FF484848">
     <Window.Resources>
+        <converters:HexConverter x:Key="HexConverter" />
         <Style x:Key="MenuItemDark" TargetType="{x:Type MenuItem}">
             <Setter Property="Foreground" Value="#FFC5C5C5"/>
             <Setter Property="Template">
@@ -279,22 +281,22 @@
                         <TextBlock Text="Flags:" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
                         <TextBlock Text="PC:" Grid.Row="1" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Pc, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Pc, Converter={StaticResource HexConverter}, FallbackValue=0x0000}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
 
                         <TextBlock Text="SP:" Grid.Row="2" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Sp, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Sp, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Acc:" Grid.Row="3" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Acc, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Acc, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="X:" Grid.Row="4" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=X, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=X, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Y:" Grid.Row="5" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Y, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Y, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Flags:" Grid.Row="6" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Flags, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Flags, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=Carry}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[C] Carry" Grid.Row="1" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
