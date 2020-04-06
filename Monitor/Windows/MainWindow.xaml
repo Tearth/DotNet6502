@@ -257,7 +257,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Content="Registers" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
-                    <Grid Grid.Row="1" Margin="3,0">
+                    <Grid Grid.Row="1" DataContext="{Binding Path=Registers}" Margin="3,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="2*"/>
@@ -279,42 +279,42 @@
                         <TextBlock Text="Flags:" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
                         <TextBlock Text="PC:" Grid.Row="1" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x0000" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Pc, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
 
                         <TextBlock Text="SP:" Grid.Row="2" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Sp, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Acc:" Grid.Row="3" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Acc, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="X:" Grid.Row="4" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=X, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Y:" Grid.Row="5" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Y, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Flags:" Grid.Row="6" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" Text="0x00" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Flags, StringFormat=0x{0:x}}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
-                        <CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=Carry}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[C] Carry" Grid.Row="1" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=Zero}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[Z] Zero" Grid.Row="2" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=InterruptsOff}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[I] Interrupts off" Grid.Row="3" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=DecimalMode}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[D] Decimal mode" Grid.Row="4" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="5" Grid.Column="2" IsChecked="{Binding Path=BrkInterrupt}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[B] BRK interrupt" Grid.Row="5" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="6" Grid.Column="2" IsChecked="{Binding Path=Overflow}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[V] Overflow" Grid.Row="6" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
-                        <CheckBox Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="7" Grid.Column="2" IsChecked="{Binding Path=Signed}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="[S] Signed" Grid.Row="7" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
                     </Grid>
                 </Grid>
