@@ -26,22 +26,29 @@ namespace Host
             var result = parser.ParseArguments<CommandLineOptions>(args);
             result.WithParsed(options =>
             {
+                Console.WriteLine("Starting 6502 emulator...");
                 var emulator = new Mos6502Emulator(options.Frequency);
+
                 var devices = ParseDevices(string.Join(" ", args));
                 var loadedDevices = LoadDevices(emulator.Core, devices);
                 loadedDevices.ForEach(d => emulator.Core.Bus.AttachDevice(d));
+                Console.WriteLine($"Added {loadedDevices.Count} peripherals");
 
                 DebuggerServer debugger = null;
                 if (options.IsDebuggerEnabled)
                 {
+                    Console.WriteLine($"Starting debugger at {options.DebuggerPort} port...");
                     debugger = new DebuggerServer(emulator.Core, options.DebuggerPort);
                     debugger.Start();
                 }
 
+                Console.WriteLine("Starting 6502 core...");
                 emulator.PowerUp();
                 emulator.SetRdyState(!options.WaitForDebugger);
                 emulator.Reset();
                 emulator.Run();
+
+                Console.WriteLine("Closing 6502 emulator...");
                 debugger?.Dispose();
             });
         }

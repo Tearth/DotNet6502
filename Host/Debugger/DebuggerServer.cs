@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CPU;
@@ -47,11 +48,16 @@ namespace Host.Debugger
                 var client = _tcpListener.AcceptTcpClient();
                 var clientStream = client.GetStream();
 
+                Console.WriteLine($"New debugger client connected: {client.Client.RemoteEndPoint}");
+
+                var buffer = new byte[256];
                 while (client.Connected)
                 {
-                    var buffer = new byte[1024];
-                    clientStream.Read(buffer, 0, buffer.Length);
+                    var x = clientStream.Read(buffer, 0, buffer.Length);
+                    Console.WriteLine("Read data " + x.ToString());
                 }
+
+                Console.Write("Debugger client disconnected");
             }
         }
     }
