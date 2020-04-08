@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Monitor.Settings;
 
 namespace Monitor.Windows
 {
@@ -19,9 +20,19 @@ namespace Monitor.Windows
     /// </summary>
     public partial class ConnectWindow : Window
     {
-        public ConnectWindow()
+        private SettingsContainer _settings;
+
+        public ConnectWindow(SettingsContainer settings)
         {
             InitializeComponent();
+            _settings = settings;
+
+            DataContext = _settings.Data;
+        }
+
+        private void ConnectButton_Click(object sender, RoutedEventArgs e)
+        {
+            _settings.Save();
         }
     }
 }

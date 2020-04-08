@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor.Windows"
         mc:Ignorable="d"
-        Title="Connect to emulator" Height="103.866" Width="294.4" WindowStartupLocation="CenterScreen"
-        Style="{StaticResource DefaultWindowStyle}" ResizeMode="NoResize">
+        Title="Connect to emulator" MinHeight="100" MinWidth="400" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DefaultWindowStyle}" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="26"/>
+            <RowDefinition Height="29"/>
             <RowDefinition Height="29"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Center" VerticalContentAlignment="Center" Text="localhost:6502" Background="#FF3A3A3A" Grid.ColumnSpan="2"/>
-        <Button Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,3,0,0" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock Text="Address:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+        <TextBox Text="{Binding Path=Address}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="50,2,2,2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" Background="#FF3A3A3A" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        
+        <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.Column="1" Grid.Row="1" Click="ConnectButton_Click"/>
     </Grid>
 </Window>

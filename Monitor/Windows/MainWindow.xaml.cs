@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Monitor.Settings;
 using Monitor.ViewModels;
 
 namespace Monitor.Windows
@@ -9,6 +10,7 @@ namespace Monitor.Windows
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _viewModel = new MainWindowViewModel();
+        private SettingsContainer _settings = new SettingsContainer("settings.json");
 
         public MainWindow()
         {
@@ -65,13 +67,13 @@ namespace Monitor.Windows
 
         private void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var window = new ConnectWindow();
+            var window = new ConnectWindow(_settings);
             window.ShowDialog();
         }
 
         private void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var window = new RunAndConnectWindow();
+            var window = new RunAndConnectWindow(_settings);
             window.ShowDialog();
         }
 
