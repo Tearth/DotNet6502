@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CPU.InstructionDecode;
 using CPU.Interrupts;
 using CPU.IO;
@@ -41,7 +42,6 @@ namespace CPU
         public void Reset()
         {
             Pins.Reset = false;
-            Pins.Rdy = true;
             _interruptsLogic.Process();
             Pins.Reset = true;
         }

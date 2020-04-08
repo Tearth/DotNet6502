@@ -19,6 +19,11 @@
             Core.SetPowerState(true);
         }
 
+        public void SetRdyState(bool state)
+        {
+            Core.Pins.Rdy = state;
+        }
+
         public void Reset()
         {
             Core.Reset();

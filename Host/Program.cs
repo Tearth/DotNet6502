@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using CommandLine;
 using CPU;
 using CPU.IO;
+using Host.Debugger;
 
 namespace Host
 {
@@ -28,19 +29,27 @@ namespace Host
                 var emulator = new Mos6502Emulator(options.Frequency);
                 var devices = ParseDevices(string.Join(" ", args));
                 var loadedDevices = LoadDevices(emulator.Core, devices);
-
                 loadedDevices.ForEach(d => emulator.Core.Bus.AttachDevice(d));
 
+                DebuggerServer debugger = null;
+                if (options.IsDebuggerEnabled)
+                {
+                    debugger = new DebuggerServer(emulator.Core, options.DebuggerPort);
+                    debugger.Start();
+                }
+
                 emulator.PowerUp();
+                emulator.SetRdyState(!options.WaitForDebugger);
                 emulator.Reset();
                 emulator.Run();
+                debugger?.Dispose();
             });
         }
 
         private static List<DeviceDefinition> ParseDevices(string args)
         {
             var definitionsList = new List<DeviceDefinition>();
-            var matches = Regex.Matches(args, @"\-d (?<dllName>.*?)\[(?<parameters>.*?)\]");
+            var matches = Regex.Matches(args, @"\-b (?<dllName>.*?)\[(?<parameters>.*?)\]");
 
             foreach (Match match in matches)
             {

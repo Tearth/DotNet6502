@@ -2,7 +2,7 @@
   "profiles": {
     "Host": {
       "commandName": "Project",
-      "commandLineArgs": "-f 1000000 -p 0x0400 -d RAM[0x0000, 0xFFFF, ram.img]"
+      "commandLineArgs": "-f 1000000 -d -w -b RAM[0x0000, 0xFFFF, ram.img]"
     }
   }
 }
