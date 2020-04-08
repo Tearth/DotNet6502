@@ -62,5 +62,21 @@ namespace Monitor.Windows
 \cf2 0x12: \cf1 0x23\line
 }";
         }
+
+        private void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var connectWindow = new ConnectWindow();
+            connectWindow.ShowDialog();
+        }
+
+        private void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
