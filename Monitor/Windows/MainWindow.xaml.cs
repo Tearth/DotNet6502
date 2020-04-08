@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
+using Monitor.Debugger;
 using Monitor.Settings;
 using Monitor.ViewModels;
 
@@ -11,6 +16,7 @@ namespace Monitor.Windows
     {
         private MainWindowViewModel _viewModel = new MainWindowViewModel();
         private SettingsContainer _settings = new SettingsContainer("settings.json");
+        private DebuggerClient _debugger = new DebuggerClient();
 
         public MainWindow()
         {
@@ -65,21 +71,77 @@ namespace Monitor.Windows
 }";
         }
 
-        private void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var window = new ConnectWindow(_settings);
-            window.ShowDialog();
+            if (window.ShowDialog() == true)
+            {
+                StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
+                var result = await _debugger.Connect(_settings.Data.Address);
+                if (!result.Success)
+                {
+                    StatusLabel.Text = "Status: connection error";
+                    MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
         }
 
-        private void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        private async void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var window = new RunAndConnectWindow(_settings);
-            window.ShowDialog();
+            if (window.ShowDialog() == true)
+            {
+                StatusLabel.Text = $"Status: running {_settings.Data.Path}...";
+
+                var runEmulatorResult = RunEmulator();
+                if (!runEmulatorResult.Success)
+                {
+                    StatusLabel.Text = "Status: connection error";
+                    MessageBox.Show(runEmulatorResult.ErrorMessage, "Emulator error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                await Task.Delay(500);
+                StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
+
+                var result = await _debugger.Connect(_settings.Data.Address);
+                if (!result.Success)
+                {
+                    StatusLabel.Text = "Status: connection error";
+                    MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
+            }
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private (bool Success, string ErrorMessage) RunEmulator()
+        {
+            try
+            {
+                var processStartInfo = new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = $"{_settings.Data.Path} {_settings.Data.Arguments}",
+                    WorkingDirectory = Path.GetDirectoryName(_settings.Data.Path)
+                };
+
+                Process.Start(processStartInfo);
+
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+
+            return (true, null);
         }
     }
 }

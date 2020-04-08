@@ -298,7 +298,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
                 <Button x:Name="GoToAddressButton" Content="Go to address" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" Click="GoToAddressButton_Click" />
-                <TextBlock Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status: connected at localhost:9999" VerticalAlignment="Center" Margin="8,0,0,0" />
+                <TextBlock x:Name="StatusLabel" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status: idle" VerticalAlignment="Center" Margin="8,0,0,0" />
             </Grid>
         </Grid>
         <GridSplitter Grid.Row="2" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" ResizeDirection="Rows" />

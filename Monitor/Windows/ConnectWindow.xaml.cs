@@ -33,6 +33,9 @@ namespace Monitor.Windows
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             _settings.Save();
+
+            DialogResult = true;
+            Close();
         }
     }
 }
