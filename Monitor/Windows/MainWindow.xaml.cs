@@ -65,13 +65,14 @@ namespace Monitor.Windows
 
         private void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new ConnectWindow();
-            connectWindow.ShowDialog();
+            var window = new ConnectWindow();
+            window.ShowDialog();
         }
 
         private void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = new RunAndConnectWindow();
+            window.ShowDialog();
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
