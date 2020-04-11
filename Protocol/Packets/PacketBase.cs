@@ -1,0 +1,63 @@
+﻿using System.Linq;
+
+namespace Protocol.Packets
+{
+    public abstract class PacketBase
+    {
+        public ushort Signature
+        {
+            get => (ushort) (Data[0] | (Data[1] << 8));
+            set { Data[0] = (byte)value; Data[1] = (byte)(value >> 8);}
+        }
+
+        public ushort Length
+        {
+            get => (ushort)(Data[2] | (Data[3] << 8));
+            set { Data[2] = (byte)value; Data[3] = (byte)(value >> 8); }
+        }
+
+        public PacketType Type
+        {
+            get => (PacketType)Data[4];
+            set => Data[4] = (byte)value;
+        }
+
+        public byte Checksum
+        {
+            get => Data[5];
+            set => Data[5] = value;
+        }
+
+        public byte[] Data { get; private set; }
+
+        protected PacketBase(ushort payloadLength, PacketType type)
+        {
+            Data = new byte[6 + payloadLength];
+
+            Signature = 0x6502;
+            Length = (ushort)Data.Length;
+            Type = type;
+
+        }
+
+        protected PacketBase(byte[] data)
+        {
+            Data = data;
+        }
+
+        public void RecalculateChecksum()
+        {
+            Checksum = CalculateChecksum();
+        }
+
+        public bool IsChecksumValid()
+        {
+            return CalculateChecksum() == Checksum;
+        }
+
+        private byte CalculateChecksum()
+        {
+            return Data.Aggregate((byte) 0, (agg, x) => (byte) (agg ^ x));
+        }
+    }
+}
