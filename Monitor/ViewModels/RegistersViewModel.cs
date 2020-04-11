@@ -4,7 +4,7 @@ namespace Monitor.ViewModels
 {
     public class RegistersViewModel : INotifyPropertyChanged
     {
-        private ushort _pc = 0x1234;
+        private ushort _pc;
         public ushort Pc
         {
             get => _pc;

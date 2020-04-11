@@ -14,13 +14,18 @@ namespace Monitor.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel _viewModel = new MainWindowViewModel();
-        private SettingsContainer _settings = new SettingsContainer("settings.json");
-        private DebuggerClient _debugger = new DebuggerClient();
+        private readonly MainWindowViewModel _viewModel;
+        private readonly SettingsContainer _settings;
+        private readonly DebuggerClient _debugger;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            _viewModel = new MainWindowViewModel();
+            _settings = new SettingsContainer("settings.json");
+            _debugger = new DebuggerClient(_viewModel);
+
             DataContext = _viewModel;
         }
 
@@ -77,6 +82,7 @@ namespace Monitor.Windows
             if (window.ShowDialog() == true)
             {
                 StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
+
                 var result = await _debugger.Connect(_settings.Data.Address);
                 if (!result.Success)
                 {
@@ -84,6 +90,11 @@ namespace Monitor.Windows
                     MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
+                _debugger.Run();
+                StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
+
+                _debugger.RequestForRegisters();
             }
         }
 
@@ -113,7 +124,10 @@ namespace Monitor.Windows
                     return;
                 }
 
+                _debugger.Run();
                 StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
+
+                _debugger.RequestForRegisters();
             }
         }
 
