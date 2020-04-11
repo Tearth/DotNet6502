@@ -1,4 +1,5 @@
 ﻿using CPU;
+using Protocol.Packets;
 using Protocol.Packets.Requests;
 
 namespace Host.Debugger.PacketHandlers
@@ -9,7 +10,7 @@ namespace Host.Debugger.PacketHandlers
         {
         }
 
-        public override byte[] Handle()
+        public override byte[] Handle(PacketBase packet)
         {
             var responsePacket = new RegistersResponsePacket
             {

@@ -1,4 +1,5 @@
 ﻿using CPU;
+using Protocol.Packets;
 
 namespace Host.Debugger
 {
@@ -11,6 +12,6 @@ namespace Host.Debugger
             Core = core;
         }
 
-        public abstract byte[] Handle();
+        public abstract byte[] Handle(PacketBase packet);
     }
 }

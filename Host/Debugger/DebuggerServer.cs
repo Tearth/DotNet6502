@@ -77,7 +77,7 @@ namespace Host.Debugger
                         offset -= validationResult.Size;
 
                         var packet = _packetsFactory.Create(buffer);
-                        var response = _packetHandler[packet.Type].Handle();
+                        var response = _packetHandler[packet.Type].Handle(packet);
                         if (response != null)
                         {
                             clientStream.Write(response, 0, response.Length);
