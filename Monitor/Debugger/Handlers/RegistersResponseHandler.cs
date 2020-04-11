@@ -13,7 +13,7 @@ namespace Monitor.Debugger.Handlers
 
         public override byte[] Handle(PacketBase packet)
         {
-            var registersPacket = (RegistersResponsePacket) packet;
+            var registersPacket = (RegistersPacket) packet;
 
             ViewModel.Registers.Pc = registersPacket.ProgramCounter;
             ViewModel.Registers.Sp = registersPacket.StackPointer;

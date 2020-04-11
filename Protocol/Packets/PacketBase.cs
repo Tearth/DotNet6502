@@ -24,8 +24,8 @@ namespace Protocol.Packets
 
         public byte Checksum
         {
-            get => Data[5];
-            set => Data[5] = value;
+            get => Data[Data.Length - 1];
+            set => Data[Data.Length - 1] = value;
         }
 
         public byte[] Data { get; private set; }
@@ -37,7 +37,6 @@ namespace Protocol.Packets
             Signature = 0x6502;
             Length = (ushort)Data.Length;
             Type = type;
-
         }
 
         protected PacketBase(byte[] data)
@@ -57,7 +56,13 @@ namespace Protocol.Packets
 
         private byte CalculateChecksum()
         {
-            return Data.Aggregate((byte) 0, (agg, x) => (byte) (agg ^ x));
+            byte checksum = 0;
+            for (var i = 0; i < Data.Length - 1; i++)
+            {
+                checksum ^= Data[i];
+            }
+
+            return checksum;
         }
     }
 }

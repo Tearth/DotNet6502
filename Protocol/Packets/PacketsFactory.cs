@@ -9,7 +9,7 @@ namespace Protocol.Packets
             switch ((PacketType)buffer[4])
             {
                 case PacketType.RegistersRequest: return new RegistersRequestPacket(buffer);
-                case PacketType.RegistersResponse: return new RegistersResponsePacket(buffer);
+                case PacketType.Registers: return new RegistersPacket(buffer);
             }
 
             return null;

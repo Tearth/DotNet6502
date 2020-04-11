@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -31,7 +32,7 @@ namespace Monitor.Debugger
 
             _packetHandler = new Dictionary<PacketType, PacketHandlerBase>
             {
-                { PacketType.RegistersResponse, new RegistersResponseHandler(viewModel) }
+                { PacketType.Registers, new RegistersResponseHandler(viewModel) }
             };
         }
 
@@ -67,6 +68,8 @@ namespace Monitor.Debugger
         public void RequestForRegisters()
         {
             var requestPacket = new RegistersRequestPacket();
+            requestPacket.RecalculateChecksum();
+
             _tcpClient.GetStream().Write(requestPacket.Data, 0, requestPacket.Length);
         }
 
@@ -85,11 +88,14 @@ namespace Monitor.Debugger
                 {
                     offset -= validationResult.Size;
 
-                    var packet = _packetsFactory.Create(buffer);
-                    var response = _packetHandler[packet.Type].Handle(packet);
-                    if (response != null)
+                    var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
+                    if (packet.IsChecksumValid())
                     {
-                        clientStream.Write(response, 0, response.Length);
+                        var response = _packetHandler[packet.Type].Handle(packet);
+                        if (response != null)
+                        {
+                            clientStream.Write(response, 0, response.Length);
+                        }
                     }
 
                     Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);

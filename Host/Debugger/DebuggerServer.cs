@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -76,11 +77,18 @@ namespace Host.Debugger
                     {
                         offset -= validationResult.Size;
 
-                        var packet = _packetsFactory.Create(buffer);
-                        var response = _packetHandler[packet.Type].Handle(packet);
-                        if (response != null)
+                        var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
+                        if (packet.IsChecksumValid())
                         {
-                            clientStream.Write(response, 0, response.Length);
+                            var response = _packetHandler[packet.Type].Handle(packet);
+                            if (response != null)
+                            {
+                                clientStream.Write(response, 0, response.Length);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid checksum detected");
                         }
 
                         Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);

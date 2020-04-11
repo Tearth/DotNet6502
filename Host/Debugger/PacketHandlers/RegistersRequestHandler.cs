@@ -12,7 +12,7 @@ namespace Host.Debugger.PacketHandlers
 
         public override byte[] Handle(PacketBase packet)
         {
-            var responsePacket = new RegistersResponsePacket
+            var registersPacket = new RegistersPacket
             {
                 ProgramCounter = Core.Registers.ProgramCounter,
                 StackPointer = Core.Registers.StackPointer,
@@ -22,8 +22,8 @@ namespace Host.Debugger.PacketHandlers
                 Flags = (byte) Core.Registers.Flags
             };
 
-            responsePacket.RecalculateChecksum();
-            return responsePacket.Data;
+            registersPacket.RecalculateChecksum();
+            return registersPacket.Data;
         }
     }
 }
