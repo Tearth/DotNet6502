@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Monitor.ViewModels
 {
@@ -67,82 +68,82 @@ namespace Monitor.ViewModels
             {
                 _flags = value;
                 OnPropertyChanged("Flags");
+                OnPropertyChanged("Carry");
+                OnPropertyChanged("Zero");
+                OnPropertyChanged("InterruptsOff");
+                OnPropertyChanged("DecimalMode");
+                OnPropertyChanged("BrkInterrupt");
+                OnPropertyChanged("Overflow");
+                OnPropertyChanged("Signed");
             }
         }
 
-        private bool _carry;
         public bool Carry
         {
-            get => _carry;
+            get => Convert.ToBoolean((Flags >> 7) & 1);
             set
             {
-                _carry = value;
+                Flags = ChangeBit(Flags, 7, value);
                 OnPropertyChanged("Carry");
             }
         }
 
-        private bool _zero;
         public bool Zero
         {
-            get => _zero;
+            get => Convert.ToBoolean((Flags >> 6) & 1);
             set
             {
-                _zero = value;
+                Flags = ChangeBit(Flags, 6, value);
                 OnPropertyChanged("Zero");
             }
         }
 
-        private bool _interruptsOff;
         public bool InterruptsOff
         {
-            get => _interruptsOff;
+            get => Convert.ToBoolean((Flags >> 5) & 1);
             set
             {
-                _interruptsOff = value;
+                Flags = ChangeBit(Flags, 5, value);
                 OnPropertyChanged("InterruptsOff");
             }
         }
 
-        private bool _decimalMode;
         public bool DecimalMode
         {
-            get => _decimalMode;
+            get => Convert.ToBoolean((Flags >> 4) & 1);
             set
             {
-                _decimalMode = value;
+                Flags = ChangeBit(Flags, 4, value);
                 OnPropertyChanged("DecimalMode");
             }
         }
 
-        private bool _brkInterrupt;
         public bool BrkInterrupt
         {
-            get => _brkInterrupt;
+            get => Convert.ToBoolean((Flags >> 3) & 1);
             set
             {
-                _brkInterrupt = value;
+                Flags = ChangeBit(Flags, 3, value);
                 OnPropertyChanged("BrkInterrupt");
             }
         }
 
-        private bool _overflow;
         public bool Overflow
         {
-            get => _overflow;
+            get => Convert.ToBoolean((Flags >> 1) & 1);
             set
             {
-                _overflow = value;
+                Flags = ChangeBit(Flags, 1, value);
                 OnPropertyChanged("Overflow");
             }
         }
 
-        private bool _signed;
         public bool Signed
         {
-            get => _signed;
+            get => Convert.ToBoolean((Flags >> 0) & 1);
             set
             {
-                _signed = value;
+                Flags = ChangeBit(Flags, 0, value);
                 OnPropertyChanged("Signed");
             }
         }
@@ -151,6 +152,11 @@ namespace Monitor.ViewModels
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private byte ChangeBit(byte val, int bitIndex, bool bitValue)
+        {
+            return (byte)((val & ~(1 << bitIndex)) | ((bitValue ? 1 : 0) << bitIndex));
         }
     }
 }

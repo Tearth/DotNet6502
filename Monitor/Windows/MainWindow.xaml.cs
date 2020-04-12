@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Monitor.Debugger;
 using Monitor.Settings;
 using Monitor.ViewModels;
@@ -81,20 +82,7 @@ namespace Monitor.Windows
             var window = new ConnectWindow(_settings);
             if (window.ShowDialog() == true)
             {
-                StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
-
-                var result = await _debugger.Connect(_settings.Data.Address);
-                if (!result.Success)
-                {
-                    StatusLabel.Text = "Status: connection error";
-                    MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                _debugger.Run();
-                StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
-
-                _debugger.RequestForRegisters();
+                await InitializeSession(false);
             }
         }
 
@@ -103,31 +91,7 @@ namespace Monitor.Windows
             var window = new RunAndConnectWindow(_settings);
             if (window.ShowDialog() == true)
             {
-                StatusLabel.Text = $"Status: running {_settings.Data.Path}...";
-
-                var runEmulatorResult = RunEmulator();
-                if (!runEmulatorResult.Success)
-                {
-                    StatusLabel.Text = "Status: connection error";
-                    MessageBox.Show(runEmulatorResult.ErrorMessage, "Emulator error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                await Task.Delay(500);
-                StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
-
-                var result = await _debugger.Connect(_settings.Data.Address);
-                if (!result.Success)
-                {
-                    StatusLabel.Text = "Status: connection error";
-                    MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                _debugger.Run();
-                StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
-
-                _debugger.RequestForRegisters();
+                await InitializeSession(true);
             }
         }
 
@@ -156,6 +120,39 @@ namespace Monitor.Windows
             }
 
             return (true, null);
+        }
+
+        private async Task InitializeSession(bool runEmulator)
+        {
+            if (runEmulator)
+            {
+                StatusLabel.Text = $"Status: running {_settings.Data.Path}...";
+
+                var runEmulatorResult = RunEmulator();
+                if (!runEmulatorResult.Success)
+                {
+                    StatusLabel.Text = "Status: connection error";
+                    MessageBox.Show(runEmulatorResult.ErrorMessage, "Emulator error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                await Task.Delay(500);
+            }
+            
+            StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
+
+            var result = await _debugger.Connect(_settings.Data.Address);
+            if (!result.Success)
+            {
+                StatusLabel.Text = "Status: connection error";
+                MessageBox.Show(result.ErrorMessage, "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            _debugger.Run();
+            StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
+
+            _debugger.RequestForRegisters();
         }
     }
 }
