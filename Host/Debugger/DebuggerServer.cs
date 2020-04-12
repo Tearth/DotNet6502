@@ -34,7 +34,8 @@ namespace Host.Debugger
 
             _packetHandler = new Dictionary<PacketType, PacketHandlerBase>
             {
-                { PacketType.RegistersRequest, new RegistersRequestHandler(_core) }
+                { PacketType.RegistersRequest, new RegistersRequestHandler(_core) },
+                { PacketType.Registers, new RegistersHandler(_core) }
             };
         }
 

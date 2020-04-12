@@ -1,12 +1,13 @@
-﻿using Monitor.ViewModels;
+﻿using System;
+using Monitor.ViewModels;
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger.Handlers
 {
-    public class RegistersResponseHandler : PacketHandlerBase
+    public class RegistersHandler : PacketHandlerBase
     {
-        public RegistersResponseHandler(MainWindowViewModel viewModel) : base(viewModel)
+        public RegistersHandler(MainWindowViewModel viewModel) : base(viewModel)
         {
 
         }

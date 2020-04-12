@@ -97,7 +97,7 @@
     </Compile>
     <Compile Include="Converters\HexConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />
-    <Compile Include="Debugger\Handlers\RegistersResponseHandler.cs" />
+    <Compile Include="Debugger\Handlers\RegistersHandler.cs" />
     <Compile Include="Debugger\PacketHandlerBase.cs" />
     <Compile Include="Settings\SettingsContainer.cs" />
     <Compile Include="Settings\SettingsData.cs" />

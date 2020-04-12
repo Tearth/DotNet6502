@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace Monitor.Windows
             _debugger = new DebuggerClient(_viewModel);
 
             DataContext = _viewModel;
+            _viewModel.Registers.RegistersUpdated += Registers_RegistersUpdated;
         }
 
         private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
@@ -153,6 +155,14 @@ namespace Monitor.Windows
             StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
 
             _debugger.RequestForRegisters();
+        }
+
+        private void Registers_RegistersUpdated(object sender, EventArgs e)
+        {
+            if (_debugger.Connected)
+            {
+                _debugger.UpdateRegisters();
+            }
         }
     }
 }

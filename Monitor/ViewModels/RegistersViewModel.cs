@@ -13,6 +13,7 @@ namespace Monitor.ViewModels
             {
                 _pc = value;
                 OnPropertyChanged("Pc");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
@@ -24,6 +25,7 @@ namespace Monitor.ViewModels
             {
                 _sp = value;
                 OnPropertyChanged("Sp");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
@@ -35,6 +37,7 @@ namespace Monitor.ViewModels
             {
                 _acc = value;
                 OnPropertyChanged("Acc");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
@@ -46,6 +49,7 @@ namespace Monitor.ViewModels
             {
                 _x = value;
                 OnPropertyChanged("X");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
@@ -57,6 +61,7 @@ namespace Monitor.ViewModels
             {
                 _y = value;
                 OnPropertyChanged("Y");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
@@ -75,80 +80,83 @@ namespace Monitor.ViewModels
                 OnPropertyChanged("BrkInterrupt");
                 OnPropertyChanged("Overflow");
                 OnPropertyChanged("Signed");
+                RegistersUpdated?.Invoke(this, null);
             }
         }
 
         public bool Carry
         {
-            get => Convert.ToBoolean((Flags >> 7) & 1);
+            get => Convert.ToBoolean((Flags >> 0) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 7, value);
+                Flags = ChangeBit(Flags, 0, value);
                 OnPropertyChanged("Carry");
             }
         }
 
         public bool Zero
         {
-            get => Convert.ToBoolean((Flags >> 6) & 1);
+            get => Convert.ToBoolean((Flags >> 1) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 6, value);
+                Flags = ChangeBit(Flags, 1, value);
                 OnPropertyChanged("Zero");
             }
         }
 
         public bool InterruptsOff
         {
-            get => Convert.ToBoolean((Flags >> 5) & 1);
+            get => Convert.ToBoolean((Flags >> 2) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 5, value);
+                Flags = ChangeBit(Flags, 2, value);
                 OnPropertyChanged("InterruptsOff");
             }
         }
 
         public bool DecimalMode
         {
-            get => Convert.ToBoolean((Flags >> 4) & 1);
+            get => Convert.ToBoolean((Flags >> 3) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 4, value);
+                Flags = ChangeBit(Flags, 3, value);
                 OnPropertyChanged("DecimalMode");
             }
         }
 
         public bool BrkInterrupt
         {
-            get => Convert.ToBoolean((Flags >> 3) & 1);
+            get => Convert.ToBoolean((Flags >> 4) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 3, value);
+                Flags = ChangeBit(Flags, 4, value);
                 OnPropertyChanged("BrkInterrupt");
             }
         }
 
         public bool Overflow
         {
-            get => Convert.ToBoolean((Flags >> 1) & 1);
+            get => Convert.ToBoolean((Flags >> 6) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 1, value);
+                Flags = ChangeBit(Flags, 6, value);
                 OnPropertyChanged("Overflow");
             }
         }
 
         public bool Signed
         {
-            get => Convert.ToBoolean((Flags >> 0) & 1);
+            get => Convert.ToBoolean((Flags >> 7) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 0, value);
+                Flags = ChangeBit(Flags, 7, value);
                 OnPropertyChanged("Signed");
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler RegistersUpdated;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
