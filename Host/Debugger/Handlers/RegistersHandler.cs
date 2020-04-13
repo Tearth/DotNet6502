@@ -11,7 +11,7 @@ namespace Host.Debugger.Handlers
         {
         }
 
-        public override byte[] Handle(PacketBase packet)
+        public override PacketBase Handle(PacketBase packet)
         {
             var registersPacket = (RegistersPacket) packet;
 

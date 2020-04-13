@@ -12,6 +12,6 @@ namespace Host.Debugger
             Core = core;
         }
 
-        public abstract byte[] Handle(PacketBase packet);
+        public abstract PacketBase Handle(PacketBase packet);
     }
 }

@@ -85,10 +85,10 @@ namespace Host.Debugger
                             var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
                             if (packet.IsChecksumValid())
                             {
-                                var response = _packetHandler[packet.Type].Handle(packet);
-                                if (response != null)
+                                var responsePacket = _packetHandler[packet.Type].Handle(packet);
+                                if (responsePacket != null)
                                 {
-                                    clientStream.Write(response, 0, response.Length);
+                                    clientStream.Write(responsePacket.Data, 0, responsePacket.Data.Length);
                                 }
                             }
                             else
