@@ -35,7 +35,9 @@ namespace Host.Debugger
             _packetHandler = new Dictionary<PacketType, PacketHandlerBase>
             {
                 { PacketType.RegistersRequest, new RegistersRequestHandler(_core) },
-                { PacketType.Registers, new RegistersHandler(_core) }
+                { PacketType.Registers, new RegistersHandler(_core) },
+                { PacketType.PinsRequest, new PinsRequestHandler(_core) },
+                { PacketType.Pins, new PinsHandler(_core) }
             };
         }
 
@@ -71,28 +73,35 @@ namespace Host.Debugger
 
                 while (client.Connected)
                 {
-                    offset += clientStream.Read(buffer, offset, buffer.Length);
-                    
-                    var validationResult = _packetValidator.Validate(buffer);
-                    if (validationResult.Valid)
-                    {
-                        offset -= validationResult.Size;
+                    offset += clientStream.Read(buffer, offset, buffer.Length - offset);
 
-                        var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
-                        if (packet.IsChecksumValid())
+                    while (offset > 0)
+                    {
+                        var validationResult = _packetValidator.Validate(buffer);
+                        if (validationResult.Valid)
                         {
-                            var response = _packetHandler[packet.Type].Handle(packet);
-                            if (response != null)
+                            offset -= validationResult.Size;
+
+                            var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
+                            if (packet.IsChecksumValid())
                             {
-                                clientStream.Write(response, 0, response.Length);
+                                var response = _packetHandler[packet.Type].Handle(packet);
+                                if (response != null)
+                                {
+                                    clientStream.Write(response, 0, response.Length);
+                                }
                             }
+                            else
+                            {
+                                Console.WriteLine("Invalid checksum detected");
+                            }
+
+                            Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);
                         }
                         else
                         {
-                            Console.WriteLine("Invalid checksum detected");
+                            break;
                         }
-
-                        Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);
                     }
                 }
 

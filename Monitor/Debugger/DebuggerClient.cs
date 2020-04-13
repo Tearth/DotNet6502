@@ -161,24 +161,31 @@ namespace Monitor.Debugger
 
             while (_tcpClient.Connected)
             {
-                offset += _tcpClientStream.Read(buffer, offset, buffer.Length);
+                offset += _tcpClientStream.Read(buffer, offset, buffer.Length - offset);
 
-                var validationResult = _packetValidator.Validate(buffer);
-                if (validationResult.Valid)
+                while (offset > 0)
                 {
-                    offset -= validationResult.Size;
-
-                    var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
-                    if (packet.IsChecksumValid())
+                    var validationResult = _packetValidator.Validate(buffer);
+                    if (validationResult.Valid)
                     {
-                        var response = _packetHandler[packet.Type].Handle(packet);
-                        if (response != null)
-                        {
-                            _tcpClientStream.Write(response, 0, response.Length);
-                        }
-                    }
+                        offset -= validationResult.Size;
 
-                    Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);
+                        var packet = _packetsFactory.Create(buffer.Take(validationResult.Size).ToArray());
+                        if (packet.IsChecksumValid())
+                        {
+                            var response = _packetHandler[packet.Type].Handle(packet);
+                            if (response != null)
+                            {
+                                _tcpClientStream.Write(response, 0, response.Length);
+                            }
+                        }
+
+                        Array.Copy(buffer, validationResult.Size, buffer, 0, buffer.Length - validationResult.Size);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
