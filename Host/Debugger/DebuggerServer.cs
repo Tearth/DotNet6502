@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CPU;
-using Host.Debugger.PacketHandlers;
+using Host.Debugger.Handlers;
 using Protocol.Packets;
 
 namespace Host.Debugger

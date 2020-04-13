@@ -1,10 +1,9 @@
 ﻿using System;
 using CPU;
-using CPU.Registers;
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
-namespace Host.Debugger.PacketHandlers
+namespace Host.Debugger.Handlers
 {
     public class PinsHandler : PacketHandlerBase
     {

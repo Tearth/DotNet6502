@@ -2,7 +2,7 @@
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
-namespace Host.Debugger.PacketHandlers
+namespace Host.Debugger.Handlers
 {
     public class RegistersRequestHandler : PacketHandlerBase
     {
