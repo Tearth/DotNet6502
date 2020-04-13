@@ -79,7 +79,7 @@
                     <CheckBox Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=Nmi}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding Path=Sync}" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="9" Grid.Column="0" IsChecked="{Binding Path=A0}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="10" Grid.Column="0" IsChecked="{Binding Path=A1}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="11" Grid.Column="0" IsChecked="{Binding Path=A2}" HorizontalAlignment="Right" VerticalAlignment="Center" />

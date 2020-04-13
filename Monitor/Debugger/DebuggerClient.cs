@@ -26,7 +26,6 @@ namespace Monitor.Debugger
 
         public DebuggerClient(MainWindowViewModel viewModel)
         {
-            _tcpClient = new TcpClient();
             _packetValidator = new PacketValidator();
             _viewModel = viewModel;
 
@@ -47,8 +46,14 @@ namespace Monitor.Debugger
                 var hostname = splitAddress[0];
                 var port = int.Parse(splitAddress[1]);
 
+                _tcpClient?.Dispose();
+                _tcpClient = new TcpClient();
+
                 await _tcpClient.ConnectAsync(hostname, port);
                 _tcpClientStream = _tcpClient.GetStream();
+
+                _clientTask = new Task(ClientLoop);
+                _clientTask.Start();
             }
             catch (Exception e)
             {
@@ -56,12 +61,6 @@ namespace Monitor.Debugger
             }
 
             return (true, null);
-        }
-
-        public void Run()
-        {
-            _clientTask = new Task(ClientLoop);
-            _clientTask.Start();
         }
 
         public void Dispose()

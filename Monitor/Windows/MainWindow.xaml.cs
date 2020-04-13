@@ -151,9 +151,7 @@ namespace Monitor.Windows
                 return;
             }
 
-            _debugger.Run();
             StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
-
             _debugger.RequestForRegisters();
         }
 
@@ -163,6 +161,16 @@ namespace Monitor.Windows
             {
                 _debugger.UpdateRegisters();
             }
+            else
+            {
+                DisplayConnectionError();
+            }
+        }
+
+        private void DisplayConnectionError()
+        {
+            StatusLabel.Text = "Status: connection error";
+            MessageBox.Show("Monitor is not connected to the debugger", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
