@@ -4,6 +4,8 @@
     {
         None,
         RegistersRequest,
-        Registers
+        Registers,
+        PinsRequest,
+        Pins
     }
 }
