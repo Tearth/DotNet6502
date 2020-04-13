@@ -146,7 +146,7 @@ namespace Monitor.Debugger
                         ((_viewModel.Pins.Res ? 1 : 0) << 3) |
                         ((_viewModel.Pins.Rw ? 1 : 0) << 4) |
                         ((_viewModel.Pins.Sync ? 1 : 0) << 5) |
-                        ((_viewModel.Pins.Nmi ? 1 : 0) << 6)
+                        ((_viewModel.Pins.Vcc ? 1 : 0) << 6)
                     )
             };
             pinsPacket.RecalculateChecksum();
