@@ -4,14 +4,14 @@ namespace Monitor.ViewModels
 {
     public class PinsViewModel : INotifyPropertyChanged
     {
-        private bool _vss;
-        public bool Vss
+        private bool _vcc;
+        public bool Vcc
         {
-            get => _vss;
+            get => _vcc;
             set
             {
-                _vss = value;
-                OnPropertyChanged("Vss");
+                _vcc = value;
+                OnPropertyChanged("Vcc");
             }
         }
 

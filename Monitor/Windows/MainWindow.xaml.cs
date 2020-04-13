@@ -30,6 +30,7 @@ namespace Monitor.Windows
 
             DataContext = _viewModel;
             _viewModel.Registers.RegistersUpdated += Registers_RegistersUpdated;
+            _viewModel.Pins.PropertyChanged += Pins_PropertyChanged;
         }
 
         private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
@@ -152,7 +153,10 @@ namespace Monitor.Windows
             }
 
             StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
+            await Task.Delay(100);
+
             _debugger.RequestForRegisters();
+            _debugger.RequestForPins();
         }
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)
@@ -160,6 +164,18 @@ namespace Monitor.Windows
             if (_debugger.Connected)
             {
                 _debugger.UpdateRegisters();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
+        }
+
+        private void Pins_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (_debugger.Connected)
+            {
+                _debugger.UpdatePins();
             }
             else
             {
