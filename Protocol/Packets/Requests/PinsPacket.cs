@@ -2,16 +2,17 @@
 {
     public class PinsPacket : PacketBase
     {
-        public byte AddressBus
+        public ushort AddressBus
         {
-            get => Data[5];
-            set => Data[5] = value;
+            get => (ushort)(Data[5] | (Data[6] << 8));
+            set { Data[5] = (byte)value; Data[6] = (byte)(value >> 8); }
+            
         }
 
-        public ushort DataBus
+        public byte DataBus
         {
-            get => (ushort)(Data[6] | (Data[7] << 8));
-            set { Data[6] = (byte)value; Data[7] = (byte)(value >> 8); }
+            get => Data[7];
+            set => Data[7] = value;
         }
 
         public byte Other
