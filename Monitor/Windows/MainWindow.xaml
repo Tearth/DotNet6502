@@ -155,13 +155,13 @@
                     <TextBlock Grid.Row="18" Grid.Column="2" Text="A13" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
                     <TextBlock Grid.Row="19" Grid.Column="2" Text="A12" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
                     <TextBlock Grid.Row="20" Grid.Column="2" Text="VSS" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="20,0,0,0" />
-
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" Background="#FF383838">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
                 <Label Content="Disassembled code" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
                 <xctk:RichTextBox Text="{Binding Path=DisassembledCode}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2,0,2">
@@ -169,6 +169,18 @@
                         <xctk:RtfFormatter />
                     </xctk:RichTextBox.TextFormatter>
                 </xctk:RichTextBox>
+                <Grid Row="2" Background="#FF484848">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Cycles, FallbackValue=0}" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="5,0,5,0" />
+                    <Button Content="Stop" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" />
+                    <Button Content="Continue" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" />
+                    <Button Content="Next" HorizontalAlignment="Stretch" Grid.Column="3" VerticalAlignment="Stretch" />
+                </Grid>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>

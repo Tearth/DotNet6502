@@ -51,6 +51,17 @@ namespace Monitor.ViewModels
             }
         }
 
+        private ulong _cycles;
+        public ulong Cycles
+        {
+            get => _cycles;
+            set
+            {
+                _cycles = value;
+                OnPropertyChanged("Cycles");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
