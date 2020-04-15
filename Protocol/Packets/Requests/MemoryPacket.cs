@@ -1,4 +1,6 @@
-﻿namespace Protocol.Packets.Requests
+﻿using System.Linq;
+
+namespace Protocol.Packets.Requests
 {
     public class MemoryPacket : PacketBase
     {
@@ -20,10 +22,12 @@
             set => Data[9] = value;
         }
 
+        public byte[] Memory => Data.Skip(10).Take(MemoryLength).ToArray();
+
         public byte this[int index]
         {
-            get => Data[6 + index];
-            set => Data[6 + index] = value;
+            get => Data[10 + index];
+            set => Data[10 + index] = value;
         }
 
         public MemoryPacket(ushort address, ushort memoryLength, byte tag) : base((ushort)(5 + memoryLength), PacketType.Memory)

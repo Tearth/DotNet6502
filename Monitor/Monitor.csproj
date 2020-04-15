@@ -96,6 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\HexConverter.cs" />
+    <Compile Include="Converters\StackConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />
     <Compile Include="Debugger\Generators\ContinueCommandPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\CyclesRequestPacketGenerator.cs" />

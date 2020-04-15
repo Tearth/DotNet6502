@@ -1,4 +1,5 @@
-﻿using CPU;
+﻿using System;
+using CPU;
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
@@ -16,6 +17,22 @@ namespace Host.Debugger.Generators
         public PacketBase Generate(ushort address, ushort requestedLength, byte tag)
         {
             var memoryPacket = new MemoryPacket(address, requestedLength, tag);
+
+            checked
+            {
+                var memoryIndex = 0;
+                try
+                {
+                    for (var currentAddress = address; currentAddress < address + requestedLength; currentAddress++, memoryIndex++)
+                    {
+                        memoryPacket[memoryIndex] = _core.Bus.ReadDebug(currentAddress);
+                    }
+                }
+                catch (OverflowException)
+                {
+                    memoryPacket.MemoryLength -= (ushort)(requestedLength - memoryIndex);
+                }
+            }
 
             memoryPacket.RecalculateChecksum();
             return memoryPacket;

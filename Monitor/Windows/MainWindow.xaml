@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor"
-        xmlns:converters="clr-namespace:Monitor.Converters"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:converters="clr-namespace:Monitor.Converters"
         mc:Ignorable="d"
         Title="DotNet6502 Monitor" Width="800" Height="600" WindowStartupLocation="CenterScreen"
         Style="{StaticResource DefaultWindowStyle}">
     <Window.Resources>
         <converters:HexConverter x:Key="HexConverter" />
+        <converters:StackConverter x:Key="StackConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -265,7 +266,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Label Content="Stack" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
-                        <xctk:RichTextBox Text="{Binding Path=Stack}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
+                        <xctk:RichTextBox Text="{Binding Path=Stack, Converter={StaticResource StackConverter}}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
                             <xctk:RichTextBox.TextFormatter>
                                 <xctk:RtfFormatter />
                             </xctk:RichTextBox.TextFormatter>

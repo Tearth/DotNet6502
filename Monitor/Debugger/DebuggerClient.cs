@@ -142,7 +142,7 @@ namespace Monitor.Debugger
 
         public void RequestForStack()
         {
-            var packet = _memoryRequestPacketGenerator.Generate(0x0100, 0x100, 0);
+            var packet = _memoryRequestPacketGenerator.Generate(0x100, 0x100, 0);
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

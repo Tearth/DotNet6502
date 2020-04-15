@@ -7,8 +7,8 @@ namespace Monitor.ViewModels
         public PinsViewModel Pins { get; set; } = new PinsViewModel();
         public RegistersViewModel Registers { get; set; } = new RegistersViewModel();
 
-        private string _stack;
-        public string Stack
+        private byte[] _stack;
+        public byte[] Stack
         {
             get => _stack;
             set

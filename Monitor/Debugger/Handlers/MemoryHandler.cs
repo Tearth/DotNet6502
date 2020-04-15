@@ -16,7 +16,14 @@ namespace Monitor.Debugger.Handlers
         {
             var memoryPacket = (MemoryPacket)packet;
 
-            // ViewModel.Cycles = registersPacket.Cycles;
+            switch (memoryPacket.Tag)
+            {
+                case 0:
+                {
+                    ViewModel.Stack = memoryPacket.Memory;
+                    break;
+                }
+            }
 
             return null;
         }
