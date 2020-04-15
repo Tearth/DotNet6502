@@ -6,6 +6,8 @@
         RegistersRequest,
         Registers,
         PinsRequest,
-        Pins
+        Pins,
+        CyclesRequest,
+        Cycles
     }
 }

@@ -12,6 +12,8 @@ namespace Protocol.Packets
                 case PacketType.Registers: return new RegistersPacket(buffer);
                 case PacketType.PinsRequest: return new PinsRequestPacket(buffer);
                 case PacketType.Pins: return new PinsPacket(buffer);
+                case PacketType.CyclesRequest: return new CyclesRequestPacket(buffer);
+                case PacketType.Cycles: return new CyclesPacket(buffer);
             }
 
             return null;
