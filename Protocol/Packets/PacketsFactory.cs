@@ -17,6 +17,8 @@ namespace Protocol.Packets
                 case PacketType.StopCommand: return new StopCommandPacket(buffer);
                 case PacketType.ContinueCommand: return new ContinueCommandPacket(buffer);
                 case PacketType.NextCommand: return new NextCommandPacket(buffer);
+                case PacketType.MemoryRequest: return new MemoryRequestPacket(buffer);
+                case PacketType.Memory: return new MemoryPacket(buffer);
             }
 
             return null;
