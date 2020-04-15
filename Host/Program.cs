@@ -90,7 +90,7 @@ namespace Host
                 }
 
                 var deviceInstance = (IDevice)Activator.CreateInstance(deviceClassType);
-                if (!deviceInstance.Configure(core, definition.SplitParameters))
+                if (!deviceInstance.Configure(core.Pins, definition.SplitParameters))
                 {
                     throw new InvalidOperationException($"Can't configure device class ({definition.DllNameWithExtension}).");
                 }

@@ -1,4 +1,6 @@
-﻿namespace CPU.IO
+﻿using System;
+
+namespace CPU.IO
 {
     public class PinsState
     {

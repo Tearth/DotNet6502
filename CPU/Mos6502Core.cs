@@ -9,7 +9,7 @@ namespace CPU
 {
     public class Mos6502Core
     {
-        public PinsState Pins { get; }
+        public PinsState Pins { get; set;  }
         public Bus Bus { get; }
         public RegistersState Registers { get; }
         public ulong Cycles { get; private set; }

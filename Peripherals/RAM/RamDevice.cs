@@ -9,16 +9,16 @@ namespace RAM
 {
     public class RamDevice : IDevice
     {
-        private Mos6502Core _core;
+        private PinsState _pinsState;
         private ushort _startAddress;
         private ushort _endAddress;
         private uint Size => (uint)(_endAddress - _startAddress + 1);
 
         private byte[] _memory;
 
-        public bool Configure(Mos6502Core core, List<string> parameters)
+        public bool Configure(PinsState pinsState, List<string> parameters)
         {
-            _core = core;
+            _pinsState = pinsState;
 
             if (parameters.Count < 2)
             {
@@ -68,7 +68,7 @@ namespace RAM
 
         public void Process()
         {
-            if (_core.Pins.Rw)
+            if (_pinsState.Rw)
             {
                 Read();
             }
@@ -80,19 +80,19 @@ namespace RAM
 
         private void Read()
         {
-            if (IsAddressValid(_core.Pins.A))
+            if (IsAddressValid(_pinsState.A))
             {
-                var relativeAddress = GetRelativeAddress(_core.Pins.A);
-                _core.Pins.D |= _memory[relativeAddress];
+                var relativeAddress = GetRelativeAddress(_pinsState.A);
+                _pinsState.D |= _memory[relativeAddress];
             }
         }
 
         private void Write()
         {
-            if (IsAddressValid(_core.Pins.A))
+            if (IsAddressValid(_pinsState.A))
             {
-                var relativeAddress = GetRelativeAddress(_core.Pins.A);
-                _memory[relativeAddress] = _core.Pins.D;
+                var relativeAddress = GetRelativeAddress(_pinsState.A);
+                _memory[relativeAddress] = _pinsState.D;
             }
         }
 

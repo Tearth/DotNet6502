@@ -4,7 +4,7 @@ namespace CPU.IO
 {
     public interface IDevice
     {
-        bool Configure(Mos6502Core core, List<string> parameters);
+        bool Configure(PinsState pins, List<string> parameters);
         void Process();
     }
 }

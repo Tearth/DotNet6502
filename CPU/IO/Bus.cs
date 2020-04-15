@@ -25,8 +25,27 @@ namespace CPU.IO
             _core.Pins.D = 0;
             _devices.ForEach(p => p.Process());
             _core.YieldCycle();
-            
+
             return _core.Pins.D;
+        }
+
+        public byte ReadDebug(ushort address)
+        {
+            var oldReadWriteState = _core.Pins.Rw;
+            var oldAddressState = _core.Pins.A;
+            var oldDataState = _core.Pins.D;
+
+            _core.Pins.Rw = true;
+            _core.Pins.A = address;
+            _core.Pins.D = 0;
+            _devices.ForEach(p => p.Process());
+            var result = _core.Pins.D;
+
+            _core.Pins.Rw = oldReadWriteState;
+            _core.Pins.A = oldAddressState;
+            _core.Pins.D = oldDataState;
+            
+            return result;
         }
 
         public void Write(ushort address, byte value, bool? forcedRw = null)
@@ -36,6 +55,22 @@ namespace CPU.IO
             _core.Pins.D = value;
             _core.YieldCycle();
             _devices.ForEach(p => p.Process());
+        }
+
+        public void WriteDebug(ushort address, byte value)
+        {
+            var oldReadWriteState = _core.Pins.Rw;
+            var oldAddressState = _core.Pins.A;
+            var oldDataState = _core.Pins.D;
+
+            _core.Pins.Rw = false;
+            _core.Pins.A = address;
+            _core.Pins.D = value;
+            _devices.ForEach(p => p.Process());
+
+            _core.Pins.Rw = oldReadWriteState;
+            _core.Pins.A = oldAddressState;
+            _core.Pins.D = oldDataState;
         }
     }
 }
