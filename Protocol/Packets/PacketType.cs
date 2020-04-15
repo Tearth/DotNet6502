@@ -8,6 +8,9 @@
         PinsRequest,
         Pins,
         CyclesRequest,
-        Cycles
+        Cycles,
+        StopCommand,
+        ContinueCommand,
+        NextCommand
     }
 }
