@@ -97,7 +97,7 @@
     </Compile>
     <Compile Include="Converters\HexConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />
-    <Compile Include="Debugger\Generators\CyclesRequestGenerator.cs" />
+    <Compile Include="Debugger\Generators\CyclesRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RegistersPacketGenerator.cs" />
