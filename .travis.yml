@@ -5,8 +5,8 @@ dotnet: 2.0.0
 before_install:
   - sudo apt-get update && sudo apt install -y doxygen
 script:
-  - dotnet restore
-  - dotnet build -c Release
+#  - dotnet restore
+#  - dotnet build -c Release
   - doxygen Doxyfile
   - touch docs/html/.nojekyll
 deploy:
