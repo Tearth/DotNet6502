@@ -97,10 +97,12 @@
     </Compile>
     <Compile Include="Converters\HexConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />
+    <Compile Include="Debugger\Generators\CyclesRequestGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RegistersPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RegistersRequestPacketGenerator.cs" />
+    <Compile Include="Debugger\Handlers\CyclesHandler.cs" />
     <Compile Include="Debugger\Handlers\PinsHandler.cs" />
     <Compile Include="Debugger\Handlers\RegistersHandler.cs" />
     <Compile Include="Debugger\PacketHandlerBase.cs" />

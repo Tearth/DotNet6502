@@ -9,16 +9,16 @@ namespace CPU
 {
     public class Mos6502Core
     {
-        public readonly PinsState Pins;
-        public readonly Bus Bus;
-        public readonly RegistersState Registers;
+        public PinsState Pins { get; }
+        public Bus Bus { get; }
+        public RegistersState Registers { get; }
+        public ulong Cycles { get; private set; }
 
         private readonly InstructionDecoder _instructionDecoder;
         private readonly InterruptsLogic _interruptsLogic;
 
         private uint _frequency;
         private ulong _ticksPerCycle;
-        private ulong _cyclesCounter;
         private DateTime _startTime;
 
         public Mos6502Core(uint frequency)
@@ -71,10 +71,10 @@ namespace CPU
                 _startTime = DateTime.Now;
             }
 
-            var ticksToWait = _cyclesCounter * _ticksPerCycle;
+            var ticksToWait = Cycles * _ticksPerCycle;
             while ((ulong)(DateTime.Now - _startTime).Ticks < ticksToWait) ;
 
-            _cyclesCounter++;
+            Cycles++;
         }
     }
 }

@@ -35,6 +35,12 @@ namespace Monitor.Windows
 
         private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
+            _debugger.RequestForRegisters();
+            _debugger.RequestForPins();
+            _debugger.RequestForCycles();
+
+
+            /*
             _viewModel.Stack +=
 @"{\rtf1\ansi\deff0
 {\fonttbl {\f0 Consolas;}}
@@ -77,7 +83,7 @@ namespace Monitor.Windows
 \cf2 0x12: \cf1 0x23\line
 \cf2 0x12: \cf1 0x23\line
 \cf2 0x12: \cf1 0x23\line
-}";
+}";*/
         }
 
         private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
@@ -157,6 +163,7 @@ namespace Monitor.Windows
 
             _debugger.RequestForRegisters();
             _debugger.RequestForPins();
+            _debugger.RequestForCycles();
         }
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)

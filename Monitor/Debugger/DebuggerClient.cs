@@ -29,6 +29,7 @@ namespace Monitor.Debugger
         private readonly PinsPacketGenerator _pinsPacketGenerator;
         private readonly RegistersRequestPacketGenerator _registersRequestPacketGenerator;
         private readonly RegistersPacketGenerator _registersPacketGenerator;
+        private readonly CyclesRequestPacketGenerator _cyclesRequestPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
         {
@@ -41,13 +42,15 @@ namespace Monitor.Debugger
             _packetHandler = new Dictionary<PacketType, PacketHandlerBase>
             {
                 { PacketType.Registers, new RegistersHandler(viewModel) },
-                { PacketType.Pins, new PinsHandler(viewModel) }
+                { PacketType.Pins, new PinsHandler(viewModel) },
+                { PacketType.Cycles, new CyclesHandler(viewModel) }
             };
 
             _pinsRequestPacketGenerator = new PinsRequestPacketGenerator(viewModel);
             _pinsPacketGenerator = new PinsPacketGenerator(viewModel);
             _registersRequestPacketGenerator = new RegistersRequestPacketGenerator(viewModel);
             _registersPacketGenerator = new RegistersPacketGenerator(viewModel);
+            _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator(viewModel);
         }
 
         public async Task<(bool Success, string ErrorMessage)> Connect(string address)
@@ -101,6 +104,12 @@ namespace Monitor.Debugger
         public void UpdatePins()
         {
             var packet = _pinsPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void RequestForCycles()
+        {
+            var packet = _cyclesRequestPacketGenerator.Generate();
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
