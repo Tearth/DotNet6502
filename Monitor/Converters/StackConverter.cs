@@ -2,14 +2,18 @@
 using System.Globalization;
 using System.Text;
 using System.Windows.Data;
+using Monitor.ViewModels;
 
 namespace Monitor.Converters
 {
-    public class StackConverter : IValueConverter
+    public class StackConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            var bytes = (byte[]) values[0];
+            var viewModel = (MainWindowViewModel) values[1];
+                
+            if (bytes == null)
             {
                 return null;
             }
@@ -20,13 +24,21 @@ namespace Monitor.Converters
             builder.Append(@"{\colortbl;\red255\green255\blue255;\red150\green150\blue150;}");
             builder.Append(@"\fs18");
 
-            var bytes = (byte[]) value;
             for (var i = bytes.Length - 1; i >= 0; i--)
             {
+                var realAddress = i + 0x100;
+                var stackPointerAddress = viewModel.Registers.Sp + 0x100;
+
                 builder.Append(@"\cf2 0x");
-                builder.Append((i + 0x100).ToString("X2"));
+                builder.Append(realAddress.ToString("X2"));
                 builder.Append(@": \cf1 0x");
                 builder.Append(bytes[i].ToString("X2"));
+
+                if (realAddress == stackPointerAddress)
+                {
+                    builder.Append(@" <-- SP");
+                }
+
                 builder.Append(@"\line");
             }
 
@@ -34,7 +46,7 @@ namespace Monitor.Converters
             return builder.ToString();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }

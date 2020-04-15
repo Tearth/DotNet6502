@@ -266,10 +266,16 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Label Content="Stack" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
-                        <xctk:RichTextBox Text="{Binding Path=Stack, Converter={StaticResource StackConverter}}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
+                        <xctk:RichTextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
                             <xctk:RichTextBox.TextFormatter>
                                 <xctk:RtfFormatter />
                             </xctk:RichTextBox.TextFormatter>
+                            <xctk:RichTextBox.Text>
+                                <MultiBinding Converter="{StaticResource StackConverter}">
+                                    <Binding Path="Stack" />
+                                    <Binding Path="." />
+                                </MultiBinding>
+                            </xctk:RichTextBox.Text>
                         </xctk:RichTextBox>
                     </Grid>
                     <Grid Grid.Column="1">
