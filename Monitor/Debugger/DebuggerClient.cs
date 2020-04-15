@@ -30,6 +30,9 @@ namespace Monitor.Debugger
         private readonly RegistersRequestPacketGenerator _registersRequestPacketGenerator;
         private readonly RegistersPacketGenerator _registersPacketGenerator;
         private readonly CyclesRequestPacketGenerator _cyclesRequestPacketGenerator;
+        private readonly StopCommandPacketGenerator _stopCommandPacketGenerator;
+        private readonly ContinueCommandPacketGenerator _continueCommandPacketGenerator;
+        private readonly NextCommandPacketGenerator _nextCommandPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
         {
@@ -51,6 +54,9 @@ namespace Monitor.Debugger
             _registersRequestPacketGenerator = new RegistersRequestPacketGenerator(viewModel);
             _registersPacketGenerator = new RegistersPacketGenerator(viewModel);
             _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator(viewModel);
+            _stopCommandPacketGenerator = new StopCommandPacketGenerator(viewModel);
+            _continueCommandPacketGenerator = new ContinueCommandPacketGenerator(viewModel);
+            _nextCommandPacketGenerator = new NextCommandPacketGenerator(viewModel);
         }
 
         public async Task<(bool Success, string ErrorMessage)> Connect(string address)
@@ -110,6 +116,24 @@ namespace Monitor.Debugger
         public void RequestForCycles()
         {
             var packet = _cyclesRequestPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void SendStopCommand()
+        {
+            var packet = _stopCommandPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void SendContinueCommand()
+        {
+            var packet = _continueCommandPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void SendNextCommand()
+        {
+            var packet = _nextCommandPacketGenerator.Generate();
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

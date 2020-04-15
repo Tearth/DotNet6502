@@ -35,10 +35,7 @@ namespace Monitor.Windows
 
         private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            _debugger.RequestForRegisters();
-            _debugger.RequestForPins();
-            _debugger.RequestForCycles();
-
+            RequestForAllData();
 
             /*
             _viewModel.Stack +=
@@ -161,9 +158,7 @@ namespace Monitor.Windows
             StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
             await Task.Delay(100);
 
-            _debugger.RequestForRegisters();
-            _debugger.RequestForPins();
-            _debugger.RequestForCycles();
+            RequestForAllData();
         }
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)
@@ -194,6 +189,31 @@ namespace Monitor.Windows
         {
             StatusLabel.Text = "Status: connection error";
             MessageBox.Show("Monitor is not connected to the debugger", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void StopButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _debugger.SendStopCommand();
+            RequestForAllData();
+        }
+
+        private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _debugger.SendContinueCommand();
+            RequestForAllData();
+        }
+
+        private void NextButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _debugger.SendNextCommand();
+            RequestForAllData();
+        }
+
+        private void RequestForAllData()
+        {
+            _debugger.RequestForCycles();
+            _debugger.RequestForRegisters();
+            _debugger.RequestForPins();
         }
     }
 }

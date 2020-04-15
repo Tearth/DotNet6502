@@ -38,7 +38,10 @@ namespace Host.Debugger
                 { PacketType.Registers, new RegistersHandler(_core) },
                 { PacketType.PinsRequest, new PinsRequestHandler(_core) },
                 { PacketType.Pins, new PinsHandler(_core) },
-                { PacketType.CyclesRequest, new CyclesRequestHandler(_core) }
+                { PacketType.CyclesRequest, new CyclesRequestHandler(_core) },
+                { PacketType.StopCommand, new StopCommandHandler(_core) },
+                { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
+                { PacketType.NextCommand, new NextCommandHandler(_core) }
             };
         }
 

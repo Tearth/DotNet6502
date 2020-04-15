@@ -177,9 +177,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding Cycles, FallbackValue=0}" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" Margin="5,0,5,0" />
-                    <Button Content="Stop" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" />
-                    <Button Content="Continue" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" />
-                    <Button Content="Next" HorizontalAlignment="Stretch" Grid.Column="3" VerticalAlignment="Stretch" />
+                    <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Click="StopButton_OnClick" />
+                    <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" Click="ContinueButton_OnClick"/>
+                    <Button x:Name="NextButton" Content="Next" HorizontalAlignment="Stretch" Grid.Column="3" VerticalAlignment="Stretch" Click="NextButton_OnClick" />
                 </Grid>
             </Grid>
             <Grid Grid.Column="2">
