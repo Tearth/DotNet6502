@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using CPU;
 using Host.Debugger.Handlers;
 using Protocol.Packets;
+using Protocol.Packets.Requests;
 
 namespace Host.Debugger
 {
@@ -41,7 +42,8 @@ namespace Host.Debugger
                 { PacketType.CyclesRequest, new CyclesRequestHandler(_core) },
                 { PacketType.StopCommand, new StopCommandHandler(_core) },
                 { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
-                { PacketType.NextCommand, new NextCommandHandler(_core) }
+                { PacketType.NextCommand, new NextCommandHandler(_core) },
+                { PacketType.MemoryRequest, new MemoryRequestHandler(_core) }
             };
         }
 

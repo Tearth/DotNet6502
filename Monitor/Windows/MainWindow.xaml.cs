@@ -214,6 +214,7 @@ namespace Monitor.Windows
             _debugger.RequestForCycles();
             _debugger.RequestForRegisters();
             _debugger.RequestForPins();
+            _debugger.RequestForStack();
         }
     }
 }

@@ -34,8 +34,8 @@ namespace CPU.IO
             _core.Pins.Rw = forcedRw ?? false;
             _core.Pins.A = address;
             _core.Pins.D = value;
-            _devices.ForEach(p => p.Process());
             _core.YieldCycle();
+            _devices.ForEach(p => p.Process());
         }
     }
 }

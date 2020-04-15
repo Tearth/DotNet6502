@@ -33,6 +33,7 @@ namespace Monitor.Debugger
         private readonly StopCommandPacketGenerator _stopCommandPacketGenerator;
         private readonly ContinueCommandPacketGenerator _continueCommandPacketGenerator;
         private readonly NextCommandPacketGenerator _nextCommandPacketGenerator;
+        private readonly MemoryRequestPacketGenerator _memoryRequestPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
         {
@@ -46,7 +47,8 @@ namespace Monitor.Debugger
             {
                 { PacketType.Registers, new RegistersHandler(viewModel) },
                 { PacketType.Pins, new PinsHandler(viewModel) },
-                { PacketType.Cycles, new CyclesHandler(viewModel) }
+                { PacketType.Cycles, new CyclesHandler(viewModel) },
+                { PacketType.Memory, new MemoryHandler(viewModel) }
             };
 
             _pinsRequestPacketGenerator = new PinsRequestPacketGenerator(viewModel);
@@ -57,6 +59,7 @@ namespace Monitor.Debugger
             _stopCommandPacketGenerator = new StopCommandPacketGenerator(viewModel);
             _continueCommandPacketGenerator = new ContinueCommandPacketGenerator(viewModel);
             _nextCommandPacketGenerator = new NextCommandPacketGenerator(viewModel);
+            _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator(viewModel);
         }
 
         public async Task<(bool Success, string ErrorMessage)> Connect(string address)
@@ -134,6 +137,12 @@ namespace Monitor.Debugger
         public void SendNextCommand()
         {
             var packet = _nextCommandPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void RequestForStack()
+        {
+            var packet = _memoryRequestPacketGenerator.Generate(0x0100, 0x100, 0);
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

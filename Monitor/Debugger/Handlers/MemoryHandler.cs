@@ -5,18 +5,18 @@ using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger.Handlers
 {
-    public class CyclesHandler : PacketHandlerBase
+    public class MemoryHandler : PacketHandlerBase
     {
-        public CyclesHandler(MainWindowViewModel viewModel) : base(viewModel)
+        public MemoryHandler(MainWindowViewModel viewModel) : base(viewModel)
         {
 
         }
 
         public override byte[] Handle(PacketBase packet)
         {
-            var cyclesPacket = (CyclesPacket)packet;
+            var memoryPacket = (MemoryPacket)packet;
 
-            ViewModel.Cycles = cyclesPacket.Cycles;
+            // ViewModel.Cycles = registersPacket.Cycles;
 
             return null;
         }
