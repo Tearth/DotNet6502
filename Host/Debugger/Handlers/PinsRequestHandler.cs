@@ -15,6 +15,7 @@ namespace Host.Debugger.Handlers
 
         public override PacketBase Handle(PacketBase packet)
         {
+            while (!Core.YieldingCycle) ;
             return _pinsPacketGenerator.Generate();
         }
     }

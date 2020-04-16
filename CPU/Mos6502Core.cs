@@ -13,6 +13,7 @@ namespace CPU
         public Bus Bus { get; }
         public RegistersState Registers { get; }
         public ulong Cycles { get; private set; }
+        public bool YieldingCycle { get; private set; }
 
         private readonly InstructionDecoder _instructionDecoder;
         private readonly InterruptsLogic _interruptsLogic;
@@ -65,6 +66,7 @@ namespace CPU
 
         public void YieldCycle()
         {
+            YieldingCycle = true;
             if (!Pins.Rdy)
             {
                 while (!Pins.Rdy) ;
@@ -75,6 +77,7 @@ namespace CPU
             while ((ulong)(DateTime.Now - _startTime).Ticks < ticksToWait) ;
 
             Cycles++;
+            YieldingCycle = false;
         }
     }
 }
