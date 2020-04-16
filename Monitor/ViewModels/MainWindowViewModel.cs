@@ -6,6 +6,7 @@ namespace Monitor.ViewModels
     {
         public PinsViewModel Pins { get; set; } = new PinsViewModel();
         public RegistersViewModel Registers { get; set; } = new RegistersViewModel();
+        public bool Locked { get; set; }
 
         private byte[] _stack;
         public byte[] Stack

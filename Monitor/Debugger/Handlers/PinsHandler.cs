@@ -16,6 +16,7 @@ namespace Monitor.Debugger.Handlers
         {
             var pinsPacket = (PinsPacket)packet;
 
+            ViewModel.Locked = true;
             ViewModel.Pins.A0  = Convert.ToBoolean((pinsPacket.AddressBus >> 0) & 1);
             ViewModel.Pins.A1  = Convert.ToBoolean((pinsPacket.AddressBus >> 1) & 1);
             ViewModel.Pins.A2  = Convert.ToBoolean((pinsPacket.AddressBus >> 2) & 1);
@@ -49,6 +50,7 @@ namespace Monitor.Debugger.Handlers
             ViewModel.Pins.Rw    = Convert.ToBoolean((pinsPacket.Other >> 4) & 1);
             ViewModel.Pins.Sync  = Convert.ToBoolean((pinsPacket.Other >> 5) & 1);
             ViewModel.Pins.Vcc   = Convert.ToBoolean((pinsPacket.Other >> 6) & 1);
+            ViewModel.Locked = false;
 
             return null;
         }

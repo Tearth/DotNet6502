@@ -118,25 +118,31 @@ namespace Monitor.Windows
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)
         {
-            if (_debugger.Connected)
+            if (!_viewModel.Locked)
             {
-                _debugger.UpdateRegisters();
-            }
-            else
-            {
-                DisplayConnectionError();
+                if (_debugger.Connected)
+                {
+                    _debugger.UpdateRegisters();
+                }
+                else
+                {
+                    DisplayConnectionError();
+                }
             }
         }
 
         private void Pins_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (_debugger.Connected)
+            if (!_viewModel.Locked)
             {
-                _debugger.UpdatePins();
-            }
-            else
-            {
-                DisplayConnectionError();
+                if (_debugger.Connected)
+                {
+                    _debugger.UpdatePins();
+                }
+                else
+                {
+                    DisplayConnectionError();
+                }
             }
         }
 
@@ -155,7 +161,6 @@ namespace Monitor.Windows
         private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
         {
             _debugger.SendContinueCommand();
-            RequestForAllData();
         }
 
         private void NextButton_OnClick(object sender, RoutedEventArgs e)
