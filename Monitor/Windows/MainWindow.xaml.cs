@@ -19,7 +19,6 @@ namespace Monitor.Windows
     {
         private readonly MainWindowViewModel _viewModel;
         private readonly SettingsContainer _settings;
-        private readonly InstructionsContainer _instructions;
         private readonly DebuggerClient _debugger;
 
         public MainWindow()
@@ -28,7 +27,6 @@ namespace Monitor.Windows
 
             _viewModel = new MainWindowViewModel();
             _settings = new SettingsContainer("Settings.json");
-            _instructions = new InstructionsContainer("Instructions.json");
             _debugger = new DebuggerClient(_viewModel);
 
             DataContext = _viewModel;
@@ -36,9 +34,9 @@ namespace Monitor.Windows
             _viewModel.Pins.PropertyChanged += Pins_PropertyChanged;
         }
 
-        private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
+        private async void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            RequestForAllData();
+            await RequestForAllData();
         }
 
         private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
@@ -116,7 +114,7 @@ namespace Monitor.Windows
             StatusLabel.Text = $"Status: connected to {_settings.Data.Address}";
             await Task.Delay(100);
 
-            RequestForAllData();
+            await RequestForAllData();
         }
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)
@@ -155,10 +153,10 @@ namespace Monitor.Windows
             MessageBox.Show("Monitor is not connected to the debugger", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void StopButton_OnClick(object sender, RoutedEventArgs e)
+        private async void StopButton_OnClick(object sender, RoutedEventArgs e)
         {
             _debugger.SendStopCommand();
-            RequestForAllData();
+            await RequestForAllData();
         }
 
         private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
@@ -166,26 +164,30 @@ namespace Monitor.Windows
             _debugger.SendContinueCommand();
         }
 
-        private void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
+        private async void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
         {
             _debugger.SendNextInstructionCommand();
-            RequestForAllData();
+            await RequestForAllData();
         }
 
-        private void NextCycleButton_OnClick(object sender, RoutedEventArgs e)
+        private async void NextCycleButton_OnClick(object sender, RoutedEventArgs e)
         {
             _debugger.SendNextCycleCommand();
-            RequestForAllData();
+            await RequestForAllData();
         }
 
-        private void RequestForAllData()
+        private async Task RequestForAllData()
         {
-            Task.Delay(1);
-
+            await Task.Delay(1);
             _debugger.RequestForCycles();
+            await Task.Delay(1);
             _debugger.RequestForRegisters();
+            await Task.Delay(1);
             _debugger.RequestForPins();
+            await Task.Delay(1);
             _debugger.RequestForStack();
+            await Task.Delay(1);
+            _debugger.RequestForCode();
         }
     }
 }

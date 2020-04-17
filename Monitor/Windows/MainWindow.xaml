@@ -12,6 +12,7 @@
     <Window.Resources>
         <converters:HexConverter x:Key="HexConverter" />
         <converters:StackConverter x:Key="StackConverter" />
+        <converters:CodeConverter x:Key="CodeConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -165,10 +166,16 @@
                     <RowDefinition Height="52"/>
                 </Grid.RowDefinitions>
                 <Label Content="Disassembled code" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
-                <xctk:RichTextBox Text="{Binding Path=DisassembledCode}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2.4,-0.2,0.8">
+                <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2.4,-0.2,0.8">
                     <xctk:RichTextBox.TextFormatter>
                         <xctk:RtfFormatter />
                     </xctk:RichTextBox.TextFormatter>
+                    <xctk:RichTextBox.Text>
+                        <MultiBinding Converter="{StaticResource CodeConverter}">
+                            <Binding Path="DisassembledCode" />
+                            <Binding Path="." />
+                        </MultiBinding>
+                    </xctk:RichTextBox.Text>
                 </xctk:RichTextBox>
                 <Grid Row="2" Background="#FF484848" Margin="0,0.2,-0.2,-0.2" Grid.RowSpan="2">
                     <Grid.RowDefinitions>

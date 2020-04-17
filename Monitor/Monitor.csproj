@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\CodeConverter.cs" />
     <Compile Include="Converters\HexConverter.cs" />
     <Compile Include="Converters\StackConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />

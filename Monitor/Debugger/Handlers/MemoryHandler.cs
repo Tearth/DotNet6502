@@ -18,9 +18,17 @@ namespace Monitor.Debugger.Handlers
 
             switch (memoryPacket.Tag)
             {
+                // Stack
                 case 0:
                 {
                     ViewModel.Stack = memoryPacket.Memory;
+                    break;
+                }
+
+                // Code
+                case 1:
+                {
+                    ViewModel.DisassembledCode = memoryPacket.Memory;
                     break;
                 }
             }

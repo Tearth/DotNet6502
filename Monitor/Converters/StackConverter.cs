@@ -30,7 +30,7 @@ namespace Monitor.Converters
                 var stackPointerAddress = viewModel.Registers.Sp + 0x100;
 
                 builder.Append(@"\cf2 0x");
-                builder.Append(realAddress.ToString("X2"));
+                builder.Append(realAddress.ToString("X4"));
                 builder.Append(@": \cf1 0x");
                 builder.Append(bytes[i].ToString("X2"));
 

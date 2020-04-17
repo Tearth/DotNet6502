@@ -19,8 +19,8 @@ namespace Monitor.ViewModels
             }
         }
 
-        private string _disassembledCode;
-        public string DisassembledCode
+        private byte[] _disassembledCode;
+        public byte[] DisassembledCode
         {
             get => _disassembledCode;
             set

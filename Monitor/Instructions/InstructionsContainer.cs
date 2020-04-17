@@ -23,5 +23,15 @@ namespace Monitor.Instructions
             var instructionsList = JsonConvert.DeserializeObject<List<InstructionData>>(content);
             _instructions = instructionsList.ToDictionary(p => p.OpCode);
         }
+
+        public InstructionData Get(byte opCode)
+        {
+            if (!_instructions.TryGetValue(opCode, out var result))
+            {
+                return null;
+            }
+
+            return result;
+        }
     }
 }

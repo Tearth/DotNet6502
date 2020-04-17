@@ -154,6 +154,12 @@ namespace Monitor.Debugger
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
+        public void RequestForCode()
+        {
+            var packet = _memoryRequestPacketGenerator.Generate(_viewModel.Registers.Pc, 0x100, 1);
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
         private void ClientLoop()
         {
             var buffer = new byte[1024];
