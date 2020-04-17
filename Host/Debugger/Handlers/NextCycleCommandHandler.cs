@@ -4,9 +4,9 @@ using Protocol.Packets;
 
 namespace Host.Debugger.Handlers
 {
-    public class NextCommandHandler : PacketHandlerBase
+    public class NextCycleCommandHandler : PacketHandlerBase
     {
-        public NextCommandHandler(Mos6502Core core) : base(core)
+        public NextCycleCommandHandler(Mos6502Core core) : base(core)
         {
 
         }

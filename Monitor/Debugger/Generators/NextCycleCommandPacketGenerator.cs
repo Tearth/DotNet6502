@@ -4,11 +4,11 @@ using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger.Generators
 {
-    public class NextCommandPacketGenerator
+    public class NextCycleCommandPacketGenerator
     {
         private readonly MainWindowViewModel _viewModel;
 
-        public NextCommandPacketGenerator(MainWindowViewModel viewModel)
+        public NextCycleCommandPacketGenerator(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }

@@ -101,7 +101,7 @@
     <Compile Include="Debugger\Generators\ContinueCommandPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\CyclesRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\MemoryRequestPacketGenerator.cs" />
-    <Compile Include="Debugger\Generators\NextCommandPacketGenerator.cs" />
+    <Compile Include="Debugger\Generators\NextCycleCommandPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\PinsRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RegistersPacketGenerator.cs" />

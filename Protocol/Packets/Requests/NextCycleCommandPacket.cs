@@ -2,7 +2,7 @@
 {
     public class NextCommandPacket : PacketBase
     {
-        public NextCommandPacket() : base(0, PacketType.NextCommand)
+        public NextCommandPacket() : base(0, PacketType.NextCycleCommand)
         {
 
         }

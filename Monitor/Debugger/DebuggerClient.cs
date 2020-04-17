@@ -32,7 +32,7 @@ namespace Monitor.Debugger
         private readonly CyclesRequestPacketGenerator _cyclesRequestPacketGenerator;
         private readonly StopCommandPacketGenerator _stopCommandPacketGenerator;
         private readonly ContinueCommandPacketGenerator _continueCommandPacketGenerator;
-        private readonly NextCommandPacketGenerator _nextCommandPacketGenerator;
+        private readonly NextCycleCommandPacketGenerator _nextCommandPacketGenerator;
         private readonly MemoryRequestPacketGenerator _memoryRequestPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
@@ -58,7 +58,7 @@ namespace Monitor.Debugger
             _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator(viewModel);
             _stopCommandPacketGenerator = new StopCommandPacketGenerator(viewModel);
             _continueCommandPacketGenerator = new ContinueCommandPacketGenerator(viewModel);
-            _nextCommandPacketGenerator = new NextCommandPacketGenerator(viewModel);
+            _nextCommandPacketGenerator = new NextCycleCommandPacketGenerator(viewModel);
             _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator(viewModel);
         }
 

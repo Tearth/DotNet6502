@@ -42,7 +42,7 @@ namespace Host.Debugger
                 { PacketType.CyclesRequest, new CyclesRequestHandler(_core) },
                 { PacketType.StopCommand, new StopCommandHandler(_core) },
                 { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
-                { PacketType.NextCommand, new NextCommandHandler(_core) },
+                { PacketType.NextCycleCommand, new NextCycleCommandHandler(_core) },
                 { PacketType.MemoryRequest, new MemoryRequestHandler(_core) }
             };
         }

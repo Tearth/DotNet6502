@@ -163,7 +163,13 @@ namespace Monitor.Windows
             _debugger.SendContinueCommand();
         }
 
-        private void NextButton_OnClick(object sender, RoutedEventArgs e)
+        private void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _debugger.SendNextCommand();
+            RequestForAllData();
+        }
+
+        private void NextCycleButton_OnClick(object sender, RoutedEventArgs e)
         {
             _debugger.SendNextCommand();
             RequestForAllData();
