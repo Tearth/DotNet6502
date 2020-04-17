@@ -165,18 +165,20 @@ namespace Monitor.Windows
 
         private void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendNextCommand();
+            _debugger.SendNextInstructionCommand();
             RequestForAllData();
         }
 
         private void NextCycleButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendNextCommand();
+            _debugger.SendNextCycleCommand();
             RequestForAllData();
         }
 
         private void RequestForAllData()
         {
+            Task.Delay(1);
+
             _debugger.RequestForCycles();
             _debugger.RequestForRegisters();
             _debugger.RequestForPins();

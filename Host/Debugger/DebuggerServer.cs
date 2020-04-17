@@ -43,6 +43,7 @@ namespace Host.Debugger
                 { PacketType.StopCommand, new StopCommandHandler(_core) },
                 { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
                 { PacketType.NextCycleCommand, new NextCycleCommandHandler(_core) },
+                { PacketType.NextInstructionCommand, new NextInstructionCommandHandler(_core) },
                 { PacketType.MemoryRequest, new MemoryRequestHandler(_core) }
             };
         }

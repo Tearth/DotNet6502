@@ -32,7 +32,8 @@ namespace Monitor.Debugger
         private readonly CyclesRequestPacketGenerator _cyclesRequestPacketGenerator;
         private readonly StopCommandPacketGenerator _stopCommandPacketGenerator;
         private readonly ContinueCommandPacketGenerator _continueCommandPacketGenerator;
-        private readonly NextCycleCommandPacketGenerator _nextCommandPacketGenerator;
+        private readonly NextCycleCommandPacketGenerator _nextCycleCommandPacketGenerator;
+        private readonly NextInstructionCommandPacketGenerator _nextInstructionCommandPacketGenerator;
         private readonly MemoryRequestPacketGenerator _memoryRequestPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
@@ -58,7 +59,8 @@ namespace Monitor.Debugger
             _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator(viewModel);
             _stopCommandPacketGenerator = new StopCommandPacketGenerator(viewModel);
             _continueCommandPacketGenerator = new ContinueCommandPacketGenerator(viewModel);
-            _nextCommandPacketGenerator = new NextCycleCommandPacketGenerator(viewModel);
+            _nextCycleCommandPacketGenerator = new NextCycleCommandPacketGenerator(viewModel);
+            _nextInstructionCommandPacketGenerator = new NextInstructionCommandPacketGenerator(viewModel);
             _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator(viewModel);
         }
 
@@ -134,9 +136,15 @@ namespace Monitor.Debugger
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
-        public void SendNextCommand()
+        public void SendNextCycleCommand()
         {
-            var packet = _nextCommandPacketGenerator.Generate();
+            var packet = _nextCycleCommandPacketGenerator.Generate();
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void SendNextInstructionCommand()
+        {
+            var packet = _nextInstructionCommandPacketGenerator.Generate();
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

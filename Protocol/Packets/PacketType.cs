@@ -12,6 +12,7 @@
         StopCommand,
         ContinueCommand,
         NextCycleCommand,
+        NextInstructionCommand,
         MemoryRequest,
         Memory
     }

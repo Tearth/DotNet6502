@@ -4,18 +4,18 @@ using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger.Generators
 {
-    public class NextCycleCommandPacketGenerator
+    public class NextInstructionCommandPacketGenerator
     {
         private readonly MainWindowViewModel _viewModel;
 
-        public NextCycleCommandPacketGenerator(MainWindowViewModel viewModel)
+        public NextInstructionCommandPacketGenerator(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
 
         public PacketBase Generate()
         {
-            var commandPacket = new NextCycleCommandPacket();
+            var commandPacket = new NextInstructionCommandPacket();
             commandPacket.RecalculateChecksum();
 
             return commandPacket;
