@@ -36,8 +36,8 @@ namespace Monitor.Converters
             var index = 0;
             while (true)
             {
-                (string name, byte[] arguments) = GetNextInstruction(bytes, index);
-                if (name == null && arguments == null)
+                (InstructionData instruction, byte[] arguments) = GetNextInstruction(bytes, index);
+                if (instruction == null && arguments == null)
                 {
                     break;
                 }
@@ -45,33 +45,19 @@ namespace Monitor.Converters
                 builder.Append(@"\cf2 0x");
                 builder.Append(((ushort)(viewModel.Registers.Pc + index)).ToString("X4"));
                 builder.Append(@": \cf1 ");
-                builder.Append(name);
+                builder.Append(instruction.Name);
                 builder.Append(" ");
-                builder.Append(string.Join(" ", arguments.Select(p => $"0x{p:X2}")));
+
+                var argumentsString = string.Join(" ", arguments.Select(p => $"0x{p:X2}"));
+                var paddedArgumentsString = argumentsString.PadRight(15);
+
+                builder.Append(paddedArgumentsString);
+                builder.Append("; ");
+                builder.Append(instruction.Description);
                 builder.Append(@"\line");
 
                 index += 1 + arguments.Length;
             }
-
-            /*
-            for (var i = bytes.Length - 1; i >= 0; i--)
-            {
-                var realAddress = i + 0x100;
-                var stackPointerAddress = viewModel.Registers.Sp + 0x100;
-
-                builder.Append(@"\cf2 0x");
-                builder.Append(realAddress.ToString("X2"));
-                builder.Append(@": \cf1 0x");
-                builder.Append(bytes[i].ToString("X2"));
-
-                if (realAddress == stackPointerAddress)
-                {
-                    builder.Append(@" <-- SP");
-                }
-
-                builder.Append(@"\line");
-            }
-            */
 
             builder.Append(@"}");
             return builder.ToString();
@@ -82,7 +68,7 @@ namespace Monitor.Converters
             return null;
         }
 
-        private (string name, byte[] args) GetNextInstruction(byte[] bytes, int index)
+        private (InstructionData instruction, byte[] args) GetNextInstruction(byte[] bytes, int index)
         {
             if (index > bytes.Length - 1)
             {
@@ -100,7 +86,7 @@ namespace Monitor.Converters
                 return (null, null);
             }
 
-            return (instruction.Name, bytes.Skip(index + 1).Take(instruction.Bytes - 1).ToArray());
+            return (instruction, bytes.Skip(index + 1).Take(instruction.Bytes - 1).ToArray());
         }
     }
 }
