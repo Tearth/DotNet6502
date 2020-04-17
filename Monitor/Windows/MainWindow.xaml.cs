@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Monitor.Debugger;
+using Monitor.Instructions;
 using Monitor.Settings;
 using Monitor.ViewModels;
 
@@ -18,6 +19,7 @@ namespace Monitor.Windows
     {
         private readonly MainWindowViewModel _viewModel;
         private readonly SettingsContainer _settings;
+        private readonly InstructionsContainer _instructions;
         private readonly DebuggerClient _debugger;
 
         public MainWindow()
@@ -25,7 +27,8 @@ namespace Monitor.Windows
             InitializeComponent();
 
             _viewModel = new MainWindowViewModel();
-            _settings = new SettingsContainer("settings.json");
+            _settings = new SettingsContainer("Settings.json");
+            _instructions = new InstructionsContainer("Instructions.json");
             _debugger = new DebuggerClient(_viewModel);
 
             DataContext = _viewModel;

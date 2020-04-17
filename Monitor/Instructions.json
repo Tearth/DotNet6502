@@ -1,0 +1,1062 @@
+// File made by kirbyUK (https://github.com/kirbyUK), really thank you
+// Source: https://gist.github.com/kirbyUK/1a0797e19f54c1e35e67ce7b385b323e
+// Edited a bit by repo author to better fit with a rest of the system
+[
+  {
+    "bytes": "1",
+    "description": "Arithmetic Shift Left",
+    "mode": "Accumulator",
+    "name": "ASL",
+    "opcode": "0A"
+  },
+  {
+    "bytes": "1",
+    "description": "Clear Carry Flag",
+    "mode": "Implied",
+    "name": "CLC",
+    "opcode": "18"
+  },
+  {
+    "bytes": "1",
+    "description": "Clear Decimal Mode",
+    "mode": "Implied",
+    "name": "CLD",
+    "opcode": "D8"
+  },
+  {
+    "bytes": "1",
+    "description": "Clear Interrupt Disable",
+    "mode": "Implied",
+    "name": "CLI",
+    "opcode": "58"
+  },
+  {
+    "bytes": "1",
+    "description": "Clear Overflow Flag",
+    "mode": "Implied",
+    "name": "CLV",
+    "opcode": "B8"
+  },
+  {
+    "bytes": "1",
+    "description": "Decrement X Register",
+    "mode": "Implied",
+    "name": "DEX",
+    "opcode": "CA"
+  },
+  {
+    "bytes": "1",
+    "description": "Decrement Y Register",
+    "mode": "Implied",
+    "name": "DEY",
+    "opcode": "88"
+  },
+  {
+    "bytes": "1",
+    "description": "Force Interrupt",
+    "mode": "Implied",
+    "name": "BRK",
+    "opcode": "00"
+  },
+  {
+    "bytes": "1",
+    "description": "Increment X Register",
+    "mode": "Implied",
+    "name": "INX",
+    "opcode": "E8"
+  },
+  {
+    "bytes": "1",
+    "description": "Increment Y Register",
+    "mode": "Implied",
+    "name": "INY",
+    "opcode": "C8"
+  },
+  {
+    "bytes": "1",
+    "description": "Logical Shift Right",
+    "mode": "Accumulator",
+    "name": "LSR",
+    "opcode": "4A"
+  },
+  {
+    "bytes": "1",
+    "description": "No Operation",
+    "mode": "Implied",
+    "name": "NOP",
+    "opcode": "EA"
+  },
+  {
+    "bytes": "1",
+    "description": "Pull Accumulator",
+    "mode": "Implied",
+    "name": "PLA",
+    "opcode": "68"
+  },
+  {
+    "bytes": "1",
+    "description": "Pull Processor Status",
+    "mode": "Implied",
+    "name": "PLP",
+    "opcode": "28"
+  },
+  {
+    "bytes": "1",
+    "description": "Push Accumulator",
+    "mode": "Implied",
+    "name": "PHA",
+    "opcode": "48"
+  },
+  {
+    "bytes": "1",
+    "description": "Push Processor Status",
+    "mode": "Implied",
+    "name": "PHP",
+    "opcode": "08"
+  },
+  {
+    "bytes": "1",
+    "description": "Return from Interrupt",
+    "mode": "Implied",
+    "name": "RTI",
+    "opcode": "40"
+  },
+  {
+    "bytes": "1",
+    "description": "Return from Subroutine",
+    "mode": "Implied",
+    "name": "RTS",
+    "opcode": "60"
+  },
+  {
+    "bytes": "1",
+    "description": "Rotate Left",
+    "mode": "Accumulator",
+    "name": "ROL",
+    "opcode": "2A"
+  },
+  {
+    "bytes": "1",
+    "description": "Rotate Right",
+    "mode": "Accumulator",
+    "name": "ROR",
+    "opcode": "6A"
+  },
+  {
+    "bytes": "1",
+    "description": "Set Carry Flag",
+    "mode": "Implied",
+    "name": "SEC",
+    "opcode": "38"
+  },
+  {
+    "bytes": "1",
+    "description": "Set Decimal Flag",
+    "mode": "Implied",
+    "name": "SED",
+    "opcode": "F8"
+  },
+  {
+    "bytes": "1",
+    "description": "Set Interrupt Disable",
+    "mode": "Implied",
+    "name": "SEI",
+    "opcode": "78"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer Accumulator to X",
+    "mode": "Implied",
+    "name": "TAX",
+    "opcode": "AA"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer Accumulator to Y",
+    "mode": "Implied",
+    "name": "TAY",
+    "opcode": "A8"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer Stack Pointer to X",
+    "mode": "Implied",
+    "name": "TSX",
+    "opcode": "BA"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer X to Accumulator",
+    "mode": "Implied",
+    "name": "TXA",
+    "opcode": "8A"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer X to Stack Pointer",
+    "mode": "Implied",
+    "name": "TXS",
+    "opcode": "9A"
+  },
+  {
+    "bytes": "1",
+    "description": "Transfer Y to Accumulator",
+    "mode": "Implied",
+    "name": "TYA",
+    "opcode": "98"
+  },
+  {
+    "bytes": "2",
+    "description": "Add with Carry",
+    "mode": "(Indirect),Y",
+    "name": "ADC",
+    "opcode": "71"
+  },
+  {
+    "bytes": "2",
+    "description": "Add with Carry",
+    "mode": "(Indirect,X)",
+    "name": "ADC",
+    "opcode": "61"
+  },
+  {
+    "bytes": "2",
+    "description": "Add with Carry",
+    "mode": "Immediate",
+    "name": "ADC",
+    "opcode": "69"
+  },
+  {
+    "bytes": "2",
+    "description": "Add with Carry",
+    "mode": "ZeroPage",
+    "name": "ADC",
+    "opcode": "65"
+  },
+  {
+    "bytes": "2",
+    "description": "Add with Carry",
+    "mode": "ZeroPage,X",
+    "name": "ADC",
+    "opcode": "75"
+  },
+  {
+    "bytes": "2",
+    "description": "Arithmetic Shift Left",
+    "mode": "ZeroPage",
+    "name": "ASL",
+    "opcode": "06"
+  },
+  {
+    "bytes": "2",
+    "description": "Arithmetic Shift Left",
+    "mode": "ZeroPage,X",
+    "name": "ASL",
+    "opcode": "16"
+  },
+  {
+    "bytes": "2",
+    "description": "Bit Test",
+    "mode": "ZeroPage",
+    "name": "BIT",
+    "opcode": "24"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Carry Clear",
+    "mode": "Relative",
+    "name": "BCC",
+    "opcode": "90"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Carry Set",
+    "mode": "Relative",
+    "name": "BCS",
+    "opcode": "B0"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Equal",
+    "mode": "Relative",
+    "name": "BEQ",
+    "opcode": "F0"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Minus",
+    "mode": "Relative",
+    "name": "BMI",
+    "opcode": "30"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Not Equal",
+    "mode": "Relative",
+    "name": "BNE",
+    "opcode": "D0"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Overflow Clear",
+    "mode": "Relative",
+    "name": "BVC",
+    "opcode": "50"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Overflow Set",
+    "mode": "Relative",
+    "name": "BVS",
+    "opcode": "70"
+  },
+  {
+    "bytes": "2",
+    "description": "Branch if Positive",
+    "mode": "Relative",
+    "name": "BPL",
+    "opcode": "10"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare X Register",
+    "mode": "Immediate",
+    "name": "CPX",
+    "opcode": "E0"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare X Register",
+    "mode": "ZeroPage",
+    "name": "CPX",
+    "opcode": "E4"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare Y Register",
+    "mode": "Immediate",
+    "name": "CPY",
+    "opcode": "C0"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare Y Register",
+    "mode": "ZeroPage",
+    "name": "CPY",
+    "opcode": "C4"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare",
+    "mode": "(Indirect),Y",
+    "name": "CMP",
+    "opcode": "D1"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare",
+    "mode": "(Indirect,X)",
+    "name": "CMP",
+    "opcode": "C1"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare",
+    "mode": "Immediate",
+    "name": "CMP",
+    "opcode": "C9"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare",
+    "mode": "ZeroPage",
+    "name": "CMP",
+    "opcode": "C5"
+  },
+  {
+    "bytes": "2",
+    "description": "Compare",
+    "mode": "ZeroPage,X",
+    "name": "CMP",
+    "opcode": "D5"
+  },
+  {
+    "bytes": "2",
+    "description": "Decrement Memory",
+    "mode": "ZeroPage",
+    "name": "DEC",
+    "opcode": "C6"
+  },
+  {
+    "bytes": "2",
+    "description": "Decrement Memory",
+    "mode": "ZeroPage,X",
+    "name": "DEC",
+    "opcode": "D6"
+  },
+  {
+    "bytes": "2",
+    "description": "Exclusive OR",
+    "mode": "(Indirect),Y",
+    "name": "EOR",
+    "opcode": "51"
+  },
+  {
+    "bytes": "2",
+    "description": "Exclusive OR",
+    "mode": "(Indirect,X)",
+    "name": "EOR",
+    "opcode": "41"
+  },
+  {
+    "bytes": "2",
+    "description": "Exclusive OR",
+    "mode": "Immediate",
+    "name": "EOR",
+    "opcode": "49"
+  },
+  {
+    "bytes": "2",
+    "description": "Exclusive OR",
+    "mode": "ZeroPage",
+    "name": "EOR",
+    "opcode": "45"
+  },
+  {
+    "bytes": "2",
+    "description": "Exclusive OR",
+    "mode": "ZeroPage,X",
+    "name": "EOR",
+    "opcode": "55"
+  },
+  {
+    "bytes": "2",
+    "description": "Increment Memory",
+    "mode": "ZeroPage",
+    "name": "INC",
+    "opcode": "E6"
+  },
+  {
+    "bytes": "2",
+    "description": "Increment Memory",
+    "mode": "ZeroPage,X",
+    "name": "INC",
+    "opcode": "F6"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Accumulator",
+    "mode": "(Indirect),Y",
+    "name": "LDA",
+    "opcode": "B1"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Accumulator",
+    "mode": "(Indirect,X)",
+    "name": "LDA",
+    "opcode": "A1"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Accumulator",
+    "mode": "Immediate",
+    "name": "LDA",
+    "opcode": "A9"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Accumulator",
+    "mode": "ZeroPage",
+    "name": "LDA",
+    "opcode": "A5"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Accumulator",
+    "mode": "ZeroPage,X",
+    "name": "LDA",
+    "opcode": "B5"
+  },
+  {
+    "bytes": "2",
+    "description": "Load X Register",
+    "mode": "Immediate",
+    "name": "LDX",
+    "opcode": "A2"
+  },
+  {
+    "bytes": "2",
+    "description": "Load X Register",
+    "mode": "ZeroPage",
+    "name": "LDX",
+    "opcode": "A6"
+  },
+  {
+    "bytes": "2",
+    "description": "Load X Register",
+    "mode": "ZeroPage,Y",
+    "name": "LDX",
+    "opcode": "B6"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Y Register",
+    "mode": "Immediate",
+    "name": "LDY",
+    "opcode": "A0"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Y Register",
+    "mode": "ZeroPage",
+    "name": "LDY",
+    "opcode": "A4"
+  },
+  {
+    "bytes": "2",
+    "description": "Load Y Register",
+    "mode": "ZeroPage,X",
+    "name": "LDY",
+    "opcode": "B4"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical AND",
+    "mode": "(Indirect),Y",
+    "name": "AND",
+    "opcode": "31"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical AND",
+    "mode": "(Indirect,X)",
+    "name": "AND",
+    "opcode": "21"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical AND",
+    "mode": "Immediate",
+    "name": "AND",
+    "opcode": "29"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical AND",
+    "mode": "ZeroPage",
+    "name": "AND",
+    "opcode": "25"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical AND",
+    "mode": "ZeroPage,X",
+    "name": "AND",
+    "opcode": "35"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Inclusive OR",
+    "mode": "(Indirect),Y",
+    "name": "ORA",
+    "opcode": "11"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Inclusive OR",
+    "mode": "(Indirect,X)",
+    "name": "ORA",
+    "opcode": "01"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Inclusive OR",
+    "mode": "Immediate",
+    "name": "ORA",
+    "opcode": "09"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Inclusive OR",
+    "mode": "ZeroPage",
+    "name": "ORA",
+    "opcode": "05"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Inclusive OR",
+    "mode": "ZeroPage,X",
+    "name": "ORA",
+    "opcode": "15"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Shift Right",
+    "mode": "ZeroPage",
+    "name": "LSR",
+    "opcode": "46"
+  },
+  {
+    "bytes": "2",
+    "description": "Logical Shift Right",
+    "mode": "ZeroPage,X",
+    "name": "LSR",
+    "opcode": "56"
+  },
+  {
+    "bytes": "2",
+    "description": "Rotate Left",
+    "mode": "ZeroPage",
+    "name": "ROL",
+    "opcode": "26"
+  },
+  {
+    "bytes": "2",
+    "description": "Rotate Left",
+    "mode": "ZeroPage,X",
+    "name": "ROL",
+    "opcode": "36"
+  },
+  {
+    "bytes": "2",
+    "description": "Rotate Right",
+    "mode": "ZeroPage",
+    "name": "ROR",
+    "opcode": "66"
+  },
+  {
+    "bytes": "2",
+    "description": "Rotate Right",
+    "mode": "ZeroPage,X",
+    "name": "ROR",
+    "opcode": "76"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Accumulator",
+    "mode": "(Indirect),Y",
+    "name": "STA",
+    "opcode": "91"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Accumulator",
+    "mode": "(Indirect,X)",
+    "name": "STA",
+    "opcode": "81"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Accumulator",
+    "mode": "ZeroPage",
+    "name": "STA",
+    "opcode": "85"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Accumulator",
+    "mode": "ZeroPage,X",
+    "name": "STA",
+    "opcode": "95"
+  },
+  {
+    "bytes": "2",
+    "description": "Store X Register",
+    "mode": "ZeroPage",
+    "name": "STX",
+    "opcode": "86"
+  },
+  {
+    "bytes": "2",
+    "description": "Store X Register",
+    "mode": "ZeroPage,Y",
+    "name": "STX",
+    "opcode": "96"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Y Register",
+    "mode": "ZeroPage",
+    "name": "STY",
+    "opcode": "84"
+  },
+  {
+    "bytes": "2",
+    "description": "Store Y Register",
+    "mode": "ZeroPage,X",
+    "name": "STY",
+    "opcode": "94"
+  },
+  {
+    "bytes": "2",
+    "description": "Subtract with Carry",
+    "mode": "(Indirect),Y",
+    "name": "SBC",
+    "opcode": "F1"
+  },
+  {
+    "bytes": "2",
+    "description": "Subtract with Carry",
+    "mode": "(Indirect,X)",
+    "name": "SBC",
+    "opcode": "E1"
+  },
+  {
+    "bytes": "2",
+    "description": "Subtract with Carry",
+    "mode": "Immediate",
+    "name": "SBC",
+    "opcode": "E9"
+  },
+  {
+    "bytes": "2",
+    "description": "Subtract with Carry",
+    "mode": "ZeroPage",
+    "name": "SBC",
+    "opcode": "E5"
+  },
+  {
+    "bytes": "2",
+    "description": "Subtract with Carry",
+    "mode": "ZeroPage,X",
+    "name": "SBC",
+    "opcode": "F5"
+  },
+  {
+    "bytes": "3",
+    "description": "Add with Carry",
+    "mode": "Absolute",
+    "name": "ADC",
+    "opcode": "6D"
+  },
+  {
+    "bytes": "3",
+    "description": "Add with Carry",
+    "mode": "Absolute,X",
+    "name": "ADC",
+    "opcode": "7D"
+  },
+  {
+    "bytes": "3",
+    "description": "Add with Carry",
+    "mode": "Absolute,Y",
+    "name": "ADC",
+    "opcode": "79"
+  },
+  {
+    "bytes": "3",
+    "description": "Arithmetic Shift Left",
+    "mode": "Absolute",
+    "name": "ASL",
+    "opcode": "0E"
+  },
+  {
+    "bytes": "3",
+    "description": "Arithmetic Shift Left",
+    "mode": "Absolute,X",
+    "name": "ASL",
+    "opcode": "1E"
+  },
+  {
+    "bytes": "3",
+    "description": "Bit Test",
+    "mode": "Absolute",
+    "name": "BIT",
+    "opcode": "2C"
+  },
+  {
+    "bytes": "3",
+    "description": "Compare X Register",
+    "mode": "Absolute",
+    "name": "CPX",
+    "opcode": "EC"
+  },
+  {
+    "bytes": "3",
+    "description": "Compare Y Register",
+    "mode": "Absolute",
+    "name": "CPY",
+    "opcode": "CC"
+  },
+  {
+    "bytes": "3",
+    "description": "Compare",
+    "mode": "Absolute",
+    "name": "CMP",
+    "opcode": "CD"
+  },
+  {
+    "bytes": "3",
+    "description": "Compare",
+    "mode": "Absolute,X",
+    "name": "CMP",
+    "opcode": "DD"
+  },
+  {
+    "bytes": "3",
+    "description": "Compare",
+    "mode": "Absolute,Y",
+    "name": "CMP",
+    "opcode": "D9"
+  },
+  {
+    "bytes": "3",
+    "description": "Decrement Memory",
+    "mode": "Absolute",
+    "name": "DEC",
+    "opcode": "CE"
+  },
+  {
+    "bytes": "3",
+    "description": "Decrement Memory",
+    "mode": "Absolute,X",
+    "name": "DEC",
+    "opcode": "DE"
+  },
+  {
+    "bytes": "3",
+    "description": "Exclusive OR",
+    "mode": "Absolute",
+    "name": "EOR",
+    "opcode": "4D"
+  },
+  {
+    "bytes": "3",
+    "description": "Exclusive OR",
+    "mode": "Absolute,X",
+    "name": "EOR",
+    "opcode": "5D"
+  },
+  {
+    "bytes": "3",
+    "description": "Exclusive OR",
+    "mode": "Absolute,Y",
+    "name": "EOR",
+    "opcode": "59"
+  },
+  {
+    "bytes": "3",
+    "description": "Increment Memory",
+    "mode": "Absolute",
+    "name": "INC",
+    "opcode": "EE"
+  },
+  {
+    "bytes": "3",
+    "description": "Increment Memory",
+    "mode": "Absolute,X",
+    "name": "INC",
+    "opcode": "FE"
+  },
+  {
+    "bytes": "3",
+    "description": "Jump to Subroutine",
+    "mode": "Absolute",
+    "name": "JSR",
+    "opcode": "20"
+  },
+  {
+    "bytes": "3",
+    "description": "Jump",
+    "mode": "Absolute",
+    "name": "JMP",
+    "opcode": "4C"
+  },
+  {
+    "bytes": "3",
+    "description": "Jump",
+    "mode": "Indirect ",
+    "name": "JMP",
+    "opcode": "6C"
+  },
+  {
+    "bytes": "3",
+    "description": "Load Accumulator",
+    "mode": "Absolute",
+    "name": "LDA",
+    "opcode": "AD"
+  },
+  {
+    "bytes": "3",
+    "description": "Load Accumulator",
+    "mode": "Absolute,X",
+    "name": "LDA",
+    "opcode": "BD"
+  },
+  {
+    "bytes": "3",
+    "description": "Load Accumulator",
+    "mode": "Absolute,Y",
+    "name": "LDA",
+    "opcode": "B9"
+  },
+  {
+    "bytes": "3",
+    "description": "Load X Register",
+    "mode": "Absolute",
+    "name": "LDX",
+    "opcode": "AE"
+  },
+  {
+    "bytes": "3",
+    "description": "Load X Register",
+    "mode": "Absolute,Y",
+    "name": "LDX",
+    "opcode": "BE"
+  },
+  {
+    "bytes": "3",
+    "description": "Load Y Register",
+    "mode": "Absolute",
+    "name": "LDY",
+    "opcode": "AC"
+  },
+  {
+    "bytes": "3",
+    "description": "Load Y Register",
+    "mode": "Absolute,X",
+    "name": "LDY",
+    "opcode": "BC"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical AND",
+    "mode": "Absolute",
+    "name": "AND",
+    "opcode": "2D"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical AND",
+    "mode": "Absolute,X",
+    "name": "AND",
+    "opcode": "3D"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical AND",
+    "mode": "Absolute,Y",
+    "name": "AND",
+    "opcode": "39"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical Inclusive OR",
+    "mode": "Absolute",
+    "name": "ORA",
+    "opcode": "0D"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical Inclusive OR",
+    "mode": "Absolute,X",
+    "name": "ORA",
+    "opcode": "1D"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical Inclusive OR",
+    "mode": "Absolute,Y",
+    "name": "ORA",
+    "opcode": "19"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical Shift Right",
+    "mode": "Absolute",
+    "name": "LSR",
+    "opcode": "4E"
+  },
+  {
+    "bytes": "3",
+    "description": "Logical Shift Right",
+    "mode": "Absolute,X",
+    "name": "LSR",
+    "opcode": "5E"
+  },
+  {
+    "bytes": "3",
+    "description": "Rotate Left",
+    "mode": "Absolute",
+    "name": "ROL",
+    "opcode": "2E"
+  },
+  {
+    "bytes": "3",
+    "description": "Rotate Left",
+    "mode": "Absolute,X",
+    "name": "ROL",
+    "opcode": "3E"
+  },
+  {
+    "bytes": "3",
+    "description": "Rotate Right",
+    "mode": "Absolute",
+    "name": "ROR",
+    "opcode": "6E"
+  },
+  {
+    "bytes": "3",
+    "description": "Rotate Right",
+    "mode": "Absolute,X",
+    "name": "ROR",
+    "opcode": "7E"
+  },
+  {
+    "bytes": "3",
+    "description": "Store Accumulator",
+    "mode": "Absolute",
+    "name": "STA",
+    "opcode": "8D"
+  },
+  {
+    "bytes": "3",
+    "description": "Store Accumulator",
+    "mode": "Absolute,X",
+    "name": "STA",
+    "opcode": "9D"
+  },
+  {
+    "bytes": "3",
+    "description": "Store Accumulator",
+    "mode": "Absolute,Y",
+    "name": "STA",
+    "opcode": "99"
+  },
+  {
+    "bytes": "3",
+    "description": "Store X Register",
+    "mode": "Absolute",
+    "name": "STX",
+    "opcode": "8E"
+  },
+  {
+    "bytes": "3",
+    "description": "Store Y Register",
+    "mode": "Absolute",
+    "name": "STY",
+    "opcode": "8C"
+  },
+  {
+    "bytes": "3",
+    "description": "Subtract with Carry",
+    "mode": "Absolute",
+    "name": "SBC",
+    "opcode": "ED"
+  },
+  {
+    "bytes": "3",
+    "description": "Subtract with Carry",
+    "mode": "Absolute,X",
+    "name": "SBC",
+    "opcode": "FD"
+  },
+  {
+    "bytes": "3",
+    "description": "Subtract with Carry",
+    "mode": "Absolute,Y",
+    "name": "SBC",
+    "opcode": "F9"
+  }
+]

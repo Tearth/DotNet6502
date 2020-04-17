@@ -113,6 +113,9 @@
     <Compile Include="Debugger\Handlers\PinsHandler.cs" />
     <Compile Include="Debugger\Handlers\RegistersHandler.cs" />
     <Compile Include="Debugger\PacketHandlerBase.cs" />
+    <Compile Include="Instructions\Converters\HexJsonConverter.cs" />
+    <Compile Include="Instructions\InstructionData.cs" />
+    <Compile Include="Instructions\InstructionsContainer.cs" />
     <Compile Include="Settings\SettingsContainer.cs" />
     <Compile Include="Settings\SettingsData.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -146,6 +149,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Instructions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
