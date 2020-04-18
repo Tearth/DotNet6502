@@ -30,14 +30,25 @@ namespace Monitor.ViewModels
             }
         }
 
-        private string _memory;
-        public string Memory
+        private byte[] _memory;
+        public byte[] Memory
         {
             get => _memory;
             set
             {
                 _memory = value;
                 OnPropertyChanged("Memory");
+            }
+        }
+
+        private ushort _memoryAddress;
+        public ushort MemoryAddress
+        {
+            get => _memoryAddress;
+            set
+            {
+                _memoryAddress = value;
+                OnPropertyChanged("MemoryAddress");
             }
         }
 

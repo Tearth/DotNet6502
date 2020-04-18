@@ -7,12 +7,13 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:Monitor.Converters"
         mc:Ignorable="d"
-        Title="DotNet6502 Monitor" Width="800" Height="600" WindowStartupLocation="CenterScreen"
+        Title="DotNet6502 Monitor" Width="1024" Height="768" WindowStartupLocation="CenterScreen"
         Style="{StaticResource DefaultWindowStyle}">
     <Window.Resources>
         <converters:HexConverter x:Key="HexConverter" />
         <converters:StackConverter x:Key="StackConverter" />
         <converters:CodeConverter x:Key="CodeConverter" />
+        <converters:MemoryConverter x:Key="MemoryConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,9 +32,9 @@
         </Menu>
         <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="26"/>
-                <ColumnDefinition Width="*" MinWidth="26"/>
-                <ColumnDefinition Width="*" MinWidth="26"/>
+                <ColumnDefinition Width="2*" MinWidth="26"/>
+                <ColumnDefinition Width="3*" MinWidth="26"/>
+                <ColumnDefinition Width="2*" MinWidth="26"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -315,10 +316,16 @@
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Label Content="Memory viewer" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
-            <xctk:RichTextBox Text="{Binding Path=Memory}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2,0,2">
+            <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2,0,2">
                 <xctk:RichTextBox.TextFormatter>
                     <xctk:RtfFormatter />
                 </xctk:RichTextBox.TextFormatter>
+                <xctk:RichTextBox.Text>
+                    <MultiBinding Converter="{StaticResource MemoryConverter}">
+                        <Binding Path="Memory" />
+                        <Binding Path="." />
+                    </MultiBinding>
+                </xctk:RichTextBox.Text>
             </xctk:RichTextBox>
             <Grid Row="2" Background="#FF484848">
                 <Grid.ColumnDefinitions>
@@ -326,7 +333,7 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Text="0x0000" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
+                <TextBox Text="{Binding MemoryAddress, Converter={StaticResource HexConverter}, FallbackValue=0x0000}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Background="#FF686868" Foreground="#FFC5C5C5" MaxLength="6" BorderThickness="0"/>
                 <Button x:Name="GoToAddressButton" Content="Go to address" HorizontalAlignment="Stretch" Grid.Column="2" VerticalAlignment="Stretch" Click="GoToAddressButton_Click" />
                 <TextBlock x:Name="StatusLabel" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status: idle" VerticalAlignment="Center" Margin="8,0,0,0" />
             </Grid>

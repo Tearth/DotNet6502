@@ -34,9 +34,9 @@ namespace Monitor.Windows
             _viewModel.Pins.PropertyChanged += Pins_PropertyChanged;
         }
 
-        private async void GoToAddressButton_Click(object sender, RoutedEventArgs e)
+        private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            await RequestForAllData();
+            _debugger.RequestForMemory();
         }
 
         private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
@@ -180,14 +180,12 @@ namespace Monitor.Windows
         {
             await Task.Delay(1);
             _debugger.RequestForCycles();
-            await Task.Delay(1);
             _debugger.RequestForRegisters();
             await Task.Delay(1);
             _debugger.RequestForPins();
-            await Task.Delay(1);
             _debugger.RequestForStack();
-            await Task.Delay(1);
             _debugger.RequestForCode();
+            _debugger.RequestForMemory();
         }
     }
 }

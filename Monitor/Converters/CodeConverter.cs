@@ -34,18 +34,14 @@ namespace Monitor.Converters
             builder.Append(@"\fs18");
 
             var index = 0;
-            while (true)
+            while (index < bytes.Length)
             {
                 (InstructionData instruction, byte[] arguments) = GetNextInstruction(bytes, index);
-                if (instruction == null && arguments == null)
-                {
-                    break;
-                }
 
                 builder.Append(@"\cf2 0x");
                 builder.Append(((ushort)(viewModel.Registers.Pc + index)).ToString("X4"));
                 builder.Append(@": \cf1 ");
-                builder.Append(instruction.Name);
+                builder.Append(instruction?.Name ?? "???");
                 builder.Append(" ");
 
                 var argumentsString = string.Join(" ", arguments.Select(p => $"0x{p:X2}"));
@@ -53,7 +49,7 @@ namespace Monitor.Converters
 
                 builder.Append(paddedArgumentsString);
                 builder.Append("; ");
-                builder.Append(instruction.Description);
+                builder.Append(instruction?.Description ?? "???");
                 builder.Append(@"\line");
 
                 index += 1 + arguments.Length;
@@ -78,7 +74,7 @@ namespace Monitor.Converters
             var instruction = _instructions.Get(bytes[index]);
             if (instruction == null)
             {
-                return (null, null);
+                return (null, new byte[0]);
             }
 
             if (index + instruction.Bytes - 1 > bytes.Length - 1)

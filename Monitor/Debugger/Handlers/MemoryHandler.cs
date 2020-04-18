@@ -31,6 +31,13 @@ namespace Monitor.Debugger.Handlers
                     ViewModel.DisassembledCode = memoryPacket.Memory;
                     break;
                 }
+
+                // Memory
+                case 2:
+                {
+                    ViewModel.Memory = memoryPacket.Memory;
+                    break;
+                }
             }
 
             return null;

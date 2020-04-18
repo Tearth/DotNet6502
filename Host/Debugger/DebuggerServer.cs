@@ -75,7 +75,7 @@ namespace Host.Debugger
 
                 Console.WriteLine($"New debugger client connected: {client.Client.RemoteEndPoint}");
 
-                var buffer = new byte[1024];
+                var buffer = new byte[2048];
                 var offset = 0;
 
                 while (client.Connected)

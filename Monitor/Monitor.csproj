@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Converters\CodeConverter.cs" />
     <Compile Include="Converters\HexConverter.cs" />
+    <Compile Include="Converters\MemoryConverter.cs" />
     <Compile Include="Converters\StackConverter.cs" />
     <Compile Include="Debugger\DebuggerClient.cs" />
     <Compile Include="Debugger\Generators\ContinueCommandPacketGenerator.cs" />

@@ -160,9 +160,15 @@ namespace Monitor.Debugger
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
+        public void RequestForMemory()
+        {
+            var packet = _memoryRequestPacketGenerator.Generate(_viewModel.MemoryAddress, 0x400, 2);
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
         private void ClientLoop()
         {
-            var buffer = new byte[1024];
+            var buffer = new byte[2048];
             var offset = 0;
 
             while (_tcpClient.Connected)
