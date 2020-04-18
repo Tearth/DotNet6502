@@ -52,17 +52,6 @@ namespace Monitor.ViewModels
             }
         }
 
-        private string _bus;
-        public string Bus
-        {
-            get => _bus;
-            set
-            {
-                _bus = value;
-                OnPropertyChanged("Bus");
-            }
-        }
-
         private ulong _cycles;
         public ulong Cycles
         {

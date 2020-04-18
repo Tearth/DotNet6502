@@ -24,22 +24,22 @@ namespace Monitor.Converters
             builder.Append(@"{\colortbl;\red255\green255\blue255;\red150\green150\blue150;}");
             builder.Append(@"\fs18");
 
-            for (var i = bytes.Length - 1; i >= 0; i--)
+            var first = true;
+            for (int i = viewModel.Registers.Sp; i <= 0xFF; i++)
             {
                 var realAddress = i + 0x100;
-                var stackPointerAddress = viewModel.Registers.Sp + 0x100;
 
+                if (first) builder.Append(@"\b");
                 builder.Append(@"\cf2 0x");
                 builder.Append(realAddress.ToString("X4"));
                 builder.Append(@": \cf1 0x");
                 builder.Append(bytes[i].ToString("X2"));
-
-                if (realAddress == stackPointerAddress)
-                {
-                    builder.Append(@" <-- SP");
-                }
+                builder.Append(@" \cf2; ");
+                builder.Append((char)bytes[i]);
+                if (first) builder.Append(@"\b0");
 
                 builder.Append(@"\line");
+                first = false;
             }
 
             builder.Append(@"}");

@@ -34,25 +34,31 @@ namespace Monitor.Converters
             builder.Append(@"\fs18");
 
             var index = 0;
+            var first = true;
             while (index < bytes.Length)
             {
-                (InstructionData instruction, byte[] arguments) = GetNextInstruction(bytes, index);
+                (InstructionData instruction, byte[] data) = GetNextInstruction(bytes, index);
 
+                if (first) builder.Append(@"\b");
                 builder.Append(@"\cf2 0x");
                 builder.Append(((ushort)(viewModel.Registers.Pc + index)).ToString("X4"));
-                builder.Append(@": \cf1 ");
+                builder.Append(@": 0x");
+                builder.Append(data[0].ToString("X2"));
+                builder.Append(@" \cf1 ");
                 builder.Append(instruction?.Name ?? "???");
                 builder.Append(" ");
 
-                var argumentsString = string.Join(" ", arguments.Select(p => $"0x{p:X2}"));
+                var argumentsString = string.Join(" ", data.Skip(1).Select(p => $"0x{p:X2}"));
                 var paddedArgumentsString = argumentsString.PadRight(15);
 
                 builder.Append(paddedArgumentsString);
-                builder.Append("; ");
+                builder.Append(@"\cf2; ");
                 builder.Append(instruction?.Description ?? "???");
+                if (first) builder.Append(@"\b0");
                 builder.Append(@"\line");
 
-                index += 1 + arguments.Length;
+                index += data.Length;
+                first = false;
             }
 
             builder.Append(@"}");
@@ -64,7 +70,7 @@ namespace Monitor.Converters
             return null;
         }
 
-        private (InstructionData instruction, byte[] args) GetNextInstruction(byte[] bytes, int index)
+        private (InstructionData instruction, byte[] data) GetNextInstruction(byte[] bytes, int index)
         {
             if (index > bytes.Length - 1)
             {
@@ -74,15 +80,15 @@ namespace Monitor.Converters
             var instruction = _instructions.Get(bytes[index]);
             if (instruction == null)
             {
-                return (null, new byte[0]);
+                return (null, new [] { bytes[index] });
             }
 
             if (index + instruction.Bytes - 1 > bytes.Length - 1)
             {
-                return (null, null);
+                return (null, new[] { bytes[index] });
             }
 
-            return (instruction, bytes.Skip(index + 1).Take(instruction.Bytes - 1).ToArray());
+            return (instruction, bytes.Skip(index).Take(instruction.Bytes).ToArray());
         }
     }
 }

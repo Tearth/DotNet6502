@@ -10,11 +10,11 @@ namespace Monitor.Converters
         {
             if (value is byte)
             {
-                return $"0x{value:x2}";
+                return $"0x{value:X2}";
             }
             else if (value is ushort)
             {
-                return $"0x{value:x4}";
+                return $"0x{value:X4}";
             }
 
             return null;

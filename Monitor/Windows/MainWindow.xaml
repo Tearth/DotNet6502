@@ -167,7 +167,7 @@
                     <RowDefinition Height="52"/>
                 </Grid.RowDefinitions>
                 <Label Content="Disassembled code" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
-                <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2.4,-0.2,0.8">
+                <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2.4,-0.2,0.8">
                     <xctk:RichTextBox.TextFormatter>
                         <xctk:RtfFormatter />
                     </xctk:RichTextBox.TextFormatter>
@@ -270,7 +270,6 @@
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MinWidth="26"/>
-                        <ColumnDefinition Width="*" MinWidth="26"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -290,19 +289,6 @@
                             </xctk:RichTextBox.Text>
                         </xctk:RichTextBox>
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Bus" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource Header}" />
-                        <xctk:RichTextBox Text="{Binding Path=Bus}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
-                            <xctk:RichTextBox.TextFormatter>
-                                <xctk:RtfFormatter />
-                            </xctk:RichTextBox.TextFormatter>
-                        </xctk:RichTextBox>
-                    </Grid>
-                    <GridSplitter Grid.Column="0" Width="3" HorizontalAlignment="Right" ResizeDirection="Columns" />
                 </Grid>
                 <GridSplitter Grid.Row="0" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" />
             </Grid>
@@ -316,7 +302,7 @@
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Label Content="Memory viewer" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" />
-            <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" Margin="0,2,0,2">
+            <xctk:RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FF383838" IsReadOnly="True" BorderThickness="0" VerticalScrollBarVisibility="Auto" Margin="0,2,0,2">
                 <xctk:RichTextBox.TextFormatter>
                     <xctk:RtfFormatter />
                 </xctk:RichTextBox.TextFormatter>
