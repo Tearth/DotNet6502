@@ -187,5 +187,10 @@ namespace Monitor.Windows
             _debugger.RequestForCode();
             _debugger.RequestForMemory();
         }
+
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new AboutWindow().ShowDialog();
+        }
     }
 }

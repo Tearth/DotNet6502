@@ -27,8 +27,13 @@
                 <MenuItem x:Name="RunAndConnectMenuItem" Header="Run and connect" Click="RunAndConnectMenuItem_Click" />
                 <MenuItem x:Name="ExitMenuItem" Header="Exit" Click="ExitMenuItem_Click" />
             </MenuItem>
-            <MenuItem Header="Actions" Style="{StaticResource MenuItemDark}" />
-            <MenuItem Header="About" Style="{StaticResource MenuItemDark}" />
+            <MenuItem Header="Actions" Style="{StaticResource MenuItemDark}">
+                <MenuItem x:Name="NextInstructionMenuItem" Header="Next instruction" Click="NextInstructionButton_OnClick" />
+                <MenuItem x:Name="NextCycleMenuItem" Header="Next cycle" Click="NextCycleButton_OnClick" />
+                <MenuItem x:Name="StopMenuItem" Header="Stop" Click="StopButton_OnClick" />
+                <MenuItem x:Name="ContinueMenuItem" Header="Continue" Click="ContinueButton_OnClick" />
+            </MenuItem>
+            <MenuItem x:Name="AboutMenuItem" Header="About" Style="{StaticResource MenuItemDark}" Click="AboutMenuItem_Click" />
         </Menu>
         <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
