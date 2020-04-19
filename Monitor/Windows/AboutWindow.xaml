@@ -1,0 +1,25 @@
+﻿<Window x:Class="Monitor.Windows.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Monitor.Windows"
+        mc:Ignorable="d"
+        Title="About" MinHeight="140" MinWidth="250" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DefaultWindowStyle}" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="DotNet6502 Monitor" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">           
+            <Hyperlink Foreground="White" NavigateUri="https://github.com/Tearth/DotNet6502" RequestNavigate="GitHubLink_RequestNavigate">
+                https://github.com/Tearth/DotNet6502
+            </Hyperlink>
+        </TextBlock>
+        <Button x:Name="OkButton" Content="Ok" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="75" Height="23" Click="OkButton_Click"/>
+    </Grid>
+</Window>
