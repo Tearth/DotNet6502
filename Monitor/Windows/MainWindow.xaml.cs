@@ -34,34 +34,6 @@ namespace Monitor.Windows
             _viewModel.Pins.PropertyChanged += Pins_PropertyChanged;
         }
 
-        private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
-        {
-            _debugger.RequestForMemory();
-        }
-
-        private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new ConnectWindow(_settings);
-            if (window.ShowDialog() == true)
-            {
-                await InitializeSession(false);
-            }
-        }
-
-        private async void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new RunAndConnectWindow(_settings);
-            if (window.ShowDialog() == true)
-            {
-                await InitializeSession(true);
-            }
-        }
-
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private (bool Success, string ErrorMessage) RunEmulator()
         {
             try
@@ -100,7 +72,7 @@ namespace Monitor.Windows
 
                 await Task.Delay(500);
             }
-            
+
             StatusLabel.Text = $"Status: connecting to {_settings.Data.Address}...";
 
             var result = await _debugger.Connect(_settings.Data.Address);
@@ -115,6 +87,42 @@ namespace Monitor.Windows
             await Task.Delay(100);
 
             await RequestForAllData();
+        }
+
+        private async Task RequestForAllData()
+        {
+            await Task.Delay(1);
+            _debugger.RequestForCycles();
+            _debugger.RequestForRegisters();
+            await Task.Delay(1);
+            _debugger.RequestForPins();
+            _debugger.RequestForStack();
+            _debugger.RequestForCode();
+            _debugger.RequestForMemory();
+        }
+
+        private void DisplayConnectionError()
+        {
+            StatusLabel.Text = "Status: connection error";
+            MessageBox.Show("Monitor is not connected to the debugger", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private async void ConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new ConnectWindow(_settings);
+            if (window.ShowDialog() == true)
+            {
+                await InitializeSession(false);
+            }
+        }
+
+        private async void RunAndConnectMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new RunAndConnectWindow(_settings);
+            if (window.ShowDialog() == true)
+            {
+                await InitializeSession(true);
+            }
         }
 
         private void Registers_RegistersUpdated(object sender, EventArgs e)
@@ -147,50 +155,77 @@ namespace Monitor.Windows
             }
         }
 
-        private void DisplayConnectionError()
-        {
-            StatusLabel.Text = "Status: connection error";
-            MessageBox.Show("Monitor is not connected to the debugger", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
         private async void StopButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendStopCommand();
-            await RequestForAllData();
+            if (_debugger.Connected)
+            {
+                _debugger.SendStopCommand();
+                await RequestForAllData();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
         }
 
         private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendContinueCommand();
+            if (_debugger.Connected)
+            {
+                _debugger.SendContinueCommand();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
         }
 
         private async void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendNextInstructionCommand();
-            await RequestForAllData();
+            if (_debugger.Connected)
+            {
+                _debugger.SendNextInstructionCommand();
+                await RequestForAllData();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
         }
 
         private async void NextCycleButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _debugger.SendNextCycleCommand();
-            await RequestForAllData();
+            if (_debugger.Connected)
+            {
+                _debugger.SendNextCycleCommand();
+                await RequestForAllData();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
         }
 
-        private async Task RequestForAllData()
+        private void GoToAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Delay(1);
-            _debugger.RequestForCycles();
-            _debugger.RequestForRegisters();
-            await Task.Delay(1);
-            _debugger.RequestForPins();
-            _debugger.RequestForStack();
-            _debugger.RequestForCode();
-            _debugger.RequestForMemory();
+            if (_debugger.Connected)
+            {
+                _debugger.RequestForMemory();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
         }
 
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new AboutWindow().ShowDialog();
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
