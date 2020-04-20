@@ -14,32 +14,28 @@ namespace CPU.InstructionDecode.Instructions
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 1
+        /// Length: 2, Cycles: 1F + 1.
         /// </summary>
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            var number = Core.Bus.Read(Core.Registers.ProgramCounter++);
-
-            AddWithCarry(number);
+            AddWithCarry(Core.Registers.ProgramCounter++);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 2
+        /// Length: 2, Cycles: 1F + 2.
         /// </summary>
         protected override void ExecuteInZeroPageMode()
         {
             // 1 cycle
             var address = ReadAddressInZeroPageMode();
-            
-            // 1 cycle
-            var number = Core.Bus.Read(address);
 
-            AddWithCarry(number);
+            // 1 cycle
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 3
+        /// Length: 2, Cycles: 1F + 3.
         /// </summary>
         protected override void ExecuteInZeroPageXMode()
         {
@@ -47,13 +43,11 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 1F + 3
+        /// Length: 3, Cycles: 1F + 3.
         /// </summary>
         protected override void ExecuteInAbsoluteMode()
         {
@@ -61,13 +55,11 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInAbsoluteMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 1F + 3 + 1B
+        /// Length: 3, Cycles: 1F + 3 + 1B.
         /// </summary>
         protected override void ExecuteInAbsoluteXMode()
         {
@@ -75,13 +67,11 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 1F + 3 + 1B
+        /// Length: 3, Cycles: 1F + 3 + 1B.
         /// </summary>
         protected override void ExecuteInAbsoluteYMode()
         {
@@ -89,13 +79,11 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInAbsoluteYMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 5
+        /// Length: 2, Cycles: 1F + 5.
         /// </summary>
         protected override void ExecuteInIndexedIndirectMode()
         {
@@ -103,13 +91,11 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInIndexedIndirectMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 4 + 1B
+        /// Length: 2, Cycles: 1F + 4 + 1B.
         /// </summary>
         protected override void ExecuteInIndirectIndexedMode()
         {
@@ -117,13 +103,14 @@ namespace CPU.InstructionDecode.Instructions
             var address = ReadAddressInIndirectIndexedMode();
 
             // 1 cycle
-            var number = Core.Bus.Read(address);
-
-            AddWithCarry(number);
+            AddWithCarry(address);
         }
 
-        private void AddWithCarry(byte number)
+        private void AddWithCarry(ushort address)
         {
+            // 1 cycle
+            var number = Core.Bus.Read(address);
+
             var a = Core.Registers.Accumulator;
             var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
             var result = a + number + c;

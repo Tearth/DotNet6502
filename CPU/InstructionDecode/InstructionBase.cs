@@ -41,7 +41,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored in the accumulator register
+        /// Argument is stored in the accumulator register.
         /// </summary>
         protected virtual void ExecuteInAccumulatorMode()
         {
@@ -49,7 +49,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored as constant next to operation code
+        /// Argument is stored as constant next to operation code.
         /// </summary>
         protected virtual void ExecuteInImmediateMode()
         {
@@ -57,7 +57,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Arguments length: 1, Cycles: 1
+        /// Arguments length: 1, Cycles: 1.
         /// </summary>
         protected byte ReadAddressInZeroPageMode()
         {
@@ -65,7 +65,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 8-bit address (0 page)
+        /// Argument is stored at the specified 8-bit address (0 page).
         /// </summary>
         protected virtual void ExecuteInZeroPageMode()
         {
@@ -73,7 +73,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Arguments length: 1, Cycles: 2
+        /// Arguments length: 1, Cycles: 2.
         /// </summary>
         protected byte ReadAddressInZeroPageXMode()
         {
@@ -88,7 +88,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 8-bit address (0 page) + X register
+        /// Argument is stored at the specified 8-bit address (0 page) + X register.
         /// </summary>
         protected virtual void ExecuteInZeroPageXMode()
         {
@@ -97,7 +97,7 @@ namespace CPU.InstructionDecode
 
 
         /// <summary>
-        /// Arguments length: 1, Cycles: 2
+        /// Arguments length: 1, Cycles: 2.
         /// </summary>
         protected byte ReadAddressInZeroPageYMode()
         {
@@ -112,7 +112,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 8-bit address (0 page) + Y register
+        /// Argument is stored at the specified 8-bit address (0 page) + Y register.
         /// </summary>
         protected virtual void ExecuteInZeroPageYMode()
         {
@@ -129,7 +129,7 @@ namespace CPU.InstructionDecode
 
 
         /// <summary>
-        /// Arguments length: 2, Cycles: 2
+        /// Arguments length: 2, Cycles: 2.
         /// </summary>
         protected ushort ReadAddressInAbsoluteMode()
         {
@@ -143,7 +143,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 16-bit address
+        /// Argument is stored at the specified 16-bit address.
         /// </summary>
         protected virtual void ExecuteInAbsoluteMode()
         {
@@ -152,7 +152,7 @@ namespace CPU.InstructionDecode
 
 
         /// <summary>
-        /// Arguments length: 2, Cycles: 2 + 1B
+        /// Arguments length: 2, Cycles: 2 + 1B.
         /// </summary>
         protected ushort ReadAddressInAbsoluteXMode()
         {
@@ -170,7 +170,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 16-bit address + X register
+        /// Argument is stored at the specified 16-bit address + X register.
         /// </summary>
         protected virtual void ExecuteInAbsoluteXMode()
         {
@@ -178,7 +178,7 @@ namespace CPU.InstructionDecode
         }
         
         /// <summary>
-        /// Arguments length: 2, Cycles: 2 + 1B
+        /// Arguments length: 2, Cycles: 2 + 1B.
         /// </summary>
         protected ushort ReadAddressInAbsoluteYMode()
         {
@@ -196,7 +196,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument is stored at the specified 16-bit address + Y register
+        /// Argument is stored at the specified 16-bit address + Y register.
         /// </summary>
         protected virtual void ExecuteInAbsoluteYMode()
         {
@@ -205,7 +205,7 @@ namespace CPU.InstructionDecode
 
 
         /// <summary>
-        /// Arguments length: 2, Cycles: 4
+        /// Arguments length: 2, Cycles: 4.
         /// </summary>
         protected ushort ReadAddressInIndirectMode()
         {
@@ -223,7 +223,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Address of the argument is stored at the specified 16-bit address
+        /// Address of the argument is stored at the specified 16-bit address.
         /// </summary>
         protected virtual void ExecuteInIndirectMode()
         {
@@ -231,7 +231,7 @@ namespace CPU.InstructionDecode
         }
         
         /// <summary>
-        /// Arguments length: 1, Cycles: 4
+        /// Arguments length: 1, Cycles: 4.
         /// </summary>
         protected ushort ReadAddressInIndexedIndirectMode()
         {
@@ -253,7 +253,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Address of the argument is stored in the table (0 page) at X register index
+        /// Address of the argument is stored in the table (0 page) at X register index.
         /// </summary>
         protected virtual void ExecuteInIndexedIndirectMode()
         {
@@ -262,7 +262,7 @@ namespace CPU.InstructionDecode
 
 
         /// <summary>
-        /// Arguments length: 1, Cycles: 3 + 1B
+        /// Arguments length: 1, Cycles: 3 + 1B.
         /// </summary>
         protected ushort ReadAddressInIndirectIndexedMode()
         {
@@ -287,7 +287,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Address of the argument is stored at the specified address (0 page) + Y register index
+        /// Address of the argument is stored at the specified address (0 page) + Y register index.
         /// </summary>
         protected virtual void ExecuteInIndirectIndexedMode()
         {
