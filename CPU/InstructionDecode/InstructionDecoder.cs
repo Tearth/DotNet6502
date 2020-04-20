@@ -22,16 +22,23 @@ namespace CPU.InstructionDecode
             AddInstruction(new AdcInstruction(0x79, AddressingMode.AbsoluteY, _core));
             AddInstruction(new AdcInstruction(0x61, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new AdcInstruction(0x71, AddressingMode.IndirectIndexed, _core));
+            AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
+            AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
+            AddInstruction(new CliInstruction(0x58, AddressingMode.Implicit, _core));
+            AddInstruction(new ClvInstruction(0xB8, AddressingMode.Implicit, _core));
+            AddInstruction(new SecInstruction(0x38, AddressingMode.Implicit, _core));
+            AddInstruction(new SedInstruction(0xF8, AddressingMode.Implicit, _core));
+            AddInstruction(new SeiInstruction(0x78, AddressingMode.Implicit, _core));
         }
 
         public void DecodeAndExecute()
         {
             _core.Pins.Sync = true;
             var opCode = _core.Bus.Read(_core.Registers.ProgramCounter);
-            var instruction = _instructions[opCode];
+            _core.Registers.ProgramCounter++;
             _core.Pins.Sync = false;
 
-            instruction.Execute();
+            _instructions[opCode].Execute();
         }
 
         private void AddInstruction(InstructionBase instruction)

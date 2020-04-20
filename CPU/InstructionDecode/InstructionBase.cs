@@ -61,7 +61,11 @@ namespace CPU.InstructionDecode
         /// </summary>
         protected byte ReadAddressInZeroPageMode()
         {
-            return Core.Bus.Read(Core.Registers.ProgramCounter++);
+            // 1 cycle
+            var address = Core.Bus.Read(Core.Registers.ProgramCounter);
+            Core.Registers.ProgramCounter++;
+
+            return address;
         }
 
         /// <summary>
@@ -135,9 +139,11 @@ namespace CPU.InstructionDecode
         {
             // 1 cycle
             var low = Core.Bus.Read(Core.Registers.ProgramCounter);
+            Core.Registers.ProgramCounter++;
 
             // 1 cycle
             var high = Core.Bus.Read(Core.Registers.ProgramCounter) << 8;
+            Core.Registers.ProgramCounter++;
 
             return (ushort) (high | low);
         }
