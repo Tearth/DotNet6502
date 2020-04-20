@@ -31,5 +31,10 @@
         /// 8-bit register containing processor status.
         /// </summary>
         public StatusFlags Flags { get; set; }
+
+        public void ChangeFlag(StatusFlags flag, bool value)
+        {
+            Flags = (StatusFlags)(((byte)Flags & ~(1 << (byte)flag)) | ((value ? 1 : 0) << (byte)flag));
+        }
     }
 }

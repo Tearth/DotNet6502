@@ -1,108 +1,121 @@
-﻿namespace CPU.InstructionDecode.Instructions
+﻿using System;
+using CPU.Registers;
+
+namespace CPU.InstructionDecode.Instructions
 {
+    /// <summary>
+    /// ADd with Carry
+    /// </summary>
     public class AdcInstruction : InstructionBase
     {
-        private readonly Mos6502Core _core;
-
-        public AdcInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ADC", opCode, addressingMode)
+        public AdcInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ADC", opCode, addressingMode, core)
         {
-            _core = core;
+
         }
 
-        /*
+        /// <summary>
+        /// Length: 2, Cycles: 2
+        /// </summary>
         protected override void ExecuteInImmediateMode()
         {
-            var number = _core.Bus.Read(_core.Registers.ProgramCounter++);
+            var number = Core.Bus.Read(Core.Registers.ProgramCounter++);
             AddWithCarry(number);
-
-            return 2;
         }
 
+        /// <summary>
+        /// Length: 2, Cycles: 3
+        /// </summary>
         protected override void ExecuteInZeroPageMode()
         {
-            var address = _core.Bus.Read(_core.Registers.ProgramCounter++);
-            var number = _core.Bus.Read(address);
+            var address = ReadAddressInZeroPageMode();
+            var number = Core.Bus.Read(address);
             AddWithCarry(number);
-
-            return 3;
         }
 
+        /// <summary>
+        /// Length: 2, Cycles: 4
+        /// </summary>
         protected override void ExecuteInZeroPageXMode()
         {
-            var zeroPageAddress = _core.Bus.Read(_core.Registers.ProgramCounter++);
-            var address = (byte)(zeroPageAddress + _core.Registers.IndexRegisterX);
-            var number = _core.Bus.Read(address);
+            var address = ReadAddressInZeroPageXMode();
+            var number = Core.Bus.Read(address);
             AddWithCarry(number);
-
-            return 4;
         }
 
+        /// <summary>
+        /// Length: 3, Cycles: 4
+        /// </summary>
         protected override void ExecuteInAbsoluteMode()
         {
-            var address = _core.Bus.ReadTwo(_core.Registers.ProgramCounter);
-            var number = _core.Bus.Read(address);
-            _core.Registers.ProgramCounter += 2;
+            var address = ReadAddressInAbsoluteMode();
+            var number = Core.Bus.Read(address);
             AddWithCarry(number);
-
-            return 4;
         }
 
+        /// <summary>
+        /// Length: 3, Cycles: 4+
+        /// </summary>
         protected override void ExecuteInAbsoluteXMode()
         {
-            var absoluteAddress = _core.Bus.ReadTwo(_core.Registers.ProgramCounter);
-            var absoluteXAddress = (ushort)(absoluteAddress + _core.Registers.IndexRegisterX);
-
-            var number = _core.Bus.Read(absoluteXAddress);
-            _core.Registers.ProgramCounter += 2;
+            var address = ReadAddressInAbsoluteXMode();
+            var number = Core.Bus.Read(address);
             AddWithCarry(number);
-
-            if ((absoluteAddress & 0xFF00) != (absoluteXAddress & 0xFF00))
-            {
-                return 5;
-            }
-
-            return 4;
         }
 
+        /// <summary>
+        /// Length: 3, Cycles: 4+
+        /// </summary>
         protected override void ExecuteInAbsoluteYMode()
         {
-            var absoluteAddress = _core.Bus.ReadTwo(_core.Registers.ProgramCounter);
-            var absoluteXAddress = (ushort)(absoluteAddress + _core.Registers.IndexRegisterY);
-
-            var number = _core.Bus.Read(absoluteXAddress);
-            _core.Registers.ProgramCounter += 2;
+            var address = ReadAddressInAbsoluteYMode();
+            var number = Core.Bus.Read(address);
             AddWithCarry(number);
-
-            if ((absoluteAddress & 0xFF00) != (absoluteXAddress & 0xFF00))
-            {
-                return 5;
-            }
-
-            return 4;
         }
 
+        /// <summary>
+        /// Length: 2, Cycles: 6
+        /// </summary>
         protected override void ExecuteInIndexedIndirectMode()
         {
-            return 0;
+            var address = ReadAddressInIndexedIndirectMode();
+            var number = Core.Bus.Read(address);
+            AddWithCarry(number);
         }
 
+        /// <summary>
+        /// Length: 2, Cycles: 5+
+        /// </summary>
         protected override void ExecuteInIndirectIndexedMode()
         {
-            return 0;
+            var address = ReadAddressInIndirectIndexedMode();
+            var number = Core.Bus.Read(address);
+            AddWithCarry(number);
         }
         
+        /// <summary>
+        /// 1 cycle
+        /// </summary>
         private void AddWithCarry(byte number)
         {
-            var a = _core.Registers.Accumulator;
-            var c = _core.Registers.Flags.Carry ? 1 : 0;
+            var a = Core.Registers.Accumulator;
+            var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
             var result = a + number + c;
 
-            _core.Registers.Accumulator = (byte)result;
-            _core.Registers.Flags.Zero = result == 0;
-            _core.Registers.Flags.Negative = (result & (1 << 7)) == 1;
-            _core.Registers.Flags.Carry = result > byte.MaxValue || result < byte.MinValue;
-            _core.Registers.Flags.Overflow = ((a ^ (sbyte)result) & (number ^ (sbyte)result) & 0x80) != 0;
+            Core.Registers.Accumulator = (byte)result;
+
+            var zeroFlag = result == 0;
+            Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
+
+            var signFlag = (result & (1 << 7)) == 1;
+            Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
+
+            var carryFlag = result > byte.MaxValue || result < byte.MinValue;
+            Core.Registers.ChangeFlag(StatusFlags.Carry, carryFlag);
+
+            var overflowFlag = ((a ^ (sbyte) result) & (number ^ (sbyte) result) & 0x80) != 0;
+            Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
+
+            Core.YieldCycle();
         }
-        */
     }
 }
