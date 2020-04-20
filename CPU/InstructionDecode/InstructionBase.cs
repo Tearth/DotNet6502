@@ -32,96 +32,135 @@ namespace CPU.InstructionDecode
             return $"{Name} (0x{OpCode:X2})";
         }
 
+        /// <summary>
+        /// Pure instruction, no arguments.
+        /// </summary>
         protected virtual void ExecuteInImplicitMode()
         {
             ThrowNotImplementedException("Implicit");
         }
 
+        /// <summary>
+        /// Argument is stored in the accumulator register
+        /// </summary>
         protected virtual void ExecuteInAccumulatorMode()
         {
             ThrowNotImplementedException("Accumulator");
         }
 
+        /// <summary>
+        /// Argument is stored as constant next to operation code
+        /// </summary>
         protected virtual void ExecuteInImmediateMode()
         {
             ThrowNotImplementedException("Immediate");
         }
 
         /// <summary>
-        /// 1 cycles
+        /// Arguments length: 1, Cycles: 1
         /// </summary>
         protected byte ReadAddressInZeroPageMode()
         {
             return Core.Bus.Read(Core.Registers.ProgramCounter++);
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 8-bit address (0 page)
+        /// </summary>
         protected virtual void ExecuteInZeroPageMode()
         {
             ThrowNotImplementedException("Zero Page");
         }
 
         /// <summary>
-        /// 2 cycles
+        /// Arguments length: 1, Cycles: 2
         /// </summary>
         protected byte ReadAddressInZeroPageXMode()
         {
+            // 1 cycle
             var zeroPageAddress = ReadAddressInZeroPageMode();
-            var address = (byte)(zeroPageAddress + Core.Registers.IndexRegisterX);
 
+            // 1 cycle
+            var address = (byte)(zeroPageAddress + Core.Registers.IndexRegisterX);
             Core.YieldCycle();
+
             return address;
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 8-bit address (0 page) + X register
+        /// </summary>
         protected virtual void ExecuteInZeroPageXMode()
         {
             ThrowNotImplementedException("Zero Page X");
         }
 
+
         /// <summary>
-        /// 2 cycles
+        /// Arguments length: 1, Cycles: 2
         /// </summary>
         protected byte ReadAddressInZeroPageYMode()
         {
+            // 1 cycle
             var zeroPageAddress = ReadAddressInZeroPageMode();
-            var address = (byte)(zeroPageAddress + Core.Registers.IndexRegisterY);
 
+            // 1 cycle
+            var address = (byte)(zeroPageAddress + Core.Registers.IndexRegisterY);
             Core.YieldCycle();
+
             return address;
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 8-bit address (0 page) + Y register
+        /// </summary>
         protected virtual void ExecuteInZeroPageYMode()
         {
             ThrowNotImplementedException("Zero Page Y");
         }
 
+        /// <summary>
+        /// Argument contain offset to apply.
+        /// </summary>
         protected virtual void ExecuteInRelativeMode()
         {
             ThrowNotImplementedException("Relative");
         }
 
+
         /// <summary>
-        /// 2 cycles
+        /// Arguments length: 2, Cycles: 2
         /// </summary>
         protected ushort ReadAddressInAbsoluteMode()
         {
+            // 1 cycle
             var low = Core.Bus.Read(Core.Registers.ProgramCounter);
+
+            // 1 cycle
             var high = Core.Bus.Read(Core.Registers.ProgramCounter) << 8;
+
             return (ushort) (high | low);
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 16-bit address
+        /// </summary>
         protected virtual void ExecuteInAbsoluteMode()
         {
             ThrowNotImplementedException("Absolute");
         }
 
+
         /// <summary>
-        /// 2+ cycles
+        /// Arguments length: 2, Cycles: 2 + 1B
         /// </summary>
         protected ushort ReadAddressInAbsoluteXMode()
         {
+            // 2 cycles
             var absoluteAddress = ReadAddressInAbsoluteMode();
-            var absoluteXAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterX);
 
+            // 1 cycle if page boundary crossed
+            var absoluteXAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterX);
             if ((absoluteAddress & 0xFF00) != (absoluteXAddress & 0xFF00))
             {
                 Core.YieldCycle();
@@ -130,19 +169,24 @@ namespace CPU.InstructionDecode
             return absoluteXAddress;
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 16-bit address + X register
+        /// </summary>
         protected virtual void ExecuteInAbsoluteXMode()
         {
             ThrowNotImplementedException("Absolute X");
         }
-
+        
         /// <summary>
-        /// 2+ cycles
+        /// Arguments length: 2, Cycles: 2 + 1B
         /// </summary>
         protected ushort ReadAddressInAbsoluteYMode()
         {
+            // 2 cycles
             var absoluteAddress = ReadAddressInAbsoluteMode();
-            var absoluteYAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterY);
 
+            // 1 cycle if page boundary crossed
+            var absoluteYAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterY);
             if ((absoluteAddress & 0xFF00) != (absoluteYAddress & 0xFF00))
             {
                 Core.YieldCycle();
@@ -151,63 +195,88 @@ namespace CPU.InstructionDecode
             return absoluteYAddress;
         }
 
+        /// <summary>
+        /// Argument is stored at the specified 16-bit address + Y register
+        /// </summary>
         protected virtual void ExecuteInAbsoluteYMode()
         {
             ThrowNotImplementedException("Absolute Y");
         }
 
+
         /// <summary>
-        /// 4 cycles
+        /// Arguments length: 2, Cycles: 4
         /// </summary>
         protected ushort ReadAddressInIndirectMode()
         {
+            // 2 cycles
             var indirectAddress = ReadAddressInAbsoluteMode();
 
+            // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+
+            // 1 cycle
             var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
             var realAddress = (ushort)(high | low);
 
             return realAddress;
         }
 
+        /// <summary>
+        /// Address of the argument is stored at the specified 16-bit address
+        /// </summary>
         protected virtual void ExecuteInIndirectMode()
         {
             ThrowNotImplementedException("Indirect");
         }
-
+        
         /// <summary>
-        /// 5 cycles
+        /// Arguments length: 1, Cycles: 4
         /// </summary>
         protected ushort ReadAddressInIndexedIndirectMode()
         {
+            // 1 cycle
             var tableAddress = ReadAddressInZeroPageMode();
+
+            // 1 cycle
             var indirectAddress = (byte)(tableAddress + Core.Registers.IndexRegisterX);
             Core.YieldCycle();
 
+            // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+
+            // 1 cycle
             var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
             var realAddress = (ushort)(high | low);
-            Core.YieldCycle();
 
             return realAddress;
         }
 
+        /// <summary>
+        /// Address of the argument is stored in the table (0 page) at X register index
+        /// </summary>
         protected virtual void ExecuteInIndexedIndirectMode()
         {
             ThrowNotImplementedException("Indexed Indirect");
         }
 
+
         /// <summary>
-        /// 4+ cycles
+        /// Arguments length: 1, Cycles: 3 + 1B
         /// </summary>
         protected ushort ReadAddressInIndirectIndexedMode()
         {
+            // 1 cycle
             var indirectAddress = ReadAddressInZeroPageMode();
 
+            // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+
+            // 1 cycle
             var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
             var realAddress = (ushort)(high | low);
 
+            // 1 cycle if page boundary crossed
             var realYAddress = (ushort)(realAddress + Core.Registers.IndexRegisterY);
             if ((realAddress & 0xFF00) != (realYAddress & 0xFF00))
             {
@@ -217,6 +286,9 @@ namespace CPU.InstructionDecode
             return realYAddress;
         }
 
+        /// <summary>
+        /// Address of the argument is stored at the specified address (0 page) + Y register index
+        /// </summary>
         protected virtual void ExecuteInIndirectIndexedMode()
         {
             ThrowNotImplementedException("Indirect Indexed");

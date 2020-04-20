@@ -32,6 +32,11 @@
         /// </summary>
         public StatusFlags Flags { get; set; }
 
+        public RegistersState()
+        {
+            Flags = StatusFlags.Reserved;
+        }
+
         public void ChangeFlag(StatusFlags flag, bool value)
         {
             Flags = (StatusFlags)(((byte)Flags & ~(1 << (byte)flag)) | ((value ? 1 : 0) << (byte)flag));

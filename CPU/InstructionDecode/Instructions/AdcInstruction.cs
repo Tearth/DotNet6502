@@ -14,87 +14,114 @@ namespace CPU.InstructionDecode.Instructions
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 2
+        /// Length: 2, Cycles: 1F + 1
         /// </summary>
         protected override void ExecuteInImmediateMode()
         {
+            // 1 cycle
             var number = Core.Bus.Read(Core.Registers.ProgramCounter++);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 3
+        /// Length: 2, Cycles: 1F + 2
         /// </summary>
         protected override void ExecuteInZeroPageMode()
         {
+            // 1 cycle
             var address = ReadAddressInZeroPageMode();
+            
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 4
+        /// Length: 2, Cycles: 1F + 3
         /// </summary>
         protected override void ExecuteInZeroPageXMode()
         {
+            // 2 cycles
             var address = ReadAddressInZeroPageXMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 4
+        /// Length: 3, Cycles: 1F + 3
         /// </summary>
         protected override void ExecuteInAbsoluteMode()
         {
+            // 2 cycles
             var address = ReadAddressInAbsoluteMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 4+
+        /// Length: 3, Cycles: 1F + 3 + 1B
         /// </summary>
         protected override void ExecuteInAbsoluteXMode()
         {
+            // 2 cycles + 1 if page boundary crossed
             var address = ReadAddressInAbsoluteXMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 3, Cycles: 4+
+        /// Length: 3, Cycles: 1F + 3 + 1B
         /// </summary>
         protected override void ExecuteInAbsoluteYMode()
         {
+            // 2 cycles + 1 if page boundary crossed
             var address = ReadAddressInAbsoluteYMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 6
+        /// Length: 2, Cycles: 1F + 5
         /// </summary>
         protected override void ExecuteInIndexedIndirectMode()
         {
+            // 4 cycles
             var address = ReadAddressInIndexedIndirectMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 5+
+        /// Length: 2, Cycles: 1F + 4 + 1B
         /// </summary>
         protected override void ExecuteInIndirectIndexedMode()
         {
+            // 3 cycles + 1 if page boundary crossed
             var address = ReadAddressInIndirectIndexedMode();
+
+            // 1 cycle
             var number = Core.Bus.Read(address);
+
             AddWithCarry(number);
         }
-        
-        /// <summary>
-        /// 1 cycle
-        /// </summary>
+
         private void AddWithCarry(byte number)
         {
             var a = Core.Registers.Accumulator;
@@ -114,8 +141,6 @@ namespace CPU.InstructionDecode.Instructions
 
             var overflowFlag = ((a ^ (sbyte) result) & (number ^ (sbyte) result) & 0x80) != 0;
             Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
-
-            Core.YieldCycle();
         }
     }
 }

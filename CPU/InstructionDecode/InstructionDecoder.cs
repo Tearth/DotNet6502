@@ -21,7 +21,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new AdcInstruction(0x7D, AddressingMode.AbsoluteX, _core));
             AddInstruction(new AdcInstruction(0x79, AddressingMode.AbsoluteY, _core));
             AddInstruction(new AdcInstruction(0x61, AddressingMode.IndexedIndirect, _core));
-            AddInstruction(new AdcInstruction(0x71, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new AdcInstruction(0x71, AddressingMode.IndirectIndexed, _core));
         }
 
         public void DecodeAndExecute()
