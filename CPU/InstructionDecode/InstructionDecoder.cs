@@ -47,6 +47,13 @@ namespace CPU.InstructionDecode
             AddInstruction(new AndInstruction(0x21, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new AndInstruction(0x31, AddressingMode.IndirectIndexed, _core));
 
+            // Arithmetic shift left
+            AddInstruction(new AslInstruction(0x0A, AddressingMode.Accumulator, _core));
+            AddInstruction(new AslInstruction(0x06, AddressingMode.ZeroPage, _core));
+            AddInstruction(new AslInstruction(0x16, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new AslInstruction(0x0E, AddressingMode.Absolute, _core));
+            AddInstruction(new AslInstruction(0x1E, AddressingMode.AbsoluteX, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));

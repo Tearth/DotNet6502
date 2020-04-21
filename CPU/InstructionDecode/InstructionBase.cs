@@ -160,14 +160,14 @@ namespace CPU.InstructionDecode
         /// <summary>
         /// Arguments length: 2, Cycles: 2 + 1B.
         /// </summary>
-        protected ushort ReadAddressInAbsoluteXMode()
+        protected ushort ReadAddressInAbsoluteXMode(bool forceBoundaryCheck = false)
         {
             // 2 cycles
             var absoluteAddress = ReadAddressInAbsoluteMode();
 
             // 1 cycle if page boundary crossed
             var absoluteXAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterX);
-            if ((absoluteAddress & 0xFF00) != (absoluteXAddress & 0xFF00))
+            if (forceBoundaryCheck || (absoluteAddress & 0xFF00) != (absoluteXAddress & 0xFF00))
             {
                 Core.YieldCycle();
             }
@@ -186,14 +186,14 @@ namespace CPU.InstructionDecode
         /// <summary>
         /// Arguments length: 2, Cycles: 2 + 1B.
         /// </summary>
-        protected ushort ReadAddressInAbsoluteYMode()
+        protected ushort ReadAddressInAbsoluteYMode(bool forceBoundaryCheck = false)
         {
             // 2 cycles
             var absoluteAddress = ReadAddressInAbsoluteMode();
 
             // 1 cycle if page boundary crossed
             var absoluteYAddress = (ushort)(absoluteAddress + Core.Registers.IndexRegisterY);
-            if ((absoluteAddress & 0xFF00) != (absoluteYAddress & 0xFF00))
+            if (forceBoundaryCheck || (absoluteAddress & 0xFF00) != (absoluteYAddress & 0xFF00))
             {
                 Core.YieldCycle();
             }
@@ -270,7 +270,7 @@ namespace CPU.InstructionDecode
         /// <summary>
         /// Arguments length: 1, Cycles: 3 + 1B.
         /// </summary>
-        protected ushort ReadAddressInIndirectIndexedMode()
+        protected ushort ReadAddressInIndirectIndexedMode(bool forceBoundaryCheck = false)
         {
             // 1 cycle
             var indirectAddress = ReadAddressInZeroPageMode();
@@ -284,7 +284,7 @@ namespace CPU.InstructionDecode
 
             // 1 cycle if page boundary crossed
             var realYAddress = (ushort)(realAddress + Core.Registers.IndexRegisterY);
-            if ((realAddress & 0xFF00) != (realYAddress & 0xFF00))
+            if (forceBoundaryCheck || (realAddress & 0xFF00) != (realYAddress & 0xFF00))
             {
                 Core.YieldCycle();
             }
