@@ -54,6 +54,10 @@ namespace CPU.InstructionDecode
             AddInstruction(new AslInstruction(0x0E, AddressingMode.Absolute, _core));
             AddInstruction(new AslInstruction(0x1E, AddressingMode.AbsoluteX, _core));
 
+            // Bit test
+            AddInstruction(new BitInstruction(0x24, AddressingMode.ZeroPage, _core));
+            AddInstruction(new BitInstruction(0x2C, AddressingMode.Absolute, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
