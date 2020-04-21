@@ -1,7 +1,4 @@
-﻿using System;
-using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions
+﻿namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
     /// Transfer Stack ptr to X

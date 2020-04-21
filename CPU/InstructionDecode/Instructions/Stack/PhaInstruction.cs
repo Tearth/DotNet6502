@@ -1,14 +1,11 @@
-﻿using System;
-using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions
+﻿namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
-    /// PuLl Accumulator
+    /// PusH Accumulator
     /// </summary>
-    public class PhpInstruction : InstructionBase
+    public class PhaInstruction : InstructionBase
     {
-        public PhpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHP", opCode, addressingMode, core)
+        public PhaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHA", opCode, addressingMode, core)
         {
 
         }
@@ -19,7 +16,7 @@ namespace CPU.InstructionDecode.Instructions
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            Core.Bus.Write(Core.Registers.StackPointer, (byte)Core.Registers.Flags);
+            Core.Bus.Write(Core.Registers.StackPointer, Core.Registers.Accumulator);
             Core.YieldCycle();
 
             // 1 cycle

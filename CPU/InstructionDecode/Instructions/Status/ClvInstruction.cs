@@ -1,7 +1,6 @@
-﻿using System;
-using CPU.Registers;
+﻿using CPU.Registers;
 
-namespace CPU.InstructionDecode.Instructions
+namespace CPU.InstructionDecode.Instructions.Status
 {
     /// <summary>
     /// CLear oVerflow

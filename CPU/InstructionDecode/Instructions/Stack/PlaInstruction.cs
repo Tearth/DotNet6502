@@ -1,14 +1,11 @@
-﻿using System;
-using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions
+﻿namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
     /// PuLl Accumulator
     /// </summary>
-    public class PlpInstruction : InstructionBase
+    public class PlaInstruction : InstructionBase
     {
-        public PlpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLP", opCode, addressingMode, core)
+        public PlaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLA", opCode, addressingMode, core)
         {
 
         }
@@ -27,7 +24,7 @@ namespace CPU.InstructionDecode.Instructions
             Core.YieldCycle();
 
             // 1 cycle
-            Core.Registers.Flags = (StatusFlags)value;
+            Core.Registers.Accumulator = value;
             Core.YieldCycle();
         }
     }
