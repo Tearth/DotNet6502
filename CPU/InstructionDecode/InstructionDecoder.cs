@@ -37,6 +37,16 @@ namespace CPU.InstructionDecode
             AddInstruction(new SbcInstruction(0xE1, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new SbcInstruction(0xF1, AddressingMode.IndirectIndexed, _core));
 
+            // And
+            AddInstruction(new AndInstruction(0x29, AddressingMode.Immediate, _core));
+            AddInstruction(new AndInstruction(0x25, AddressingMode.ZeroPage, _core));
+            AddInstruction(new AndInstruction(0x35, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new AndInstruction(0x2D, AddressingMode.Absolute, _core));
+            AddInstruction(new AndInstruction(0x3D, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new AndInstruction(0x39, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new AndInstruction(0x21, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new AndInstruction(0x31, AddressingMode.IndirectIndexed, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
