@@ -19,7 +19,6 @@ namespace CPU.InstructionDecode.Instructions.Stack
         {
             // 1 cycle
             var value = Core.Bus.Read(Core.Registers.StackPointer);
-            Core.YieldCycle();
 
             // 1 cycle
             Core.Registers.StackPointer++;
