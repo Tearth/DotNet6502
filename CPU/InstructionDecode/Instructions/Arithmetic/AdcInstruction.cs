@@ -18,7 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            AddWithCarry(Core.Registers.ProgramCounter++);
+            LoadAndDoAdd(Core.Registers.ProgramCounter++);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteYMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndexedIndirectMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
         /// <summary>
@@ -102,14 +102,25 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndirectIndexedMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAdd(address);
         }
 
-        private void AddWithCarry(ushort address)
+        /// <summary>
+        /// Cycles: 1.
+        /// </summary>
+        private void LoadAndDoAdd(ushort address)
         {
             // 1 cycle
             var number = Core.Bus.Read(address);
 
+            DoAdd(number);
+        }
+
+        /// <summary>
+        /// Cycles: 0.
+        /// </summary>
+        private void DoAdd(byte number)
+        {
             var a = Core.Registers.Accumulator;
             var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
             var result = a + number + c;
@@ -125,7 +136,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var carryFlag = result > byte.MaxValue || result < byte.MinValue;
             Core.Registers.ChangeFlag(StatusFlags.Carry, carryFlag);
 
-            var overflowFlag = ((a ^ (sbyte) result) & (number ^ (sbyte) result) & 0x80) != 0;
+            var overflowFlag = ((a ^ (sbyte)result) & (number ^ (sbyte)result) & 0x80) != 0;
             Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
         }
     }

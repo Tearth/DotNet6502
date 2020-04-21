@@ -18,7 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            SubWithCarry(Core.Registers.ProgramCounter++);
+            LoadAndDoSub(Core.Registers.ProgramCounter++);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteYMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndexedIndirectMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
         /// <summary>
@@ -102,14 +102,25 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndirectIndexedMode();
 
             // 1 cycle
-            SubWithCarry(address);
+            LoadAndDoSub(address);
         }
 
-        private void SubWithCarry(ushort address)
+        /// <summary>
+        /// Cycles: 1.
+        /// </summary>
+        private void LoadAndDoSub(ushort address)
         {
             // 1 cycle
             var number = Core.Bus.Read(address);
 
+            DoSub(number);
+        }
+
+        /// <summary>
+        /// Cycles: 0.
+        /// </summary>
+        private void DoSub(byte number)
+        {
             var a = Core.Registers.Accumulator;
             var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 0 : 1;
             var result = a - number - c;

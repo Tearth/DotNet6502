@@ -3,7 +3,7 @@
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
     /// <summary>
-    /// ADd with Carry
+    /// bitwise AND with accumulator
     /// </summary>
     public class AndInstruction : InstructionBase
     {
@@ -18,7 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            AddWithCarry(Core.Registers.ProgramCounter++);
+            LoadAndDoAnd(Core.Registers.ProgramCounter++);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteYMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndexedIndirectMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
         /// <summary>
@@ -102,15 +102,26 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndirectIndexedMode();
 
             // 1 cycle
-            AddWithCarry(address);
+            LoadAndDoAnd(address);
         }
 
-        private void AddWithCarry(ushort address)
+        /// <summary>
+        /// Cycles: 1.
+        /// </summary>
+        private void LoadAndDoAnd(ushort address)
         {
             // 1 cycle
             var number = Core.Bus.Read(address);
 
-            Core.Registers.Accumulator = (byte) (Core.Registers.Accumulator & number);
+            DoAnd(number);
+        }
+
+        /// <summary>
+        /// Cycles: 0.
+        /// </summary>
+        private void DoAnd(byte number)
+        {
+            Core.Registers.Accumulator = (byte)(Core.Registers.Accumulator & number);
 
             var zeroFlag = Core.Registers.Accumulator == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);

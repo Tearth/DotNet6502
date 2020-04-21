@@ -124,7 +124,7 @@ namespace CPU.InstructionDecode
         }
 
         /// <summary>
-        /// Argument contain offset to apply.
+        /// Argument contains offset to apply.
         /// </summary>
         protected virtual void ExecuteInRelativeMode()
         {
