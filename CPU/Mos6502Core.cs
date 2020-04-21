@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using CPU.InstructionDecode;
 using CPU.Interrupts;
@@ -69,7 +70,11 @@ namespace CPU
             YieldingCycle = true;
             if (!Pins.Rdy)
             {
-                while (!Pins.Rdy) ;
+                while (!Pins.Rdy)
+                {
+                    Thread.Sleep(1);
+                }
+
                 _startTime = DateTime.Now;
             }
 
