@@ -39,7 +39,11 @@
 
         public void ChangeFlag(StatusFlags flag, bool value)
         {
-            Flags = (StatusFlags)(((byte)Flags & ~(1 << (byte)flag)) | ((value ? 1 : 0) << (byte)flag));
+            Flags = (StatusFlags) ((byte) Flags & ~(byte)flag);
+            if (value)
+            {
+                Flags |= flag;
+            }
         }
     }
 }
