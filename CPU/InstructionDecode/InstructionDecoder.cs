@@ -22,10 +22,21 @@ namespace CPU.InstructionDecode
             AddInstruction(new AdcInstruction(0x79, AddressingMode.AbsoluteY, _core));
             AddInstruction(new AdcInstruction(0x61, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new AdcInstruction(0x71, AddressingMode.IndirectIndexed, _core));
+
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
             AddInstruction(new CliInstruction(0x58, AddressingMode.Implicit, _core));
             AddInstruction(new ClvInstruction(0xB8, AddressingMode.Implicit, _core));
+
+            AddInstruction(new SbcInstruction(0xE9, AddressingMode.Immediate, _core));
+            AddInstruction(new SbcInstruction(0xE5, AddressingMode.ZeroPage, _core));
+            AddInstruction(new SbcInstruction(0xF5, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new SbcInstruction(0xED, AddressingMode.Absolute, _core));
+            AddInstruction(new SbcInstruction(0xFD, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new SbcInstruction(0xF9, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new SbcInstruction(0xE1, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new SbcInstruction(0xF1, AddressingMode.IndirectIndexed, _core));
+
             AddInstruction(new SecInstruction(0x38, AddressingMode.Implicit, _core));
             AddInstruction(new SedInstruction(0xF8, AddressingMode.Implicit, _core));
             AddInstruction(new SeiInstruction(0x78, AddressingMode.Implicit, _core));
