@@ -14,6 +14,7 @@ namespace CPU.InstructionDecode
             _instructions = new Dictionary<ushort, InstructionBase>();
             _core = core;
 
+            // Adding
             AddInstruction(new AdcInstruction(0x69, AddressingMode.Immediate, _core));
             AddInstruction(new AdcInstruction(0x65, AddressingMode.ZeroPage, _core));
             AddInstruction(new AdcInstruction(0x75, AddressingMode.ZeroPageX, _core));
@@ -23,11 +24,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new AdcInstruction(0x61, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new AdcInstruction(0x71, AddressingMode.IndirectIndexed, _core));
 
-            AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
-            AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
-            AddInstruction(new CliInstruction(0x58, AddressingMode.Implicit, _core));
-            AddInstruction(new ClvInstruction(0xB8, AddressingMode.Implicit, _core));
-
+            // Subtracting
             AddInstruction(new SbcInstruction(0xE9, AddressingMode.Immediate, _core));
             AddInstruction(new SbcInstruction(0xE5, AddressingMode.ZeroPage, _core));
             AddInstruction(new SbcInstruction(0xF5, AddressingMode.ZeroPageX, _core));
@@ -37,9 +34,22 @@ namespace CPU.InstructionDecode
             AddInstruction(new SbcInstruction(0xE1, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new SbcInstruction(0xF1, AddressingMode.IndirectIndexed, _core));
 
+            // Flag instructions
+            AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
+            AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
+            AddInstruction(new CliInstruction(0x58, AddressingMode.Implicit, _core));
+            AddInstruction(new ClvInstruction(0xB8, AddressingMode.Implicit, _core));
             AddInstruction(new SecInstruction(0x38, AddressingMode.Implicit, _core));
             AddInstruction(new SedInstruction(0xF8, AddressingMode.Implicit, _core));
             AddInstruction(new SeiInstruction(0x78, AddressingMode.Implicit, _core));
+
+            // Stack instructions
+            AddInstruction(new PhpInstruction(0x08, AddressingMode.Implicit, _core));
+            AddInstruction(new PhaInstruction(0x48, AddressingMode.Implicit, _core));
+            AddInstruction(new PlaInstruction(0x68, AddressingMode.Implicit, _core));
+            AddInstruction(new PlpInstruction(0x28, AddressingMode.Implicit, _core));
+            AddInstruction(new TsxInstruction(0xBA, AddressingMode.Implicit, _core));
+            AddInstruction(new TxsInstruction(0x9A, AddressingMode.Implicit, _core));
         }
 
         public void DecodeAndExecute()
