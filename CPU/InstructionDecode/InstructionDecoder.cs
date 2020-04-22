@@ -108,6 +108,10 @@ namespace CPU.InstructionDecode
             AddInstruction(new CpxInstruction(0xE4, AddressingMode.ZeroPage, _core));
             AddInstruction(new CpxInstruction(0xEC, AddressingMode.Absolute, _core));
 
+            AddInstruction(new CpyInstruction(0xC0, AddressingMode.Immediate, _core));
+            AddInstruction(new CpyInstruction(0xC4, AddressingMode.ZeroPage, _core));
+            AddInstruction(new CpyInstruction(0xCC, AddressingMode.Absolute, _core));
+
             // Register instructions
             AddInstruction(new TaxInstruction(0xAA, AddressingMode.Implicit, _core));
             AddInstruction(new TxaInstruction(0x8A, AddressingMode.Implicit, _core));

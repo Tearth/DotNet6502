@@ -3,11 +3,11 @@
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
     /// <summary>
-    /// ComPare X register
+    /// ComPare Y register
     /// </summary>
-    public class CpxInstruction : InstructionBase
+    public class CpyInstruction : InstructionBase
     {
-        public CpxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPX", opCode, addressingMode, core)
+        public CpyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPY", opCode, addressingMode, core)
         {
 
         }
@@ -61,15 +61,15 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         /// </summary>
         private void DoCmp(byte number)
         {
-            var result = (byte)(Core.Registers.IndexRegisterX - number);
+            var result = (byte)(Core.Registers.IndexRegisterY - number);
 
-            var zeroFlag = Core.Registers.IndexRegisterX == number;
+            var zeroFlag = Core.Registers.IndexRegisterY == number;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
             var signFlag = (result & (1 << 7)) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
 
-            var carryFlag = Core.Registers.IndexRegisterX >= number;
+            var carryFlag = Core.Registers.IndexRegisterY >= number;
             Core.Registers.ChangeFlag(StatusFlags.Carry, carryFlag);
         }
     }
