@@ -3,7 +3,7 @@
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
     /// <summary>
-    /// ADd with Carry
+    /// CoMPare accumulator
     /// </summary>
     public class CmpInstruction : InstructionBase
     {
