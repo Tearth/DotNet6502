@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CPU.InstructionDecode.Instructions;
 using CPU.InstructionDecode.Instructions.Arithmetic;
+using CPU.InstructionDecode.Instructions.Branch;
 using CPU.InstructionDecode.Instructions.Registers;
 using CPU.InstructionDecode.Instructions.Stack;
 using CPU.InstructionDecode.Instructions.Status;
@@ -94,7 +95,6 @@ namespace CPU.InstructionDecode
             AddInstruction(new RorInstruction(0x7E, AddressingMode.AbsoluteX, _core));
 
             // Register instructions
-            // Flag instructions
             AddInstruction(new TaxInstruction(0xAA, AddressingMode.Implicit, _core));
             AddInstruction(new TxaInstruction(0x8A, AddressingMode.Implicit, _core));
             AddInstruction(new DexInstruction(0xCA, AddressingMode.Implicit, _core));
@@ -120,6 +120,16 @@ namespace CPU.InstructionDecode
             AddInstruction(new PlpInstruction(0x28, AddressingMode.Implicit, _core));
             AddInstruction(new TsxInstruction(0xBA, AddressingMode.Implicit, _core));
             AddInstruction(new TxsInstruction(0x9A, AddressingMode.Implicit, _core));
+
+            // Branch instructions
+            AddInstruction(new BplInstruction(0x10, AddressingMode.Relative, _core));
+            AddInstruction(new BmiInstruction(0x30, AddressingMode.Relative, _core));
+            AddInstruction(new BvcInstruction(0x50, AddressingMode.Relative, _core));
+            AddInstruction(new BvsInstruction(0x70, AddressingMode.Relative, _core));
+            AddInstruction(new BccInstruction(0x90, AddressingMode.Relative, _core));
+            AddInstruction(new BcsInstruction(0xB0, AddressingMode.Relative, _core));
+            AddInstruction(new BneInstruction(0xD0, AddressingMode.Relative, _core));
+            AddInstruction(new BeqInstruction(0xF0, AddressingMode.Relative, _core));
         }
 
         public void DecodeAndExecute()
