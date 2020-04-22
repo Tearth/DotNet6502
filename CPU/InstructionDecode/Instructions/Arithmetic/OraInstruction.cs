@@ -3,11 +3,11 @@
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
     /// <summary>
-    /// bitwise Exclusive OR
+    /// bitwise OR with Accumulator
     /// </summary>
-    public class EorInstruction : InstructionBase
+    public class OraInstruction : InstructionBase
     {
-        public EorInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("EOR", opCode, addressingMode, core)
+        public OraInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ORA", opCode, addressingMode, core)
         {
 
         }
@@ -18,7 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            LoadAndDoExclusiveOr(Core.Registers.ProgramCounter++);
+            LoadAndDoOr(Core.Registers.ProgramCounter++);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteYMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndexedIndirectMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
@@ -102,26 +102,26 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInIndirectIndexedMode();
 
             // 1 cycle
-            LoadAndDoExclusiveOr(address);
+            LoadAndDoOr(address);
         }
 
         /// <summary>
         /// Cycles: 1.
         /// </summary>
-        private void LoadAndDoExclusiveOr(ushort address)
+        private void LoadAndDoOr(ushort address)
         {
             // 1 cycle
             var number = Core.Bus.Read(address);
 
-            DoExclusiveOr(number);
+            DoOr(number);
         }
 
         /// <summary>
         /// Cycles: 0.
         /// </summary>
-        private void DoExclusiveOr(byte number)
+        private void DoOr(byte number)
         {
-            var result = Core.Registers.Accumulator ^ number;
+            var result = Core.Registers.Accumulator | number;
             Core.Registers.Accumulator = (byte)result;
 
             var zeroFlag = result == 0;

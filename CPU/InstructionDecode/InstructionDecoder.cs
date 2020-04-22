@@ -37,7 +37,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new SbcInstruction(0xE1, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new SbcInstruction(0xF1, AddressingMode.IndirectIndexed, _core));
 
-            // And
+            // AND
             AddInstruction(new AndInstruction(0x29, AddressingMode.Immediate, _core));
             AddInstruction(new AndInstruction(0x25, AddressingMode.ZeroPage, _core));
             AddInstruction(new AndInstruction(0x35, AddressingMode.ZeroPageX, _core));
@@ -58,7 +58,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new BitInstruction(0x24, AddressingMode.ZeroPage, _core));
             AddInstruction(new BitInstruction(0x2C, AddressingMode.Absolute, _core));
 
-            // Exclusive or
+            // Exclusive OR
             AddInstruction(new EorInstruction(0x49, AddressingMode.Immediate, _core));
             AddInstruction(new EorInstruction(0x45, AddressingMode.ZeroPage, _core));
             AddInstruction(new EorInstruction(0x55, AddressingMode.ZeroPageX, _core));
@@ -67,6 +67,16 @@ namespace CPU.InstructionDecode
             AddInstruction(new EorInstruction(0x59, AddressingMode.AbsoluteY, _core));
             AddInstruction(new EorInstruction(0x41, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new EorInstruction(0x51, AddressingMode.IndirectIndexed, _core));
+
+            // OR
+            AddInstruction(new OraInstruction(0x09, AddressingMode.Immediate, _core));
+            AddInstruction(new OraInstruction(0x05, AddressingMode.ZeroPage, _core));
+            AddInstruction(new OraInstruction(0x15, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new OraInstruction(0x0D, AddressingMode.Absolute, _core));
+            AddInstruction(new OraInstruction(0x1D, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new OraInstruction(0x19, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new OraInstruction(0x01, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new OraInstruction(0x11, AddressingMode.IndirectIndexed, _core));
 
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
