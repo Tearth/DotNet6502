@@ -1,13 +1,14 @@
-﻿using CPU.Registers;
+﻿using System;
+using CPU.Registers;
 
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
     /// <summary>
-    /// ADd with Carry
+    /// ROtate Left
     /// </summary>
-    public class AslInstruction : InstructionBase
+    public class RolInstruction : InstructionBase
     {
-        public AslInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ASL", opCode, addressingMode, core)
+        public RolInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ROL", opCode, addressingMode, core)
         {
 
         }
@@ -17,7 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         /// </summary>
         protected override void ExecuteInAccumulatorMode()
         {
-            var result = DoAsl(Core.Registers.Accumulator);
+            var result = DoRol(Core.Registers.Accumulator);
 
             // 1 cycle
             Core.Registers.Accumulator = result;
@@ -33,7 +34,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageMode();
 
             // 3 cycle
-            LoadAndDoAsl(address);
+            LoadAndDoRol(address);
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInZeroPageXMode();
 
             // 3 cycle
-            LoadAndDoAsl(address);
+            LoadAndDoRol(address);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteMode();
 
             // 3 cycle
-            LoadAndDoAsl(address);
+            LoadAndDoRol(address);
         }
 
         /// <summary>
@@ -69,18 +70,18 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var address = ReadAddressInAbsoluteXMode(true);
 
             // 3 cycle
-            LoadAndDoAsl(address);
+            LoadAndDoRol(address);
         }
 
         /// <summary>
         /// Cycles: 3.
         /// </summary>
-        private void LoadAndDoAsl(ushort address)
+        private void LoadAndDoRol(ushort address)
         {
             // 1 cycle
             var number = Core.Bus.Read(address);
 
-            var result = DoAsl(number);
+            var result = DoRol(number);
 
             // 1 cycle
             Core.YieldCycle();
@@ -92,9 +93,13 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         /// <summary>
         /// Cycles: 0.
         /// </summary>
-        private byte DoAsl(byte number)
+        private byte DoRol(byte number)
         {
             var result = (byte)(number << 1);
+            if (Core.Registers.Flags.HasFlag(StatusFlags.Carry))
+            {
+                result |= 1;
+            }
 
             var zeroFlag = result == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);

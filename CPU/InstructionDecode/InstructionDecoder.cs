@@ -78,6 +78,13 @@ namespace CPU.InstructionDecode
             AddInstruction(new OraInstruction(0x01, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new OraInstruction(0x11, AddressingMode.IndirectIndexed, _core));
 
+            // Rotate left
+            AddInstruction(new RolInstruction(0x2A, AddressingMode.Accumulator, _core));
+            AddInstruction(new RolInstruction(0x26, AddressingMode.ZeroPage, _core));
+            AddInstruction(new RolInstruction(0x36, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new RolInstruction(0x2E, AddressingMode.Absolute, _core));
+            AddInstruction(new RolInstruction(0x3E, AddressingMode.AbsoluteX, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
