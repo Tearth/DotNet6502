@@ -58,6 +58,16 @@ namespace CPU.InstructionDecode
             AddInstruction(new BitInstruction(0x24, AddressingMode.ZeroPage, _core));
             AddInstruction(new BitInstruction(0x2C, AddressingMode.Absolute, _core));
 
+            // Exclusive or
+            AddInstruction(new EorInstruction(0x49, AddressingMode.Immediate, _core));
+            AddInstruction(new EorInstruction(0x45, AddressingMode.ZeroPage, _core));
+            AddInstruction(new EorInstruction(0x55, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new EorInstruction(0x4D, AddressingMode.Absolute, _core));
+            AddInstruction(new EorInstruction(0x5D, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new EorInstruction(0x59, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new EorInstruction(0x41, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new EorInstruction(0x51, AddressingMode.IndirectIndexed, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
