@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CPU.InstructionDecode.Instructions;
 using CPU.InstructionDecode.Instructions.Arithmetic;
+using CPU.InstructionDecode.Instructions.Registers;
 using CPU.InstructionDecode.Instructions.Stack;
 using CPU.InstructionDecode.Instructions.Status;
 
@@ -91,6 +92,17 @@ namespace CPU.InstructionDecode
             AddInstruction(new RorInstruction(0x76, AddressingMode.ZeroPageX, _core));
             AddInstruction(new RorInstruction(0x6E, AddressingMode.Absolute, _core));
             AddInstruction(new RorInstruction(0x7E, AddressingMode.AbsoluteX, _core));
+
+            // Register instructions
+            // Flag instructions
+            AddInstruction(new TaxInstruction(0xAA, AddressingMode.Implicit, _core));
+            AddInstruction(new TxaInstruction(0x8A, AddressingMode.Implicit, _core));
+            AddInstruction(new DexInstruction(0xCA, AddressingMode.Implicit, _core));
+            AddInstruction(new InxInstruction(0xE8, AddressingMode.Implicit, _core));
+            AddInstruction(new TayInstruction(0xA8, AddressingMode.Implicit, _core));
+            AddInstruction(new TyaInstruction(0x98, AddressingMode.Implicit, _core));
+            AddInstruction(new DeyInstruction(0x88, AddressingMode.Implicit, _core));
+            AddInstruction(new InyInstruction(0xC8, AddressingMode.Implicit, _core));
 
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
