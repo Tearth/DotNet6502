@@ -94,6 +94,16 @@ namespace CPU.InstructionDecode
             AddInstruction(new RorInstruction(0x6E, AddressingMode.Absolute, _core));
             AddInstruction(new RorInstruction(0x7E, AddressingMode.AbsoluteX, _core));
 
+            // Compare instructions
+            AddInstruction(new CmpInstruction(0xC9, AddressingMode.Immediate, _core));
+            AddInstruction(new CmpInstruction(0xC5, AddressingMode.ZeroPage, _core));
+            AddInstruction(new CmpInstruction(0xD5, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new CmpInstruction(0xCD, AddressingMode.Absolute, _core));
+            AddInstruction(new CmpInstruction(0xDD, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new CmpInstruction(0xD9, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new CmpInstruction(0xC1, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new CmpInstruction(0xD1, AddressingMode.IndirectIndexed, _core));
+
             // Register instructions
             AddInstruction(new TaxInstruction(0xAA, AddressingMode.Implicit, _core));
             AddInstruction(new TxaInstruction(0x8A, AddressingMode.Implicit, _core));
