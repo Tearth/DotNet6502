@@ -220,12 +220,13 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
-            var realAddress = (ushort)(high | low);
+            var high = Core.Bus.Read(indirectAddress) << 8;
+            Core.Registers.ProgramCounter++;
 
-            return realAddress;
+            return (ushort)(high | low);
         }
 
         /// <summary>
@@ -250,12 +251,13 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
-            var realAddress = (ushort)(high | low);
+            var high = Core.Bus.Read(indirectAddress) << 8;
+            Core.Registers.ProgramCounter++;
 
-            return realAddress;
+            return (ushort)(high | low);
         }
 
         /// <summary>
@@ -277,9 +279,12 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
+            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read((ushort)(indirectAddress + 2)) << 8;
+            var high = Core.Bus.Read(indirectAddress) << 8;
+            Core.Registers.ProgramCounter++;
+
             var realAddress = (ushort)(high | low);
 
             // 1 cycle if page boundary crossed
