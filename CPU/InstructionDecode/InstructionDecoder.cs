@@ -57,6 +57,13 @@ namespace CPU.InstructionDecode
             AddInstruction(new AslInstruction(0x0E, AddressingMode.Absolute, _core));
             AddInstruction(new AslInstruction(0x1E, AddressingMode.AbsoluteX, _core));
 
+            // Logical shift right
+            AddInstruction(new LsrInstruction(0x4A, AddressingMode.Accumulator, _core));
+            AddInstruction(new LsrInstruction(0x46, AddressingMode.ZeroPage, _core));
+            AddInstruction(new LsrInstruction(0x56, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new LsrInstruction(0x4E, AddressingMode.Absolute, _core));
+            AddInstruction(new LsrInstruction(0x5E, AddressingMode.AbsoluteX, _core));
+
             // Bit test
             AddInstruction(new BitInstruction(0x24, AddressingMode.ZeroPage, _core));
             AddInstruction(new BitInstruction(0x2C, AddressingMode.Absolute, _core));
