@@ -77,10 +77,10 @@ namespace CPU.InstructionDecode.Instructions.Registers
             // 1 cycle
             Core.Registers.IndexRegisterX = Core.Bus.Read(address);
 
-            var zeroFlag = Core.Registers.Accumulator == 0;
+            var zeroFlag = Core.Registers.IndexRegisterX == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var signFlag = (Core.Registers.Accumulator & (1 << 7)) == 1;
+            var signFlag = (Core.Registers.IndexRegisterX & (1 << 7)) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
         }
     }

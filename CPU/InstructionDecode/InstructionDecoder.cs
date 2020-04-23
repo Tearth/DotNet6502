@@ -210,10 +210,10 @@ namespace CPU.InstructionDecode
             AddInstruction(new JmpInstruction(0x4C, AddressingMode.Absolute, _core));
             AddInstruction(new JmpInstruction(0x6C, AddressingMode.Indirect, _core));
             AddInstruction(new JsrInstruction(0x20, AddressingMode.Absolute, _core));
-            AddInstruction(new RtsInstruction(0x60, AddressingMode.Immediate, _core));
-            AddInstruction(new RtiInstruction(0x40, AddressingMode.Immediate, _core));
-            AddInstruction(new NopInstruction(0xEA, AddressingMode.Immediate, _core));
-            AddInstruction(new BrkInstruction(0x00, AddressingMode.Immediate, _core));
+            AddInstruction(new RtsInstruction(0x60, AddressingMode.Implicit, _core));
+            AddInstruction(new RtiInstruction(0x40, AddressingMode.Implicit, _core));
+            AddInstruction(new NopInstruction(0xEA, AddressingMode.Implicit, _core));
+            AddInstruction(new BrkInstruction(0x00, AddressingMode.Implicit, _core));
         }
 
         public void DecodeAndExecute()
