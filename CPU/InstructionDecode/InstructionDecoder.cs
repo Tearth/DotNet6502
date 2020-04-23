@@ -116,9 +116,11 @@ namespace CPU.InstructionDecode
             AddInstruction(new CmpInstruction(0xD9, AddressingMode.AbsoluteY, _core));
             AddInstruction(new CmpInstruction(0xC1, AddressingMode.IndexedIndirect, _core));
             AddInstruction(new CmpInstruction(0xD1, AddressingMode.IndirectIndexed, _core));
+
             AddInstruction(new CpxInstruction(0xE0, AddressingMode.Immediate, _core));
             AddInstruction(new CpxInstruction(0xE4, AddressingMode.ZeroPage, _core));
             AddInstruction(new CpxInstruction(0xEC, AddressingMode.Absolute, _core));
+
             AddInstruction(new CpyInstruction(0xC0, AddressingMode.Immediate, _core));
             AddInstruction(new CpyInstruction(0xC4, AddressingMode.ZeroPage, _core));
             AddInstruction(new CpyInstruction(0xCC, AddressingMode.Absolute, _core));
@@ -149,9 +151,19 @@ namespace CPU.InstructionDecode
             AddInstruction(new PlpInstruction(0x28, AddressingMode.Implicit, _core));
             AddInstruction(new TsxInstruction(0xBA, AddressingMode.Implicit, _core));
             AddInstruction(new TxsInstruction(0x9A, AddressingMode.Implicit, _core));
+
+            AddInstruction(new StaInstruction(0x85, AddressingMode.ZeroPage, _core));
+            AddInstruction(new StaInstruction(0x95, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new StaInstruction(0x8D, AddressingMode.Absolute, _core));
+            AddInstruction(new StaInstruction(0x9D, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new StaInstruction(0x99, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new StaInstruction(0x81, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new StaInstruction(0x91, AddressingMode.IndirectIndexed, _core));
+
             AddInstruction(new StxInstruction(0x86, AddressingMode.ZeroPage, _core));
             AddInstruction(new StxInstruction(0x96, AddressingMode.ZeroPageY, _core));
             AddInstruction(new StxInstruction(0x8E, AddressingMode.Absolute, _core));
+
             AddInstruction(new StyInstruction(0x84, AddressingMode.ZeroPage, _core));
             AddInstruction(new StyInstruction(0x94, AddressingMode.ZeroPageY, _core));
             AddInstruction(new StyInstruction(0x8C, AddressingMode.Absolute, _core));
