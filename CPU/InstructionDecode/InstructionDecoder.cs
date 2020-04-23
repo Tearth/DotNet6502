@@ -135,6 +135,15 @@ namespace CPU.InstructionDecode
             AddInstruction(new DeyInstruction(0x88, AddressingMode.Implicit, _core));
             AddInstruction(new InyInstruction(0xC8, AddressingMode.Implicit, _core));
 
+            AddInstruction(new LdaInstruction(0xA9, AddressingMode.Immediate, _core));
+            AddInstruction(new LdaInstruction(0xA5, AddressingMode.ZeroPage, _core));
+            AddInstruction(new LdaInstruction(0xB5, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new LdaInstruction(0xAD, AddressingMode.Absolute, _core));
+            AddInstruction(new LdaInstruction(0xBD, AddressingMode.AbsoluteX, _core));
+            AddInstruction(new LdaInstruction(0xB9, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new LdaInstruction(0xA1, AddressingMode.IndexedIndirect, _core));
+            AddInstruction(new LdaInstruction(0xB1, AddressingMode.IndirectIndexed, _core));
+
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
             AddInstruction(new CldInstruction(0xD8, AddressingMode.Implicit, _core));
