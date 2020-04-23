@@ -3,11 +3,11 @@
 namespace CPU.InstructionDecode.Instructions.Registers
 {
     /// <summary>
-    /// LoaD X register
+    /// LoaD Y register
     /// </summary>
-    public class LdxInstruction : InstructionBase
+    public class LdyInstruction : InstructionBase
     {
-        public LdxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDX", opCode, addressingMode, core)
+        public LdyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDY", opCode, addressingMode, core)
         {
 
         }
@@ -36,10 +36,10 @@ namespace CPU.InstructionDecode.Instructions.Registers
         /// <summary>
         /// Length: 2, Cycles: 1F + 3.
         /// </summary>
-        protected override void ExecuteInZeroPageYMode()
+        protected override void ExecuteInZeroPageXMode()
         {
             // 2 cycles
-            var address = ReadAddressInZeroPageYMode();
+            var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
             Load(address);
@@ -60,10 +60,10 @@ namespace CPU.InstructionDecode.Instructions.Registers
         /// <summary>
         /// Length: 3, Cycles: 1F + 3 + 1B.
         /// </summary>
-        protected override void ExecuteInAbsoluteYMode()
+        protected override void ExecuteInAbsoluteXMode()
         {
             // 2 cycles + 1 if page boundary crossed
-            var address = ReadAddressInAbsoluteYMode();
+            var address = ReadAddressInAbsoluteXMode();
 
             // 1 cycle
             Load(address);
