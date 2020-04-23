@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CPU.InstructionDecode.Instructions;
 using CPU.InstructionDecode.Instructions.Arithmetic;
 using CPU.InstructionDecode.Instructions.Branch;
+using CPU.InstructionDecode.Instructions.Flow;
 using CPU.InstructionDecode.Instructions.Registers;
 using CPU.InstructionDecode.Instructions.Stack;
 using CPU.InstructionDecode.Instructions.Status;
@@ -158,6 +159,10 @@ namespace CPU.InstructionDecode
             AddInstruction(new BcsInstruction(0xB0, AddressingMode.Relative, _core));
             AddInstruction(new BneInstruction(0xD0, AddressingMode.Relative, _core));
             AddInstruction(new BeqInstruction(0xF0, AddressingMode.Relative, _core));
+
+            // Jump
+            AddInstruction(new JmpInstruction(0x4C, AddressingMode.Absolute, _core));
+            AddInstruction(new JmpInstruction(0x6C, AddressingMode.Indirect, _core));
         }
 
         public void DecodeAndExecute()
