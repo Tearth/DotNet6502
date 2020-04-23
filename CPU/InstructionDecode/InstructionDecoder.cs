@@ -164,6 +164,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new JmpInstruction(0x4C, AddressingMode.Absolute, _core));
             AddInstruction(new JmpInstruction(0x6C, AddressingMode.Indirect, _core));
             AddInstruction(new JsrInstruction(0x20, AddressingMode.Absolute, _core));
+            AddInstruction(new RtsInstruction(0x60, AddressingMode.Immediate, _core));
         }
 
         public void DecodeAndExecute()
