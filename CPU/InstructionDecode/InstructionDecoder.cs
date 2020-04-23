@@ -206,6 +206,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new RtsInstruction(0x60, AddressingMode.Immediate, _core));
             AddInstruction(new RtiInstruction(0x40, AddressingMode.Immediate, _core));
             AddInstruction(new NopInstruction(0xEA, AddressingMode.Immediate, _core));
+            AddInstruction(new BrkInstruction(0x00, AddressingMode.Immediate, _core));
         }
 
         public void DecodeAndExecute()
