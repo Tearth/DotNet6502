@@ -101,6 +101,10 @@ namespace CPU.InstructionDecode
             AddInstruction(new IncInstruction(0xFE, AddressingMode.AbsoluteX, _core));
 
             // Decrementation
+            AddInstruction(new DecInstruction(0xC6, AddressingMode.ZeroPage, _core));
+            AddInstruction(new DecInstruction(0xD6, AddressingMode.ZeroPageX, _core));
+            AddInstruction(new DecInstruction(0xCE, AddressingMode.Absolute, _core));
+            AddInstruction(new DecInstruction(0xDE, AddressingMode.AbsoluteX, _core));
 
             // Compare instructions
             AddInstruction(new CmpInstruction(0xC9, AddressingMode.Immediate, _core));
