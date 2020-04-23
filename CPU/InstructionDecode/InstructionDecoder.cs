@@ -149,6 +149,9 @@ namespace CPU.InstructionDecode
             AddInstruction(new PlpInstruction(0x28, AddressingMode.Implicit, _core));
             AddInstruction(new TsxInstruction(0xBA, AddressingMode.Implicit, _core));
             AddInstruction(new TxsInstruction(0x9A, AddressingMode.Implicit, _core));
+            AddInstruction(new StxInstruction(0x86, AddressingMode.ZeroPage, _core));
+            AddInstruction(new StxInstruction(0x96, AddressingMode.ZeroPageY, _core));
+            AddInstruction(new StxInstruction(0x8E, AddressingMode.Absolute, _core));
 
             // Branch instructions
             AddInstruction(new BplInstruction(0x10, AddressingMode.Relative, _core));
@@ -160,7 +163,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new BneInstruction(0xD0, AddressingMode.Relative, _core));
             AddInstruction(new BeqInstruction(0xF0, AddressingMode.Relative, _core));
 
-            // Jump
+            // Flow
             AddInstruction(new JmpInstruction(0x4C, AddressingMode.Absolute, _core));
             AddInstruction(new JmpInstruction(0x6C, AddressingMode.Indirect, _core));
             AddInstruction(new JsrInstruction(0x20, AddressingMode.Absolute, _core));
