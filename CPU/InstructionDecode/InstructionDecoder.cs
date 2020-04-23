@@ -163,6 +163,7 @@ namespace CPU.InstructionDecode
             // Jump
             AddInstruction(new JmpInstruction(0x4C, AddressingMode.Absolute, _core));
             AddInstruction(new JmpInstruction(0x6C, AddressingMode.Indirect, _core));
+            AddInstruction(new JsrInstruction(0x20, AddressingMode.Absolute, _core));
         }
 
         public void DecodeAndExecute()
