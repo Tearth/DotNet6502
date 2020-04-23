@@ -3,11 +3,11 @@
 namespace CPU.InstructionDecode.Instructions.Flow
 {
     /// <summary>
-    /// ReTurn from Subroutine
+    /// ReTurn from Interrupt
     /// </summary>
-    public class RtsInstruction : InstructionBase
+    public class RtiInstruction : InstructionBase
     {
-        public RtsInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("RTS", opCode, addressingMode, core)
+        public RtiInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("RTI", opCode, addressingMode, core)
         {
 
         }
@@ -26,12 +26,16 @@ namespace CPU.InstructionDecode.Instructions.Flow
             Core.Registers.StackPointer++;
 
             // 1 cycle
-            var returnAddress = (ushort) ((high | low) + 1);
+            var returnAddress = (ushort)(high | low);
             Core.YieldCycle();
 
-            // 2 cycles
+            // 1 cycle
+            var statusFlags = Core.Bus.Read(Core.Registers.StackPointer);
+            Core.Registers.StackPointer++;
+
+            // 1 cycle
             Core.Registers.ProgramCounter = returnAddress;
-            Core.YieldCycle();
+            Core.Registers.Flags = (StatusFlags)statusFlags;
             Core.YieldCycle();
         }
     }
