@@ -13,10 +13,8 @@ namespace Host.Debugger.Handlers
 
         public override PacketBase Handle(PacketBase packet)
         {
-            var currentCycle = Core.Cycles;
-
             Core.Pins.Rdy = true;
-            while (currentCycle == Core.Cycles) ;
+            while (Core.Pins.Sync) ;
             while (!Core.Pins.Sync) ;
             Core.Pins.Rdy = false;
 
