@@ -193,7 +193,7 @@ namespace CPU.InstructionDecode
             AddInstruction(new StxInstruction(0x8E, AddressingMode.Absolute, _core));
 
             AddInstruction(new StyInstruction(0x84, AddressingMode.ZeroPage, _core));
-            AddInstruction(new StyInstruction(0x94, AddressingMode.ZeroPageY, _core));
+            AddInstruction(new StyInstruction(0x94, AddressingMode.ZeroPageX, _core));
             AddInstruction(new StyInstruction(0x8C, AddressingMode.Absolute, _core));
 
             // Branch instructions

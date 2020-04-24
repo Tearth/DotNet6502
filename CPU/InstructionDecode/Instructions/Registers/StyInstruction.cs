@@ -27,10 +27,10 @@ namespace CPU.InstructionDecode.Instructions.Registers
         /// <summary>
         /// Length: 2, Cycles: 1F + 3.
         /// </summary>
-        protected override void ExecuteInZeroPageYMode()
+        protected override void ExecuteInZeroPageXMode()
         {
             // 2 cycles
-            var address = ReadAddressInZeroPageYMode();
+            var address = ReadAddressInZeroPageXMode();
 
             // 1 cycle
             Store(address);
