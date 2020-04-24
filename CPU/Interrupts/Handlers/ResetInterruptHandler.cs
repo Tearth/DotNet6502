@@ -14,7 +14,7 @@
             _core.YieldCycle();
 
             // Store (faked) registers onto stack (3 cycles)
-            PreExecute(true);
+            PreExecute(true, false);
 
             // Read RESET vector (2 cycles)
             var vector = (ushort) (_core.Bus.Read(0xFFFC) | (_core.Bus.Read(0xFFFD) << 8));
