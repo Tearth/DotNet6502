@@ -5,7 +5,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// <summary>
     /// Branch on Carry Clear
     /// </summary>
-    public class BccInstruction : InstructionBase
+    public class BccInstruction : BranchInstructionBase
     {
         public BccInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BCC", opCode, addressingMode, core)
         {
@@ -17,23 +17,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
         /// </summary>
         protected override void ExecuteInRelativeMode()
         {
-            // 1 cycle
-            var relativeAddress = (sbyte)Core.Bus.Read(Core.Registers.ProgramCounter);
-            Core.Registers.ProgramCounter++;
-
-            var oldProgramCounter = Core.Registers.ProgramCounter;
-            if (!Core.Registers.Flags.HasFlag(StatusFlags.Carry))
-            {
-                // 1 cycle
-                Core.Registers.ProgramCounter = (ushort)(Core.Registers.ProgramCounter + relativeAddress);
-                Core.YieldCycle();
-
-                // 1 cycle if page boundary crossed
-                if ((oldProgramCounter & 0xFF00) != (Core.Registers.ProgramCounter & 0xFF00))
-                {
-                    Core.YieldCycle();
-                }
-            }
+            DoBranch(!Core.Registers.Flags.HasFlag(StatusFlags.Carry));
         }
     }
 }
