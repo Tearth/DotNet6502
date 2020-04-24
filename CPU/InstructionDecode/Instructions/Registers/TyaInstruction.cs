@@ -20,10 +20,10 @@ namespace CPU.InstructionDecode.Instructions.Registers
             // 1 cycle
             Core.Registers.Accumulator = Core.Registers.IndexRegisterY;
 
-            var zeroFlag = Core.Registers.IndexRegisterY == 0;
+            var zeroFlag = Core.Registers.Accumulator == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var signFlag = ((Core.Registers.IndexRegisterY >> 7) & 1) == 1;
+            var signFlag = ((Core.Registers.Accumulator >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
 
             Core.YieldCycle();
