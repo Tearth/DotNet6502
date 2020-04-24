@@ -19,6 +19,10 @@ namespace CPU.InstructionDecode.Instructions.Flow
         {
             // 1 cycle
             Core.Registers.StackPointer++;
+            var statusFlags = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
+
+            // 1 cycle
+            Core.Registers.StackPointer++;
             var low = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
@@ -28,10 +32,6 @@ namespace CPU.InstructionDecode.Instructions.Flow
             // 1 cycle
             var returnAddress = (ushort)(high | low);
             Core.YieldCycle();
-
-            // 1 cycle
-            Core.Registers.StackPointer++;
-            var statusFlags = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
             Core.Registers.ProgramCounter = returnAddress;
