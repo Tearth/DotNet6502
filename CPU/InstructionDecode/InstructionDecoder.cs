@@ -159,9 +159,9 @@ namespace CPU.InstructionDecode
 
             AddInstruction(new LdyInstruction(0xA0, AddressingMode.Immediate, _core));
             AddInstruction(new LdyInstruction(0xA4, AddressingMode.ZeroPage, _core));
-            AddInstruction(new LdyInstruction(0xB4, AddressingMode.ZeroPageY, _core));
+            AddInstruction(new LdyInstruction(0xB4, AddressingMode.ZeroPageX, _core));
             AddInstruction(new LdyInstruction(0xAC, AddressingMode.Absolute, _core));
-            AddInstruction(new LdyInstruction(0xBC, AddressingMode.AbsoluteY, _core));
+            AddInstruction(new LdyInstruction(0xBC, AddressingMode.AbsoluteX, _core));
 
             // Flag instructions
             AddInstruction(new ClcInstruction(0x18, AddressingMode.Implicit, _core));
