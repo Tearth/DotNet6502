@@ -30,12 +30,12 @@
         /// <summary>
         /// 8-bit register containing processor status.
         /// </summary>
-        private StatusFlags _flags;
         public StatusFlags Flags
         {
             get => _flags | StatusFlags.Reserved | StatusFlags.BrkCommand;
             set => _flags = value;
         }
+        private StatusFlags _flags;
 
         public void ChangeFlag(StatusFlags flag, bool value)
         {
