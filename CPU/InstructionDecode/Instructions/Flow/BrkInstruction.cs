@@ -14,11 +14,12 @@ namespace CPU.InstructionDecode.Instructions.Flow
         }
 
         /// <summary>
-        /// Length: 2, Cycles: 1F + 1.
+        /// Length: 1, Cycles: 1F + 6.
         /// </summary>
         protected override void ExecuteInImplicitMode()
         {
-            throw new NotImplementedException();
+            // 6 cycles
+            Core.RequestBrk();
         }
     }
 }

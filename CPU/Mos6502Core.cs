@@ -84,5 +84,10 @@ namespace CPU
             Cycles++;
             YieldingCycle = false;
         }
+
+        public void RequestBrk()
+        {
+            _interruptsLogic.RequestBrk();
+        }
     }
 }

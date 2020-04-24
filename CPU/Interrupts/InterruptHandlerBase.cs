@@ -11,15 +11,27 @@ namespace CPU.Interrupts
             _core = core;
         }
 
-        protected void PreExecute(bool? forcedRw)
+        protected void PreExecute(bool? forcedRw, bool brk)
         {
-            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)(_core.Registers.ProgramCounter >> 8), forcedRw);
+            var programCounter = _core.Registers.ProgramCounter;
+            if (brk)
+            {
+                programCounter++;
+            }
+
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)(programCounter >> 8), forcedRw);
             _core.Registers.StackPointer--;
 
-            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)_core.Registers.ProgramCounter, forcedRw);
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)programCounter, forcedRw);
             _core.Registers.StackPointer--;
 
-            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)_core.Registers.Flags, forcedRw);
+            var statusFlags = (byte) _core.Registers.Flags;
+            if (!brk)
+            {
+                statusFlags = (byte)(statusFlags & ~(byte)StatusFlags.BrkCommand);
+            }
+
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), statusFlags, forcedRw);
             _core.Registers.StackPointer--;
 
             _core.Registers.ChangeFlag(StatusFlags.IrqDisable, true);
