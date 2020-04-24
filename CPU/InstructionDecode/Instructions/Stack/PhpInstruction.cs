@@ -1,7 +1,7 @@
 ﻿namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
-    /// PuLl Accumulator
+    /// PusH Processor status
     /// </summary>
     public class PhpInstruction : InstructionBase
     {
@@ -16,7 +16,7 @@
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            Core.Bus.Write(Core.Registers.StackPointer, (byte)Core.Registers.Flags);
+            Core.Bus.Write((ushort)(0x100 + Core.Registers.StackPointer), (byte)Core.Registers.Flags);
             Core.Registers.StackPointer--;
 
             // 1 cycle

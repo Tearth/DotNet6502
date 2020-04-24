@@ -13,9 +13,14 @@ namespace CPU.Interrupts
 
         protected void PreExecute(bool? forcedRw)
         {
-            _core.Bus.Write(_core.Registers.StackPointer--, (byte)(_core.Registers.ProgramCounter >> 8), forcedRw);
-            _core.Bus.Write(_core.Registers.StackPointer--, (byte)_core.Registers.ProgramCounter, forcedRw);
-            _core.Bus.Write(_core.Registers.StackPointer--, (byte)_core.Registers.Flags, forcedRw);
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)(_core.Registers.ProgramCounter >> 8), forcedRw);
+            _core.Registers.StackPointer--;
+
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)_core.Registers.ProgramCounter, forcedRw);
+            _core.Registers.StackPointer--;
+
+            _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)_core.Registers.Flags, forcedRw);
+            _core.Registers.StackPointer--;
 
             _core.Registers.Flags |= StatusFlags.IrqDisable;
         }

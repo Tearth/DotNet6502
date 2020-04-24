@@ -25,11 +25,11 @@ namespace CPU.InstructionDecode.Instructions.Flow
             Core.YieldCycle();
 
             // 1 cycle
-            Core.Bus.Write(Core.Registers.StackPointer, (byte)(returnAddress >> 8));
+            Core.Bus.Write((ushort)(0x100 + Core.Registers.StackPointer), (byte)(returnAddress >> 8));
             Core.Registers.StackPointer--;
 
             // 1 cycle
-            Core.Bus.Write(Core.Registers.StackPointer, (byte)returnAddress);
+            Core.Bus.Write((ushort)(0x100 + Core.Registers.StackPointer), (byte)returnAddress);
             Core.Registers.StackPointer--;
 
             Core.Registers.ProgramCounter = address;

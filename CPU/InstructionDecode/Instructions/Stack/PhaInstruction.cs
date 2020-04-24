@@ -16,7 +16,7 @@
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            Core.Bus.Write(Core.Registers.StackPointer, Core.Registers.Accumulator);
+            Core.Bus.Write((ushort)(0x100 + Core.Registers.StackPointer), Core.Registers.Accumulator);
             Core.Registers.StackPointer--;
 
             // 1 cycle

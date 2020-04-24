@@ -60,7 +60,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var zeroFlag = result == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var overflowFlag = (number & (1 << 6)) == 1;
+            var overflowFlag = ((number >> 6) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
 
             var signFlag = ((number >> 7) & 1) == 1;

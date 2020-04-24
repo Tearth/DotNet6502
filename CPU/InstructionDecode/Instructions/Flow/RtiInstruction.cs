@@ -18,20 +18,20 @@ namespace CPU.InstructionDecode.Instructions.Flow
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            var low = Core.Bus.Read(Core.Registers.StackPointer);
             Core.Registers.StackPointer++;
+            var low = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
-            var high = Core.Bus.Read(Core.Registers.StackPointer) << 8;
             Core.Registers.StackPointer++;
+            var high = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer)) << 8;
 
             // 1 cycle
             var returnAddress = (ushort)(high | low);
             Core.YieldCycle();
 
             // 1 cycle
-            var statusFlags = Core.Bus.Read(Core.Registers.StackPointer);
             Core.Registers.StackPointer++;
+            var statusFlags = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
             Core.Registers.ProgramCounter = returnAddress;

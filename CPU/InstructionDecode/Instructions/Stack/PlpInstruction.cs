@@ -3,7 +3,7 @@
 namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
-    /// PuLl Accumulator
+    /// PuLl Processor status
     /// </summary>
     public class PlpInstruction : InstructionBase
     {
@@ -18,8 +18,8 @@ namespace CPU.InstructionDecode.Instructions.Stack
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            var value = Core.Bus.Read(Core.Registers.StackPointer);
             Core.Registers.StackPointer++;
+            var value = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
             Core.YieldCycle();

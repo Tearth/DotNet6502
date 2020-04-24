@@ -1,4 +1,6 @@
-﻿namespace CPU.InstructionDecode.Instructions.Stack
+﻿using CPU.Registers;
+
+namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
     /// PuLl Accumulator
@@ -16,14 +18,21 @@
         protected override void ExecuteInImplicitMode()
         {
             // 1 cycle
-            var value = Core.Bus.Read(Core.Registers.StackPointer);
             Core.Registers.StackPointer++;
+            var value = Core.Bus.Read((ushort)(0x100 + Core.Registers.StackPointer));
 
             // 1 cycle
             Core.YieldCycle();
 
             // 1 cycle
             Core.Registers.Accumulator = value;
+
+            var zeroFlag = Core.Registers.Accumulator == 0;
+            Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
+
+            var signFlag = ((Core.Registers.Accumulator >> 7) & 1) == 1;
+            Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
+
             Core.YieldCycle();
         }
     }
