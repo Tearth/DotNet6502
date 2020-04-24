@@ -22,7 +22,7 @@ namespace CPU.Interrupts
             _core.Bus.Write((ushort)(0x100 + _core.Registers.StackPointer), (byte)_core.Registers.Flags, forcedRw);
             _core.Registers.StackPointer--;
 
-            _core.Registers.Flags |= StatusFlags.IrqDisable;
+            _core.Registers.ChangeFlag(StatusFlags.IrqDisable, true);
         }
 
         public abstract void Execute();
