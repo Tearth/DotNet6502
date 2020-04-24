@@ -63,7 +63,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var overflowFlag = (number & (1 << 6)) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
 
-            var signFlag = (number & (1 << 7)) == 1;
+            var signFlag = ((number >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
         }
     }

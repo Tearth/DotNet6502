@@ -67,7 +67,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var zeroFlag = Core.Registers.IndexRegisterY == number;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var signFlag = (result & (1 << 7)) == 1;
+            var signFlag = ((result >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
 
             var carryFlag = Core.Registers.IndexRegisterY >= number;

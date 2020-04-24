@@ -127,7 +127,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var zeroFlag = Core.Registers.Accumulator == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var signFlag = (Core.Registers.Accumulator & (1 << 7)) == 1;
+            var signFlag = ((Core.Registers.Accumulator >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
         }
     }

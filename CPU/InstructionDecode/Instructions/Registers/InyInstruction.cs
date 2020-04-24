@@ -23,7 +23,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
             var zeroFlag = Core.Registers.IndexRegisterY == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
 
-            var signFlag = (Core.Registers.IndexRegisterY & (1 << 7)) == 1;
+            var signFlag = ((Core.Registers.IndexRegisterY >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
 
             Core.YieldCycle();
