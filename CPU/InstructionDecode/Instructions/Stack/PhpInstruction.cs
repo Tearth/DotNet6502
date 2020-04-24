@@ -17,9 +17,9 @@
         {
             // 1 cycle
             Core.Bus.Write(Core.Registers.StackPointer, (byte)Core.Registers.Flags);
+            Core.Registers.StackPointer--;
 
             // 1 cycle
-            Core.Registers.StackPointer--;
             Core.YieldCycle();
         }
     }

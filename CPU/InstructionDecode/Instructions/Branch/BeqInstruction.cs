@@ -18,6 +18,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
         protected override void ExecuteInRelativeMode()
         {
             // 1 cycle
+            var test = Core.Bus.Read(Core.Registers.ProgramCounter);
             var relativeAddress = (sbyte)Core.Bus.Read(Core.Registers.ProgramCounter);
             Core.Registers.ProgramCounter++;
 

@@ -18,7 +18,8 @@ namespace CPU.InstructionDecode.Instructions.Registers
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            Load(Core.Registers.ProgramCounter++);
+            Load(Core.Registers.ProgramCounter);
+            Core.Registers.ProgramCounter++;
         }
 
         /// <summary>

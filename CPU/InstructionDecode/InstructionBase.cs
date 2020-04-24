@@ -220,11 +220,9 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
-            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read(indirectAddress) << 8;
-            Core.Registers.ProgramCounter++;
+            var high = Core.Bus.Read((ushort)(indirectAddress + 1)) << 8;
 
             return (ushort)(high | low);
         }
@@ -251,11 +249,9 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
-            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read(indirectAddress) << 8;
-            Core.Registers.ProgramCounter++;
+            var high = Core.Bus.Read((ushort)(indirectAddress + 1)) << 8;
 
             return (ushort)(high | low);
         }
@@ -279,11 +275,9 @@ namespace CPU.InstructionDecode
 
             // 1 cycle
             var low = Core.Bus.Read(indirectAddress);
-            Core.Registers.ProgramCounter++;
 
             // 1 cycle
-            var high = Core.Bus.Read(indirectAddress) << 8;
-            Core.Registers.ProgramCounter++;
+            var high = Core.Bus.Read((ushort)(indirectAddress + 1)) << 8;
 
             var realAddress = (ushort)(high | low);
 

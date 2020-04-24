@@ -18,7 +18,8 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         protected override void ExecuteInImmediateMode()
         {
             // 1 cycle
-            LoadAndDoCmp(Core.Registers.ProgramCounter++);
+            LoadAndDoCmp(Core.Registers.ProgramCounter);
+            Core.Registers.ProgramCounter++;
         }
 
         /// <summary>
