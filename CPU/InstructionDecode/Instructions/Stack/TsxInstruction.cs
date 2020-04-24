@@ -1,4 +1,6 @@
-﻿namespace CPU.InstructionDecode.Instructions.Stack
+﻿using CPU.Registers;
+
+namespace CPU.InstructionDecode.Instructions.Stack
 {
     /// <summary>
     /// Transfer Stack ptr to X
@@ -17,6 +19,13 @@
         {
             // 1 cycle
             Core.Registers.IndexRegisterX = Core.Registers.StackPointer;
+
+            var zeroFlag = Core.Registers.IndexRegisterX == 0;
+            Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);
+
+            var signFlag = ((Core.Registers.IndexRegisterX >> 7) & 1) == 1;
+            Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
+
             Core.YieldCycle();
         }
     }
