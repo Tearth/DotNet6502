@@ -20,6 +20,7 @@ namespace Protocol.Packets
                 case PacketType.NextInstructionCommand: return new NextInstructionCommandPacket(buffer);
                 case PacketType.MemoryRequest: return new MemoryRequestPacket(buffer);
                 case PacketType.Memory: return new MemoryPacket(buffer);
+                case PacketType.RunToAddressCommand: return new RunToAddressCommandPacket(buffer);
             }
 
             return null;

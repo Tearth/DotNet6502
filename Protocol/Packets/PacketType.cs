@@ -14,6 +14,7 @@
         NextCycleCommand,
         NextInstructionCommand,
         MemoryRequest,
-        Memory
+        Memory,
+        RunToAddressCommand
     }
 }

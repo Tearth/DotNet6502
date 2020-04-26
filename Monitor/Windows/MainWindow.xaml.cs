@@ -180,12 +180,20 @@ namespace Monitor.Windows
             }
         }
 
-        private void RunToAddressButton_OnClick(object sender, RoutedEventArgs e)
+        private async void RunToAddressButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new RunToAddressWindow(_settings);
-            if (window.ShowDialog() == true)
+            if (_debugger.Connected)
             {
-                
+                var window = new RunToAddressWindow(_settings);
+                if (window.ShowDialog() == true)
+                {
+                    _debugger.RunToAddressCommand(_settings.Data.RunToAddress);
+                    await RequestForAllData();
+                }
+            }
+            else
+            {
+                DisplayConnectionError();
             }
         }
 

@@ -44,7 +44,8 @@ namespace Host.Debugger
                 { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
                 { PacketType.NextCycleCommand, new NextCycleCommandHandler(_core) },
                 { PacketType.NextInstructionCommand, new NextInstructionCommandHandler(_core) },
-                { PacketType.MemoryRequest, new MemoryRequestHandler(_core) }
+                { PacketType.MemoryRequest, new MemoryRequestHandler(_core) },
+                { PacketType.RunToAddressCommand, new RunToAddressCommandHandler(_core) }
             };
         }
 
