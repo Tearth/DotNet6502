@@ -37,6 +37,17 @@ namespace Monitor.Settings
             }
         }
 
+        private ushort _runToAddress;
+        public ushort RunToAddress
+        {
+            get => _runToAddress;
+            set
+            {
+                _runToAddress = value;
+                OnPropertyChanged("RunToAddress");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {

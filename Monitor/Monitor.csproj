@@ -135,6 +135,9 @@
     <Compile Include="Windows\RunAndConnectWindow.xaml.cs">
       <DependentUpon>RunAndConnectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RunToAddressWindow.xaml.cs">
+      <DependentUpon>RunToAddressWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -180,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\RunAndConnectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RunToAddressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

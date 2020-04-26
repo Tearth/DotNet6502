@@ -180,6 +180,15 @@ namespace Monitor.Windows
             }
         }
 
+        private void RunToAddressButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var window = new RunToAddressWindow(_settings);
+            if (window.ShowDialog() == true)
+            {
+                
+            }
+        }
+
         private async void NextInstructionButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (_debugger.Connected)
