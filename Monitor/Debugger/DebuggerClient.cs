@@ -36,6 +36,7 @@ namespace Monitor.Debugger
         private readonly NextInstructionCommandPacketGenerator _nextInstructionCommandPacketGenerator;
         private readonly MemoryRequestPacketGenerator _memoryRequestPacketGenerator;
         private readonly RunToAddressCommandPacketGenerator _runToAddressCommandPacketGenerator;
+        private readonly RunUntilLoopCommandPacketGenerator _runUntilLoopCommandPacketGenerator;
 
         public DebuggerClient(MainWindowViewModel viewModel)
         {
@@ -64,6 +65,7 @@ namespace Monitor.Debugger
             _nextInstructionCommandPacketGenerator = new NextInstructionCommandPacketGenerator(viewModel);
             _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator(viewModel);
             _runToAddressCommandPacketGenerator = new RunToAddressCommandPacketGenerator(viewModel);
+            _runUntilLoopCommandPacketGenerator = new RunUntilLoopCommandPacketGenerator(viewModel);
         }
 
         public async Task<(bool Success, string ErrorMessage)> Connect(string address)
@@ -168,9 +170,15 @@ namespace Monitor.Debugger
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
-        public void RunToAddressCommand(ushort address)
+        public void SendRunToAddressCommand(ushort address)
         {
             var packet = _runToAddressCommandPacketGenerator.Generate(address);
+            _tcpClientStream.Write(packet.Data, 0, packet.Length);
+        }
+
+        public void SendRunUntilLoopCommand()
+        {
+            var packet = _runUntilLoopCommandPacketGenerator.Generate();
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

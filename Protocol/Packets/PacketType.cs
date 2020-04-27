@@ -15,6 +15,7 @@
         NextInstructionCommand,
         MemoryRequest,
         Memory,
-        RunToAddressCommand
+        RunToAddressCommand,
+        RunUntilLoopCommand
     }
 }

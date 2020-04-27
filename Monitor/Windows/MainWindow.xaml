@@ -33,6 +33,7 @@
                 <MenuItem x:Name="StopMenuItem" Header="Stop" Click="StopButton_OnClick" />
                 <MenuItem x:Name="ContinueMenuItem" Header="Continue" Click="ContinueButton_OnClick" />
                 <MenuItem x:Name="RunToAddressItem" Header="Run to address" Click="RunToAddressButton_OnClick" />
+                <MenuItem x:Name="RunUntilLoopItem" Header="Run until loop" Click="RunUntilLoopButton_OnClick" />
             </MenuItem>
             <MenuItem x:Name="AboutMenuItem" Header="About" Style="{StaticResource MenuItemDark}" Click="AboutMenuItem_Click" />
         </Menu>

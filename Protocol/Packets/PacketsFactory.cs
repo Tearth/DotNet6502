@@ -21,6 +21,7 @@ namespace Protocol.Packets
                 case PacketType.MemoryRequest: return new MemoryRequestPacket(buffer);
                 case PacketType.Memory: return new MemoryPacket(buffer);
                 case PacketType.RunToAddressCommand: return new RunToAddressCommandPacket(buffer);
+                case PacketType.RunUntilLoopCommand: return new RunUntilLoopCommandPacket(buffer);
             }
 
             return null;

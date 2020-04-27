@@ -110,6 +110,7 @@
     <Compile Include="Debugger\Generators\RegistersPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RegistersRequestPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\RunToAddressCommandPacketGenerator.cs" />
+    <Compile Include="Debugger\Generators\RunUntilLoopCommandPacketGenerator.cs" />
     <Compile Include="Debugger\Generators\StopCommandPacketGenerator.cs" />
     <Compile Include="Debugger\Handlers\CyclesHandler.cs" />
     <Compile Include="Debugger\Handlers\MemoryHandler.cs" />

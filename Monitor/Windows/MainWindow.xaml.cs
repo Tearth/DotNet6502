@@ -187,7 +187,7 @@ namespace Monitor.Windows
                 var window = new RunToAddressWindow(_settings);
                 if (window.ShowDialog() == true)
                 {
-                    _debugger.RunToAddressCommand(_settings.Data.RunToAddress);
+                    _debugger.SendRunToAddressCommand(_settings.Data.RunToAddress);
                     await RequestForAllData();
                 }
             }
@@ -228,6 +228,19 @@ namespace Monitor.Windows
             if (_debugger.Connected)
             {
                 _debugger.RequestForMemory();
+            }
+            else
+            {
+                DisplayConnectionError();
+            }
+        }
+
+        private async void RunUntilLoopButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_debugger.Connected)
+            {
+                _debugger.SendRunUntilLoopCommand();
+                await RequestForAllData();
             }
             else
             {
