@@ -160,7 +160,8 @@ namespace Monitor.Debugger
 
         public void RequestForCode()
         {
-            var packet = _memoryRequestPacketGenerator.Generate(_viewModel.Registers.Pc, 0x100, 1);
+            // 0xFFFF - special address, take program counter instead of this parameter
+            var packet = _memoryRequestPacketGenerator.Generate(0xFFFF, 0x100, 1);
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 

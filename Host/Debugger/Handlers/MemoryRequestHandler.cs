@@ -19,7 +19,7 @@ namespace Host.Debugger.Handlers
             var memoryRequestPacket = (MemoryRequestPacket) packet;
             return _memoryPacketGenerator.Generate
             (
-                memoryRequestPacket.Address, 
+                memoryRequestPacket.Address != 0xFFFF ? memoryRequestPacket.Address : Core.Registers.ProgramCounter, 
                 memoryRequestPacket.RequestedLength, 
                 memoryRequestPacket.Tag
             );
