@@ -68,14 +68,9 @@ namespace CPU
         public void YieldCycle()
         {
             YieldingCycle = true;
-            if (!Pins.Rdy)
+            while (!Pins.Rdy)
             {
-                while (!Pins.Rdy)
-                {
-                    Thread.Sleep(1);
-                }
-
-                _startTime = DateTime.Now;
+                Thread.Sleep(1);
             }
 
             var ticksToWait = Cycles * _ticksPerCycle;
