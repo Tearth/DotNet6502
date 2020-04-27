@@ -122,9 +122,11 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         /// </summary>
         private void DoSub(byte number)
         {
+            number ^= 0xFF;
+
             var a = Core.Registers.Accumulator;
-            var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 0 : 1;
-            var result = a - number - c;
+            var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
+            var result = (uint)(a + number + c);
 
             Core.Registers.Accumulator = (byte)result;
 
@@ -134,10 +136,10 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
             var signFlag = ((result >> 7) & 1) == 1;
             Core.Registers.ChangeFlag(StatusFlags.Sign, signFlag);
 
-            var carryFlag = result > byte.MaxValue || result < byte.MinValue;
+            var carryFlag = result > byte.MaxValue;
             Core.Registers.ChangeFlag(StatusFlags.Carry, carryFlag);
 
-            var overflowFlag = ((a ^ (sbyte)result) & (number ^ (sbyte)result) & 0x80) != 0;
+            var overflowFlag = ((a ^ (byte)result) & (number ^ (byte)result) & 0x80) != 0;
             Core.Registers.ChangeFlag(StatusFlags.Overflow, overflowFlag);
         }
     }
