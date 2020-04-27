@@ -25,7 +25,7 @@ namespace Monitor.Converters
             builder.Append(@"\fs18");
 
             var first = true;
-            for (int i = viewModel.Registers.Sp; i <= 0xFF; i++)
+            for (int i = viewModel.Registers.Sp + 1; i <= 0xFF; i++)
             {
                 var realAddress = i + 0x100;
 
