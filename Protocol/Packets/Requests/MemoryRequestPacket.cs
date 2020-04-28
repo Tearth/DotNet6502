@@ -4,14 +4,22 @@
     {
         public ushort Address
         {
-            get => (ushort)(Data[5] | (Data[6] << 8));
-            set { Data[5] = (byte)value; Data[6] = (byte)(value >> 8); }
+            get => (ushort)(Data[5] | Data[6] << 8);
+            set
+            {
+                Data[5] = (byte)value;
+                Data[6] = (byte)(value >> 8);
+            }
         }
 
         public ushort RequestedLength
         {
-            get => (ushort)(Data[7] | (Data[8] << 8));
-            set { Data[7] = (byte)value; Data[8] = (byte)(value >> 8); }
+            get => (ushort)(Data[7] | Data[8] << 8);
+            set
+            {
+                Data[7] = (byte)value;
+                Data[8] = (byte)(value >> 8);
+            }
         }
 
         public byte Tag

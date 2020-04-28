@@ -2,7 +2,9 @@
 {
     public enum PacketType : byte
     {
+        // ReSharper disable once UnusedMember.Global
         None,
+
         RegistersRequest,
         Registers,
         PinsRequest,
