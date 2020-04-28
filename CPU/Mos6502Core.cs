@@ -43,8 +43,6 @@ namespace CPU
 
         public void Reset()
         {
-            _startTime = DateTime.Now;
-
             Pins.Reset = false;
             _interruptsLogic.Process();
             Pins.Reset = true;
@@ -52,6 +50,7 @@ namespace CPU
 
         public void Run()
         {
+            _startTime = DateTime.Now;
             while (Pins.Vcc)
             {
                 if (_interruptsLogic.Process())
