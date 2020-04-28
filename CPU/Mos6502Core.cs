@@ -43,6 +43,8 @@ namespace CPU
 
         public void Reset()
         {
+            _startTime = DateTime.Now;
+
             Pins.Reset = false;
             _interruptsLogic.Process();
             Pins.Reset = true;
@@ -50,7 +52,6 @@ namespace CPU
 
         public void Run()
         {
-            _startTime = DateTime.Now;
             while (Pins.Vcc)
             {
                 if (_interruptsLogic.Process())
@@ -68,9 +69,16 @@ namespace CPU
         public void YieldCycle()
         {
             YieldingCycle = true;
-            while (!Pins.Rdy)
+
+            if (!Pins.Rdy)
             {
-                Thread.Sleep(1);
+                var pauseStartTime = DateTime.Now;
+                while (!Pins.Rdy)
+                {
+                    Thread.Sleep(1);
+                }
+
+                _startTime += DateTime.Now - pauseStartTime;
             }
 
             var ticksToWait = Cycles * _ticksPerCycle;

@@ -14,27 +14,25 @@ namespace Host.Debugger.Handlers
 
         public override PacketBase Handle(PacketBase packet)
         {
+            Core.Pins.Rdy = true;
             while (true)
             {
                 var programCounter1 = Core.Registers.ProgramCounter;
 
-                Core.Pins.Rdy = true;
                 while (Core.Pins.Sync) ;
                 while (!Core.Pins.Sync) ;
-                Core.Pins.Rdy = false;
 
                 var programCounter2 = Core.Registers.ProgramCounter;
 
-                Core.Pins.Rdy = true;
                 while (Core.Pins.Sync) ;
                 while (!Core.Pins.Sync) ;
-                Core.Pins.Rdy = false;
 
                 if (programCounter1 == programCounter2 && programCounter2 == Core.Registers.ProgramCounter)
                 {
                     break;
                 }
             }
+            Core.Pins.Rdy = false;
 
             return null;
         }
