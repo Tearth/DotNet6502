@@ -28,7 +28,8 @@
             set => Data[9] = value;
         }
 
-        public MemoryRequestPacket(ushort address, ushort requestedLength, byte tag) : base(5, PacketType.MemoryRequest)
+        public MemoryRequestPacket(ushort address, ushort requestedLength, byte tag)
+            : base(5, PacketType.MemoryRequest)
         {
             Address = address;
             RequestedLength = requestedLength;

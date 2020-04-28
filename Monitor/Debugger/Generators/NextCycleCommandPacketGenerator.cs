@@ -1,5 +1,6 @@
 ﻿using Monitor.ViewModels;
 using Protocol.Packets;
+using Protocol.Packets.Commands;
 using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger.Generators

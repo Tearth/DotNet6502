@@ -1,4 +1,4 @@
-﻿namespace Protocol.Packets.Requests
+﻿namespace Protocol.Packets.Responses
 {
     public class PinsPacket : PacketBase
     {

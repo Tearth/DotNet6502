@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Protocol.Packets.Requests
+namespace Protocol.Packets.Responses
 {
     public class MemoryPacket : PacketBase
     {
@@ -38,7 +38,8 @@ namespace Protocol.Packets.Requests
             set => Data[10 + index] = value;
         }
 
-        public MemoryPacket(ushort address, ushort memoryLength, byte tag) : base((ushort)(5 + memoryLength), PacketType.Memory)
+        public MemoryPacket(ushort address, ushort memoryLength, byte tag)
+            : base((ushort)(5 + memoryLength), PacketType.Memory)
         {
             Address = address;
             MemoryLength = memoryLength;

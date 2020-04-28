@@ -1,4 +1,6 @@
-﻿using Protocol.Packets.Requests;
+﻿using Protocol.Packets.Commands;
+using Protocol.Packets.Requests;
+using Protocol.Packets.Responses;
 
 namespace Protocol.Packets
 {
