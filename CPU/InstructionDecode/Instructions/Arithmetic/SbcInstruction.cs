@@ -122,11 +122,41 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         /// </summary>
         private void DoSub(byte number)
         {
-            number ^= 0xFF;
-
             var a = Core.Registers.Accumulator;
             var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
-            var result = (uint)(a + number + c);
+            uint result;
+
+            if (Core.Registers.Flags.HasFlag(StatusFlags.DecimalMode))
+            {
+                var aLowNibble = a & 0x0F;
+                var aHighNibble = (a & 0xF0) >> 4;
+                var numberLowNibble = 9 - (number & 0x0F);
+                var numberHighNibble = 9 - ((number & 0xF0) >> 4);
+                var carryNibble = 0;
+
+                var lowNibble = aLowNibble + numberLowNibble + c;
+                if (lowNibble > 9)
+                {
+                    lowNibble += 6;
+                    lowNibble &= 0x0F;
+                    aHighNibble++;
+                }
+
+                var highNibble = aHighNibble + numberHighNibble;
+                if (highNibble > 9)
+                {
+                    highNibble += 6;
+                    highNibble &= 0x0F;
+                    carryNibble = 1;
+                }
+
+                result = (uint)((carryNibble << 8) | (highNibble << 4) | lowNibble);
+            }
+            else
+            {
+                number ^= 0xFF;
+                result = (uint)(a + number + c);
+            }
 
             Core.Registers.Accumulator = (byte)result;
 
