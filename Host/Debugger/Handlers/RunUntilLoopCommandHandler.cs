@@ -1,7 +1,5 @@
 ﻿using CPU;
-using Host.Debugger.Generators;
 using Protocol.Packets;
-using Protocol.Packets.Requests;
 
 namespace Host.Debugger.Handlers
 {

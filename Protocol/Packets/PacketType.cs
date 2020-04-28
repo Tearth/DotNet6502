@@ -1,10 +1,11 @@
-﻿namespace Protocol.Packets
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Protocol.Packets
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public enum PacketType : byte
     {
-        // ReSharper disable once UnusedMember.Global
         None,
-
         RegistersRequest,
         Registers,
         PinsRequest,

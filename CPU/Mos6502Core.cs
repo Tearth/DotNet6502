@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using CPU.InstructionDecode;
 using CPU.Interrupts;
 using CPU.IO;

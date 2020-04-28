@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CPU.InstructionDecode.Instructions;
 using CPU.InstructionDecode.Instructions.Arithmetic;
 using CPU.InstructionDecode.Instructions.Branch;
 using CPU.InstructionDecode.Instructions.Flow;

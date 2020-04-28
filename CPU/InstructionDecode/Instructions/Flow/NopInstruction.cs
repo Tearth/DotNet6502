@@ -1,7 +1,4 @@
-﻿using System;
-using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions.Flow
+﻿namespace CPU.InstructionDecode.Instructions.Flow
 {
     /// <summary>
     /// No OPeration

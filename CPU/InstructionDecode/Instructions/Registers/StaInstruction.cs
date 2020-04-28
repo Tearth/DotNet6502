@@ -1,6 +1,4 @@
-﻿using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions.Registers
+﻿namespace CPU.InstructionDecode.Instructions.Registers
 {
     /// <summary>
     /// STore Accumulator

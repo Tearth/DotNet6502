@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
 using Monitor.Debugger.Generators;
 using Monitor.Debugger.Handlers;
 using Monitor.ViewModels;
 using Protocol.Packets;
-using Protocol.Packets.Requests;
 
 namespace Monitor.Debugger
 {

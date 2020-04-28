@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using CPU;
 using CPU.IO;
 
 namespace RAM

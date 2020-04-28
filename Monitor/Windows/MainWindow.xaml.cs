@@ -4,9 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using Monitor.Debugger;
-using Monitor.Instructions;
 using Monitor.Settings;
 using Monitor.ViewModels;
 

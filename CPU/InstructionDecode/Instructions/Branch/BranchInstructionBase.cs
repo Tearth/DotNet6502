@@ -1,6 +1,4 @@
-﻿using CPU.Registers;
-
-namespace CPU.InstructionDecode.Instructions.Branch
+﻿namespace CPU.InstructionDecode.Instructions.Branch
 {
     public abstract class BranchInstructionBase : InstructionBase
     {
