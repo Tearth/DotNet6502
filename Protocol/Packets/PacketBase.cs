@@ -41,7 +41,7 @@
             Data = new byte[6 + payloadLength];
 
             Signature = 0x6502;
-            Length = Length;
+            Length = (ushort)Data.Length;
             Type = type;
         }
 
