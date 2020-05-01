@@ -12,7 +12,7 @@ namespace Monitor.ViewModels
             set
             {
                 _programCounter = value;
-                OnPropertyChanged("Pc");
+                OnPropertyChanged("ProgramCounter");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
@@ -24,7 +24,7 @@ namespace Monitor.ViewModels
             set
             {
                 _stackPointer = value;
-                OnPropertyChanged("Sp");
+                OnPropertyChanged("StackPointer");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
@@ -36,7 +36,7 @@ namespace Monitor.ViewModels
             set
             {
                 _accumulator = value;
-                OnPropertyChanged("Acc");
+                OnPropertyChanged("Accumulator");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
@@ -48,7 +48,7 @@ namespace Monitor.ViewModels
             set
             {
                 _indexRegisterX = value;
-                OnPropertyChanged("X");
+                OnPropertyChanged("IndexRegisterX");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
@@ -60,7 +60,7 @@ namespace Monitor.ViewModels
             set
             {
                 _indexRegisterY = value;
-                OnPropertyChanged("Y");
+                OnPropertyChanged("IndexRegisterY");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
