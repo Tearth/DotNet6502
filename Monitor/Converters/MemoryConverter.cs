@@ -3,16 +3,17 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
-using Monitor.ViewModels;
 
 namespace Monitor.Converters
 {
     public class MemoryConverter : IMultiValueConverter
     {
+        private const int BytesPerLine = 32;
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var bytes = (byte[])values[0];
-            var viewModel = (MainWindowViewModel)values[1];
+            var memoryAddress = (ushort)values[1];
 
             if (bytes == null)
             {
@@ -26,16 +27,18 @@ namespace Monitor.Converters
             builder.Append(@"\fs18");
 
             var line = 0;
-            var bytesPerLine = 32;
-            for (var i = 0; i < bytes.Length; i += bytesPerLine, line++)
+            for (var i = 0; i < bytes.Length; i += BytesPerLine, line++)
             {
                 builder.Append(@"\cf2 0x");
-                builder.Append((viewModel.MemoryAddress + line * bytesPerLine).ToString("X4"));
+                builder.Append((memoryAddress + line * BytesPerLine).ToString("X4"));
                 builder.Append(@": \cf1 ");
 
-                var memoryPart = bytes.Skip(line * bytesPerLine).Take(bytesPerLine);
-                var bytesString = string.Join(" ", memoryPart.Select(p => $"{p:X2}"));
-                var charsString = string.Join("", memoryPart.Select(p => char.IsControl((char)p) ? '.' : (char)p));
+                var memoryPart = bytes.Skip(line * BytesPerLine).Take(BytesPerLine).ToList();
+                var formattedBytes = memoryPart.Select(p => $"{p:X2}");
+                var formattedChars = memoryPart.Select(p => char.IsControl((char)p) ? '.' : (char)p);
+
+                var bytesString = string.Join(" ", formattedBytes);
+                var charsString = string.Join("", formattedChars);
 
                 builder.Append(bytesString);
                 builder.Append(@" \cf2; ");

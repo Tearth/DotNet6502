@@ -8,13 +8,10 @@ namespace Monitor.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is byte)
+            switch (value)
             {
-                return $"0x{value:X2}";
-            }
-            else if (value is ushort)
-            {
-                return $"0x{value:X4}";
+                case byte _: return $"0x{value:X2}";
+                case ushort _: return $"0x{value:X4}";
             }
 
             return null;
@@ -22,7 +19,7 @@ namespace Monitor.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var valueToParse = value.ToString().Replace("0x", "");
+            var valueToParse = value?.ToString().Replace("0x", "");
             if (targetType == typeof(byte))
             {
                 if (byte.TryParse(valueToParse, NumberStyles.HexNumber, null, out var result))

@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using Monitor.Instructions;
-using Monitor.ViewModels;
 
 namespace Monitor.Converters
 {
     public class CodeConverter : IMultiValueConverter
     {
         private readonly InstructionsContainer _instructions;
+        private const string InstructionsFileName = "Instructions.json";
+        private const int ArgumentsPadding = 15;
 
         public CodeConverter()
         {
-            _instructions = new InstructionsContainer("Instructions.json");
+            _instructions = new InstructionsContainer(InstructionsFileName);
         }
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var bytes = (byte[])values[0];
-            var viewModel = (MainWindowViewModel)values[1];
+            var bytes = (byte[]) values[0];
+            var programCounter = (ushort) values[1];
 
             if (bytes == null)
             {
@@ -37,11 +38,11 @@ namespace Monitor.Converters
             var first = true;
             while (index < bytes.Length)
             {
-                (InstructionData instruction, byte[] data) = GetNextInstruction(bytes, index);
+                var (instruction, data) = GetNextInstruction(bytes, index);
 
                 if (first) builder.Append(@"\b");
                 builder.Append(@"\cf2 0x");
-                builder.Append(((ushort)(viewModel.Registers.Pc + index)).ToString("X4"));
+                builder.Append(((ushort)(programCounter + index)).ToString("X4"));
                 builder.Append(@": 0x");
                 builder.Append(data[0].ToString("X2"));
                 builder.Append(@" \cf1 ");
@@ -49,7 +50,7 @@ namespace Monitor.Converters
                 builder.Append(" ");
 
                 var argumentsString = string.Join(" ", data.Skip(1).Select(p => $"0x{p:X2}"));
-                var paddedArgumentsString = argumentsString.PadRight(15);
+                var paddedArgumentsString = argumentsString.PadRight(ArgumentsPadding);
 
                 builder.Append(paddedArgumentsString);
                 builder.Append(@"\cf2; ");
@@ -78,17 +79,13 @@ namespace Monitor.Converters
             }
 
             var instruction = _instructions.Get(bytes[index]);
-            if (instruction == null)
+            if (instruction == null || index + instruction.Bytes - 1 > bytes.Length - 1)
             {
                 return (null, new [] { bytes[index] });
             }
 
-            if (index + instruction.Bytes - 1 > bytes.Length - 1)
-            {
-                return (null, new[] { bytes[index] });
-            }
-
-            return (instruction, bytes.Skip(index).Take(instruction.Bytes).ToArray());
+            var data = bytes.Skip(index).Take(instruction.Bytes).ToArray();
+            return (instruction, data);
         }
     }
 }

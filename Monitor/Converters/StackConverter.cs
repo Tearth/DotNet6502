@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Text;
 using System.Windows.Data;
-using Monitor.ViewModels;
 
 namespace Monitor.Converters
 {
@@ -11,7 +10,7 @@ namespace Monitor.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var bytes = (byte[]) values[0];
-            var viewModel = (MainWindowViewModel) values[1];
+            var stackPointer = (byte) values[1];
                 
             if (bytes == null)
             {
@@ -25,7 +24,7 @@ namespace Monitor.Converters
             builder.Append(@"\fs18");
 
             var first = true;
-            for (int i = viewModel.Registers.Sp + 1; i <= 0xFF; i++)
+            for (var i = stackPointer + 1; i <= 0xFF; i++)
             {
                 var realAddress = i + 0x100;
 

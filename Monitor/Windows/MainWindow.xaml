@@ -181,7 +181,7 @@
                     <xctk:RichTextBox.Text>
                         <MultiBinding Converter="{StaticResource CodeConverter}">
                             <Binding Path="DisassembledCode" />
-                            <Binding Path="." />
+                            <Binding Path=".Registers.Pc" />
                         </MultiBinding>
                     </xctk:RichTextBox.Text>
                 </xctk:RichTextBox>
@@ -291,7 +291,7 @@
                             <xctk:RichTextBox.Text>
                                 <MultiBinding Converter="{StaticResource StackConverter}">
                                     <Binding Path="Stack" />
-                                    <Binding Path="." />
+                                    <Binding Path=".Registers.Sp" />
                                 </MultiBinding>
                             </xctk:RichTextBox.Text>
                         </xctk:RichTextBox>
@@ -316,7 +316,7 @@
                 <xctk:RichTextBox.Text>
                     <MultiBinding Converter="{StaticResource MemoryConverter}">
                         <Binding Path="Memory" />
-                        <Binding Path="." />
+                        <Binding Path=".MemoryAddress" />
                     </MultiBinding>
                 </xctk:RichTextBox.Text>
             </xctk:RichTextBox>
