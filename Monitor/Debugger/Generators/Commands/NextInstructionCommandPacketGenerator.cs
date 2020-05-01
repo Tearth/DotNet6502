@@ -1,18 +1,10 @@
-﻿using Monitor.ViewModels;
-using Protocol.Packets;
+﻿using Protocol.Packets;
 using Protocol.Packets.Commands;
 
-namespace Monitor.Debugger.Generators
+namespace Monitor.Debugger.Generators.Commands
 {
     public class NextInstructionCommandPacketGenerator
     {
-        private readonly MainWindowViewModel _viewModel;
-
-        public NextInstructionCommandPacketGenerator(MainWindowViewModel viewModel)
-        {
-            _viewModel = viewModel;
-        }
-
         public PacketBase Generate()
         {
             var commandPacket = new NextInstructionCommandPacket();

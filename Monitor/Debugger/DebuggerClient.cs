@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Monitor.Debugger.Generators;
+using Monitor.Debugger.Generators.Commands;
+using Monitor.Debugger.Generators.Requests;
+using Monitor.Debugger.Generators.Responses;
 using Monitor.Debugger.Handlers;
 using Monitor.ViewModels;
 using Protocol.Packets;
@@ -51,18 +54,18 @@ namespace Monitor.Debugger
                 { PacketType.Memory, new MemoryHandler(viewModel) }
             };
 
-            _pinsRequestPacketGenerator = new PinsRequestPacketGenerator(viewModel);
-            _pinsPacketGenerator = new PinsPacketGenerator(viewModel);
-            _registersRequestPacketGenerator = new RegistersRequestPacketGenerator(viewModel);
-            _registersPacketGenerator = new RegistersPacketGenerator(viewModel);
-            _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator(viewModel);
-            _stopCommandPacketGenerator = new StopCommandPacketGenerator(viewModel);
-            _continueCommandPacketGenerator = new ContinueCommandPacketGenerator(viewModel);
-            _nextCycleCommandPacketGenerator = new NextCycleCommandPacketGenerator(viewModel);
-            _nextInstructionCommandPacketGenerator = new NextInstructionCommandPacketGenerator(viewModel);
-            _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator(viewModel);
-            _runToAddressCommandPacketGenerator = new RunToAddressCommandPacketGenerator(viewModel);
-            _runUntilLoopCommandPacketGenerator = new RunUntilLoopCommandPacketGenerator(viewModel);
+            _pinsRequestPacketGenerator = new PinsRequestPacketGenerator();
+            _pinsPacketGenerator = new PinsPacketGenerator();
+            _registersRequestPacketGenerator = new RegistersRequestPacketGenerator();
+            _registersPacketGenerator = new RegistersPacketGenerator();
+            _cyclesRequestPacketGenerator = new CyclesRequestPacketGenerator();
+            _stopCommandPacketGenerator = new StopCommandPacketGenerator();
+            _continueCommandPacketGenerator = new ContinueCommandPacketGenerator();
+            _nextCycleCommandPacketGenerator = new NextCycleCommandPacketGenerator();
+            _nextInstructionCommandPacketGenerator = new NextInstructionCommandPacketGenerator();
+            _memoryRequestPacketGenerator = new MemoryRequestPacketGenerator();
+            _runToAddressCommandPacketGenerator = new RunToAddressCommandPacketGenerator();
+            _runUntilLoopCommandPacketGenerator = new RunUntilLoopCommandPacketGenerator();
         }
 
         public async Task<(bool Success, string ErrorMessage)> Connect(string address)
@@ -103,7 +106,7 @@ namespace Monitor.Debugger
 
         public void UpdateRegisters()
         {
-            var packet = _registersPacketGenerator.Generate();
+            var packet = _registersPacketGenerator.Generate(_viewModel.Registers);
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
@@ -115,7 +118,7 @@ namespace Monitor.Debugger
 
         public void UpdatePins()
         {
-            var packet = _pinsPacketGenerator.Generate();
+            var packet = _pinsPacketGenerator.Generate(_viewModel.Pins);
             _tcpClientStream.Write(packet.Data, 0, packet.Length);
         }
 
