@@ -16,11 +16,11 @@ namespace Monitor.Debugger.Handlers
             var registersPacket = (RegistersPacket) packet;
 
             ViewModel.Locked = true;
-            ViewModel.Registers.Pc = registersPacket.ProgramCounter;
-            ViewModel.Registers.Sp = registersPacket.StackPointer;
-            ViewModel.Registers.Acc = registersPacket.Accumulator;
-            ViewModel.Registers.X = registersPacket.XIndex;
-            ViewModel.Registers.Y = registersPacket.YIndex;
+            ViewModel.Registers.ProgramCounter = registersPacket.ProgramCounter;
+            ViewModel.Registers.StackPointer = registersPacket.StackPointer;
+            ViewModel.Registers.Accumulator = registersPacket.Accumulator;
+            ViewModel.Registers.IndexRegisterX = registersPacket.XIndex;
+            ViewModel.Registers.IndexRegisterY = registersPacket.YIndex;
             ViewModel.Registers.Flags = registersPacket.Flags;
             ViewModel.Locked = false;
 

@@ -5,61 +5,61 @@ namespace Monitor.ViewModels
 {
     public class RegistersViewModel : INotifyPropertyChanged
     {
-        private ushort _pc;
-        public ushort Pc
+        private ushort _programCounter;
+        public ushort ProgramCounter
         {
-            get => _pc;
+            get => _programCounter;
             set
             {
-                _pc = value;
+                _programCounter = value;
                 OnPropertyChanged("Pc");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
 
-        private byte _sp;
-        public byte Sp
+        private byte _stackPointer;
+        public byte StackPointer
         {
-            get => _sp;
+            get => _stackPointer;
             set
             {
-                _sp = value;
+                _stackPointer = value;
                 OnPropertyChanged("Sp");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
 
-        private byte _acc;
-        public byte Acc
+        private byte _accumulator;
+        public byte Accumulator
         {
-            get => _acc;
+            get => _accumulator;
             set
             {
-                _acc = value;
+                _accumulator = value;
                 OnPropertyChanged("Acc");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
 
-        private byte _x;
-        public byte X
+        private byte _indexRegisterX;
+        public byte IndexRegisterX
         {
-            get => _x;
+            get => _indexRegisterX;
             set
             {
-                _x = value;
+                _indexRegisterX = value;
                 OnPropertyChanged("X");
                 RegistersUpdated?.Invoke(this, null);
             }
         }
 
-        private byte _y;
-        public byte Y
+        private byte _indexRegisterY;
+        public byte IndexRegisterY
         {
-            get => _y;
+            get => _indexRegisterY;
             set
             {
-                _y = value;
+                _indexRegisterY = value;
                 OnPropertyChanged("Y");
                 RegistersUpdated?.Invoke(this, null);
             }

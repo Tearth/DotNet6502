@@ -10,11 +10,11 @@ namespace Monitor.Debugger.Generators.Responses
         {
             var registersPacket = new RegistersPacket
             {
-                ProgramCounter = registersViewModel.Pc,
-                StackPointer = registersViewModel.Sp,
-                Accumulator = registersViewModel.Acc,
-                XIndex = registersViewModel.X,
-                YIndex = registersViewModel.Y,
+                ProgramCounter = registersViewModel.ProgramCounter,
+                StackPointer = registersViewModel.StackPointer,
+                Accumulator = registersViewModel.Accumulator,
+                XIndex = registersViewModel.IndexRegisterX,
+                YIndex = registersViewModel.IndexRegisterY,
                 Flags = registersViewModel.Flags
             };
             registersPacket.RecalculateChecksum();

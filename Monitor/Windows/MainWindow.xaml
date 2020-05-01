@@ -181,7 +181,7 @@
                     <xctk:RichTextBox.Text>
                         <MultiBinding Converter="{StaticResource CodeConverter}">
                             <Binding Path="DisassembledCode" />
-                            <Binding Path=".Registers.Pc" />
+                            <Binding Path=".Registers.ProgramCounter" />
                         </MultiBinding>
                     </xctk:RichTextBox.Text>
                 </xctk:RichTextBox>
@@ -235,19 +235,19 @@
                         <TextBlock Text="Flags:" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Consolas" />
 
                         <TextBlock Text="PC:" Grid.Row="1" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Pc, Converter={StaticResource HexConverter}, FallbackValue=0x0000}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=ProgramCounter, Converter={StaticResource HexConverter}, FallbackValue=0x0000}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="6" Margin="3,0,0,0" />
 
                         <TextBlock Text="SP:" Grid.Row="2" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Sp, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=StackPointer, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="A:" Grid.Row="3" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Acc, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Accumulator, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="X:" Grid.Row="4" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=X, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=IndexRegisterX, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Y:" Grid.Row="5" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Y, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=IndexRegisterY, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
 
                         <TextBlock Text="Flags:" Grid.Row="6" Grid.Column="0" TextAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" />
                         <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Flags, Converter={StaticResource HexConverter}, FallbackValue=0x00}" HorizontalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Consolas" MaxLength="4" Margin="3,0,0,0" />
@@ -291,7 +291,7 @@
                             <xctk:RichTextBox.Text>
                                 <MultiBinding Converter="{StaticResource StackConverter}">
                                     <Binding Path="Stack" />
-                                    <Binding Path=".Registers.Sp" />
+                                    <Binding Path=".Registers.StackPointer" />
                                 </MultiBinding>
                             </xctk:RichTextBox.Text>
                         </xctk:RichTextBox>
