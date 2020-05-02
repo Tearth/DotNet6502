@@ -123,10 +123,10 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         private void DoSub(byte number)
         {
             var a = Core.Registers.Accumulator;
-            var c = Core.Registers.Flags.HasFlag(StatusFlags.Carry) ? 1 : 0;
+            var c = (Core.Registers.Flags & StatusFlags.Carry) != 0 ? 1 : 0;
             uint result;
 
-            if (Core.Registers.Flags.HasFlag(StatusFlags.DecimalMode))
+            if ((Core.Registers.Flags & StatusFlags.DecimalMode) != 0)
             {
                 var aLowNibble = a & 0x0F;
                 var aHighNibble = (a & 0xF0) >> 4;

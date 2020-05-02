@@ -95,7 +95,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         private byte DoRol(byte number)
         {
             var result = (byte)(number >> 1);
-            if (Core.Registers.Flags.HasFlag(StatusFlags.Carry))
+            if ((Core.Registers.Flags & StatusFlags.Carry) != 0)
             {
                 result |= 1 << 7;
             }

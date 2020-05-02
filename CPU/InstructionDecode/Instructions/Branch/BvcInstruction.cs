@@ -17,7 +17,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
         /// </summary>
         protected override void ExecuteInRelativeMode()
         {
-            DoBranch(!Core.Registers.Flags.HasFlag(StatusFlags.Overflow));
+            DoBranch((Core.Registers.Flags & StatusFlags.Overflow) == 0);
         }
     }
 }
