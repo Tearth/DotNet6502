@@ -10,15 +10,15 @@
         public override void Execute()
         {
             // Internal operations (2 cycles)
-            _core.YieldCycle();
-            _core.YieldCycle();
+            Core.YieldCycle();
+            Core.YieldCycle();
 
             // Store (faked) registers onto stack (3 cycles)
             PreExecute(true, false);
 
             // Read RESET vector (2 cycles)
-            var vector = (ushort) (_core.Bus.Read(0xFFFC) | (_core.Bus.Read(0xFFFD) << 8));
-            _core.Registers.ProgramCounter = vector;
+            var vector = (ushort) (Core.Bus.Read(0xFFFC) | (Core.Bus.Read(0xFFFD) << 8));
+            Core.Registers.ProgramCounter = vector;
         }
     }
 }

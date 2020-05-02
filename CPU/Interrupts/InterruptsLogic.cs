@@ -5,7 +5,7 @@ namespace CPU.Interrupts
 {
     public class InterruptsLogic
     {
-        private Mos6502Core _core;
+        private readonly Mos6502Core _core;
         private readonly Dictionary<string, InterruptHandlerBase> _handlers;
 
         private bool _oldResetPinState;

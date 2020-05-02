@@ -18,8 +18,8 @@ namespace CPU
         private readonly InstructionDecoder _instructionDecoder;
         private readonly InterruptsLogic _interruptsLogic;
 
-        private uint _frequency;
-        private ulong _ticksPerCycle;
+        private readonly uint _frequency;
+        private readonly ulong _ticksPerCycle;
         private DateTime _startTime;
 
         public Mos6502Core(uint frequency)
