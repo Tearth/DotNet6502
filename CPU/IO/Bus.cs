@@ -23,7 +23,14 @@ namespace CPU.IO
             _core.Pins.Rw = forcedRw ?? true;
             _core.Pins.A = address;
             _core.Pins.D = 0;
-            _devices.ForEach(p => p.Process());
+
+            // ForEach method was quite slower than typical for statement
+            //_devices.ForEach(p => p.Process());
+            for (var i = 0; i < _devices.Count; i++)
+            {
+                _devices[i].Process();
+            }
+
             _core.YieldCycle();
 
             return _core.Pins.D;
@@ -38,9 +45,15 @@ namespace CPU.IO
             _core.Pins.Rw = true;
             _core.Pins.A = address;
             _core.Pins.D = 0;
-            _devices.ForEach(p => p.Process());
-            var result = _core.Pins.D;
 
+            // ForEach method was quite slower than typical for statement
+            //_devices.ForEach(p => p.Process());
+            for (var i = 0; i < _devices.Count; i++)
+            {
+                _devices[i].Process();
+            }
+
+            var result = _core.Pins.D;
             _core.Pins.Rw = oldReadWriteState;
             _core.Pins.A = oldAddressState;
             _core.Pins.D = oldDataState;
@@ -54,7 +67,13 @@ namespace CPU.IO
             _core.Pins.A = address;
             _core.Pins.D = value;
             _core.YieldCycle();
-            _devices.ForEach(p => p.Process());
+
+            // ForEach method was quite slower than typical for statement
+            //_devices.ForEach(p => p.Process());
+            for (var i = 0; i < _devices.Count; i++)
+            {
+                _devices[i].Process();
+            }
         }
 
         public void WriteDebug(ushort address, byte value)
@@ -66,7 +85,13 @@ namespace CPU.IO
             _core.Pins.Rw = false;
             _core.Pins.A = address;
             _core.Pins.D = value;
-            _devices.ForEach(p => p.Process());
+
+            // ForEach method was quite slower than typical for statement
+            //_devices.ForEach(p => p.Process());
+            for (var i = 0; i < _devices.Count; i++)
+            {
+                _devices[i].Process();
+            }
 
             _core.Pins.Rw = oldReadWriteState;
             _core.Pins.A = oldAddressState;
