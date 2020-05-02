@@ -67,7 +67,7 @@ namespace RAM
 
         public void Process()
         {
-            if (_pinsState.Rw)
+            if (_pinsState.ReadWrite)
             {
                 Read();
             }

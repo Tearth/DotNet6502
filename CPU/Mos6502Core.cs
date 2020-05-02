@@ -72,10 +72,10 @@ namespace CPU
         {
             YieldingCycle = true;
 
-            if (!Pins.Rdy)
+            if (!Pins.Ready)
             {
                 _stopwatch.Stop();
-                while (!Pins.Rdy)
+                while (!Pins.Ready)
                 {
                     Thread.Sleep(1);
                 }

@@ -14,9 +14,9 @@ namespace Host.Debugger.Handlers.Commands
         {
             var currentCycle = Core.Cycles;
 
-            Core.Pins.Rdy = true;
+            Core.Pins.Ready = true;
             while (currentCycle == Core.Cycles) ;
-            Core.Pins.Rdy = false;
+            Core.Pins.Ready = false;
 
             return null;
         }

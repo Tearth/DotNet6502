@@ -21,7 +21,7 @@
 
         public void SetRdyState(bool state)
         {
-            Core.Pins.Rdy = state;
+            Core.Pins.Ready = state;
         }
 
         public void Reset()

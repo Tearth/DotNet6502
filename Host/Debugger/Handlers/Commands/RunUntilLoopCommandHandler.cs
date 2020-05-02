@@ -12,7 +12,7 @@ namespace Host.Debugger.Handlers.Commands
 
         public override PacketBase Handle(PacketBase packet)
         {
-            Core.Pins.Rdy = true;
+            Core.Pins.Ready = true;
             while (true)
             {
                 var programCounter1 = Core.Registers.ProgramCounter;
@@ -30,7 +30,7 @@ namespace Host.Debugger.Handlers.Commands
                     break;
                 }
             }
-            Core.Pins.Rdy = false;
+            Core.Pins.Ready = false;
 
             return null;
         }

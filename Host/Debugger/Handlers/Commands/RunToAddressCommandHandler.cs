@@ -15,9 +15,9 @@ namespace Host.Debugger.Handlers.Commands
         {
             var runToAddressCommandPacket = (RunToAddressCommandPacket)packet;
 
-            Core.Pins.Rdy = true;
+            Core.Pins.Ready = true;
             while (Core.Registers.ProgramCounter != runToAddressCommandPacket.Address) ;
-            Core.Pins.Rdy = false;
+            Core.Pins.Ready = false;
 
             return null;
         }

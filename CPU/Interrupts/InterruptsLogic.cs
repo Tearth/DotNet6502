@@ -40,8 +40,8 @@ namespace CPU.Interrupts
             }
 
             _oldResetPinState = _core.Pins.Reset;
-            _oldIrqPinState = _core.Pins.Irq;
-            _oldNmiPinState = _core.Pins.Nmi;
+            _oldIrqPinState = _core.Pins.InterruptRequest;
+            _oldNmiPinState = _core.Pins.NonMaskableInterrupt;
 
             return false;
         }

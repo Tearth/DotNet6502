@@ -12,7 +12,7 @@ namespace Host.Debugger.Handlers.Commands
 
         public override PacketBase Handle(PacketBase packet)
         {
-            Core.Pins.Rdy = true;
+            Core.Pins.Ready = true;
             return null;
         }
     }

@@ -17,18 +17,18 @@
         /// When set to false, processor is not executing the next instructions. When set to true, processor
         /// is normally running.
         /// </summary>
-        public bool Rdy { get; set; }
+        public bool Ready { get; set; }
 
         /// <summary>
         /// The hardware interrupt request used to initialize interrupt sequence. Works only if IrqDisable flag is set to false.
         /// Input is level-sensitive.
         /// </summary>
-        public bool Irq { get; set; }
+        public bool InterruptRequest { get; set; }
 
         /// <summary>
         /// Non-maskable interrupt. Works similar to typical interrupt, but can't be masked by IrqDisable flag and is edge-sensitive.
         /// </summary>
-        public bool Nmi { get; set; }
+        public bool NonMaskableInterrupt { get; set; }
 
         /// <summary>
         /// True when processor is fetching instruction operation code, otherwise false.
@@ -38,7 +38,7 @@
         /// <summary>
         /// True when the processor is reading data from the bus, and false if the processor is writing data to the bus.
         /// </summary>
-        public bool Rw { get; set; }
+        public bool ReadWrite { get; set; }
 
         /// <summary>
         /// Address bus (A0 - A15).

@@ -20,7 +20,7 @@ namespace CPU.IO
 
         public byte Read(ushort address, bool? forcedRw = null)
         {
-            _core.Pins.Rw = forcedRw ?? true;
+            _core.Pins.ReadWrite = forcedRw ?? true;
             _core.Pins.A = address;
             _core.Pins.D = 0;
 
@@ -38,11 +38,11 @@ namespace CPU.IO
 
         public byte ReadDebug(ushort address)
         {
-            var oldReadWriteState = _core.Pins.Rw;
+            var oldReadWriteState = _core.Pins.ReadWrite;
             var oldAddressState = _core.Pins.A;
             var oldDataState = _core.Pins.D;
 
-            _core.Pins.Rw = true;
+            _core.Pins.ReadWrite = true;
             _core.Pins.A = address;
             _core.Pins.D = 0;
 
@@ -54,7 +54,7 @@ namespace CPU.IO
             }
 
             var result = _core.Pins.D;
-            _core.Pins.Rw = oldReadWriteState;
+            _core.Pins.ReadWrite = oldReadWriteState;
             _core.Pins.A = oldAddressState;
             _core.Pins.D = oldDataState;
             
@@ -63,7 +63,7 @@ namespace CPU.IO
 
         public void Write(ushort address, byte value, bool? forcedRw = null)
         {
-            _core.Pins.Rw = forcedRw ?? false;
+            _core.Pins.ReadWrite = forcedRw ?? false;
             _core.Pins.A = address;
             _core.Pins.D = value;
             _core.YieldCycle();
@@ -78,11 +78,11 @@ namespace CPU.IO
 
         public void WriteDebug(ushort address, byte value)
         {
-            var oldReadWriteState = _core.Pins.Rw;
+            var oldReadWriteState = _core.Pins.ReadWrite;
             var oldAddressState = _core.Pins.A;
             var oldDataState = _core.Pins.D;
 
-            _core.Pins.Rw = false;
+            _core.Pins.ReadWrite = false;
             _core.Pins.A = address;
             _core.Pins.D = value;
 
@@ -93,7 +93,7 @@ namespace CPU.IO
                 _devices[i].Process();
             }
 
-            _core.Pins.Rw = oldReadWriteState;
+            _core.Pins.ReadWrite = oldReadWriteState;
             _core.Pins.A = oldAddressState;
             _core.Pins.D = oldDataState;
         }
