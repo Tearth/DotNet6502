@@ -1,4 +1,5 @@
-﻿using CPU.Registers;
+﻿using System.Threading.Tasks;
+using CPU.Registers;
 
 namespace CPU.InstructionDecode.Instructions.Arithmetic
 {
