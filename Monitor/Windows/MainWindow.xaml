@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Monitor"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:Monitor.Converters"
         mc:Ignorable="d"
@@ -185,7 +184,7 @@
                         </MultiBinding>
                     </xctk:RichTextBox.Text>
                 </xctk:RichTextBox>
-                <Grid Row="2" Background="#FF484848" Margin="0,0.2,-0.2,-0.2" Grid.RowSpan="2">
+                <Grid Row="2" Background="#FF484848" Margin="0,0.2,-0.2,-0.2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>

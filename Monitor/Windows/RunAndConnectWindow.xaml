@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Monitor.Windows"
         mc:Ignorable="d"
         Title="Run and connect to emulator" MinHeight="120" MinWidth="400" WindowStartupLocation="CenterScreen"
         Style="{StaticResource DefaultWindowStyle}" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
@@ -22,10 +21,10 @@
         <TextBox x:Name="PathTextBox" Text="{Binding Path=Path}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="65,2,2,2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" Background="#FF3A3A3A" Grid.Row="0" Grid.Column="0"/>
         <Button x:Name="SelectButton" Content="Select..." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,2,0,2" Grid.Column="1" Grid.Row="0" Click="SelectButton_Click"/>
 
-        <TextBlock Text="Arguments:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1"/>
+        <TextBlock Text="Arguments:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="0"/>
         <TextBox Text="{Binding Path=Arguments}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="65,2,2,2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" Background="#FF3A3A3A" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
 
-        <TextBlock Text="Address:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2"/>
+        <TextBlock Text="Address:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="0"/>
         <TextBox Text="{Binding Path=Address}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="65,2,2,2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" Background="#FF3A3A3A" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
 
         <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,3,0,0" Grid.Column="1" Grid.Row="3" Click="ConnectButton_Click"/>

@@ -7,7 +7,7 @@ namespace Monitor.Instructions
 {
     public class InstructionsContainer
     {
-        public Dictionary<byte, InstructionData> _instructions;
+        public Dictionary<byte, InstructionData> Instructions;
         private readonly string _filePath;
 
         public InstructionsContainer(string filePath)
@@ -20,12 +20,12 @@ namespace Monitor.Instructions
         {
             var content = File.ReadAllText(_filePath);
             var instructionsList = JsonConvert.DeserializeObject<List<InstructionData>>(content);
-            _instructions = instructionsList.ToDictionary(p => p.OpCode);
+            Instructions = instructionsList.ToDictionary(p => p.OpCode);
         }
 
         public InstructionData Get(byte opCode)
         {
-            if (!_instructions.TryGetValue(opCode, out var result))
+            if (!Instructions.TryGetValue(opCode, out var result))
             {
                 return null;
             }

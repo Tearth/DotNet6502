@@ -9,7 +9,7 @@ namespace Monitor.Windows
     /// </summary>
     public partial class RunAndConnectWindow : Window
     {
-        private SettingsContainer _settings;
+        private readonly SettingsContainer _settings;
 
         public RunAndConnectWindow(SettingsContainer settings)
         {

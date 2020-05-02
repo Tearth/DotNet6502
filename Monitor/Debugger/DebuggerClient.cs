@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using Monitor.Debugger.Generators;
 using Monitor.Debugger.Generators.Commands;
 using Monitor.Debugger.Generators.Requests;
 using Monitor.Debugger.Generators.Responses;
@@ -20,10 +19,10 @@ namespace Monitor.Debugger
         private TcpClient _tcpClient;
         private NetworkStream _tcpClientStream;
         private Task _clientTask;
-        private MainWindowViewModel _viewModel;
-        private PacketValidator _packetValidator;
-        private PacketsFactory _packetsFactory;
-        private Dictionary<PacketType, PacketHandlerBase> _packetHandler;
+        private readonly MainWindowViewModel _viewModel;
+        private readonly PacketValidator _packetValidator;
+        private readonly PacketsFactory _packetsFactory;
+        private readonly Dictionary<PacketType, PacketHandlerBase> _packetHandler;
 
         private readonly PinsRequestPacketGenerator _pinsRequestPacketGenerator;
         private readonly PinsPacketGenerator _pinsPacketGenerator;

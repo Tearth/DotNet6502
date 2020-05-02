@@ -8,7 +8,7 @@ namespace Monitor.Windows
     /// </summary>
     public partial class ConnectWindow : Window
     {
-        private SettingsContainer _settings;
+        private readonly SettingsContainer _settings;
 
         public ConnectWindow(SettingsContainer settings)
         {

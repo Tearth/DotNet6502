@@ -8,7 +8,7 @@ namespace Monitor.Windows
     /// </summary>
     public partial class RunToAddressWindow : Window
     {
-        private SettingsContainer _settings;
+        private readonly SettingsContainer _settings;
 
         public RunToAddressWindow(SettingsContainer settings)
         {
