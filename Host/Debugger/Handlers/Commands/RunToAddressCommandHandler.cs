@@ -2,7 +2,7 @@
 using Protocol.Packets;
 using Protocol.Packets.Commands;
 
-namespace Host.Debugger.Handlers
+namespace Host.Debugger.Handlers.Commands
 {
     public class RunToAddressCommandHandler : PacketHandlerBase
     {

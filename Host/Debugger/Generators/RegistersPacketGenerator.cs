@@ -6,7 +6,7 @@ namespace Host.Debugger.Generators
 {
     public class RegistersPacketGenerator
     {
-        private Mos6502Core _core;
+        private readonly Mos6502Core _core;
 
         public RegistersPacketGenerator(Mos6502Core core)
         {

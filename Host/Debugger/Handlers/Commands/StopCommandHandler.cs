@@ -1,7 +1,7 @@
 ﻿using CPU;
 using Protocol.Packets;
 
-namespace Host.Debugger.Handlers
+namespace Host.Debugger.Handlers.Commands
 {
     public class StopCommandHandler : PacketHandlerBase
     {

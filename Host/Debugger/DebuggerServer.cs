@@ -7,43 +7,44 @@ using System.Threading;
 using System.Threading.Tasks;
 using CPU;
 using Host.Debugger.Handlers;
+using Host.Debugger.Handlers.Commands;
+using Host.Debugger.Handlers.Requests;
+using Host.Debugger.Handlers.Responses;
 using Protocol.Packets;
 
 namespace Host.Debugger
 {
     public class DebuggerServer : IDisposable
     {
-        private Mos6502Core _core;
-        private ushort _port;
+        private readonly ushort _port;
 
         private Task _serverTask;
         private AutoResetEvent _initializationEnded;
         private TcpListener _tcpListener;
-        private PacketValidator _packetValidator;
-        private PacketsFactory _packetsFactory;
-        private Dictionary<PacketType, PacketHandlerBase> _packetHandler;
+        private readonly PacketValidator _packetValidator;
+        private readonly PacketsFactory _packetsFactory;
+        private readonly Dictionary<PacketType, PacketHandlerBase> _packetHandler;
 
         public DebuggerServer(Mos6502Core core, ushort port)
         {
-            _core = core;
             _port = port;
             _packetValidator = new PacketValidator();
             _packetsFactory = new PacketsFactory();
 
             _packetHandler = new Dictionary<PacketType, PacketHandlerBase>
             {
-                { PacketType.RegistersRequest, new RegistersRequestHandler(_core) },
-                { PacketType.Registers, new RegistersHandler(_core) },
-                { PacketType.PinsRequest, new PinsRequestHandler(_core) },
-                { PacketType.Pins, new PinsHandler(_core) },
-                { PacketType.CyclesRequest, new CyclesRequestHandler(_core) },
-                { PacketType.StopCommand, new StopCommandHandler(_core) },
-                { PacketType.ContinueCommand, new ContinueCommandHandler(_core) },
-                { PacketType.NextCycleCommand, new NextCycleCommandHandler(_core) },
-                { PacketType.NextInstructionCommand, new NextInstructionCommandHandler(_core) },
-                { PacketType.MemoryRequest, new MemoryRequestHandler(_core) },
-                { PacketType.RunToAddressCommand, new RunToAddressCommandHandler(_core) },
-                { PacketType.RunUntilLoopCommand, new RunUntilLoopCommandHandler(_core) }
+                { PacketType.RegistersRequest, new RegistersRequestHandler(core) },
+                { PacketType.Registers, new RegistersHandler(core) },
+                { PacketType.PinsRequest, new PinsRequestHandler(core) },
+                { PacketType.Pins, new PinsHandler(core) },
+                { PacketType.CyclesRequest, new CyclesRequestHandler(core) },
+                { PacketType.StopCommand, new StopCommandHandler(core) },
+                { PacketType.ContinueCommand, new ContinueCommandHandler(core) },
+                { PacketType.NextCycleCommand, new NextCycleCommandHandler(core) },
+                { PacketType.NextInstructionCommand, new NextInstructionCommandHandler(core) },
+                { PacketType.MemoryRequest, new MemoryRequestHandler(core) },
+                { PacketType.RunToAddressCommand, new RunToAddressCommandHandler(core) },
+                { PacketType.RunUntilLoopCommand, new RunUntilLoopCommandHandler(core) }
             };
         }
 

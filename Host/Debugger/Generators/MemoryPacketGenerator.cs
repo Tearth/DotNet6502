@@ -7,7 +7,7 @@ namespace Host.Debugger.Generators
 {
     public class MemoryPacketGenerator
     {
-        private Mos6502Core _core;
+        private readonly Mos6502Core _core;
 
         public MemoryPacketGenerator(Mos6502Core core)
         {

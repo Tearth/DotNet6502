@@ -6,7 +6,7 @@ namespace Host.Debugger.Generators
 {
     public class PinsPacketGenerator
     {
-        private Mos6502Core _core;
+        private readonly Mos6502Core _core;
 
         public PinsPacketGenerator(Mos6502Core core)
         {

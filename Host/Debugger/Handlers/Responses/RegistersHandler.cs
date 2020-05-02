@@ -3,7 +3,7 @@ using CPU.Registers;
 using Protocol.Packets;
 using Protocol.Packets.Responses;
 
-namespace Host.Debugger.Handlers
+namespace Host.Debugger.Handlers.Responses
 {
     public class RegistersHandler : PacketHandlerBase
     {

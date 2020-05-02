@@ -2,7 +2,7 @@
 using Host.Debugger.Generators;
 using Protocol.Packets;
 
-namespace Host.Debugger.Handlers
+namespace Host.Debugger.Handlers.Requests
 {
     public class PinsRequestHandler : PacketHandlerBase
     {

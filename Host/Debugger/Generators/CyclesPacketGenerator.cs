@@ -6,7 +6,7 @@ namespace Host.Debugger.Generators
 {
     public class CyclesPacketGenerator
     {
-        private Mos6502Core _core;
+        private readonly Mos6502Core _core;
 
         public CyclesPacketGenerator(Mos6502Core core)
         {

@@ -3,7 +3,7 @@ using Host.Debugger.Generators;
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
-namespace Host.Debugger.Handlers
+namespace Host.Debugger.Handlers.Requests
 {
     public class MemoryRequestHandler : PacketHandlerBase
     {
@@ -19,7 +19,10 @@ namespace Host.Debugger.Handlers
             var memoryRequestPacket = (MemoryRequestPacket) packet;
             return _memoryPacketGenerator.Generate
             (
-                memoryRequestPacket.Address != 0xFFFF ? memoryRequestPacket.Address : Core.Registers.ProgramCounter, 
+                memoryRequestPacket.Address != 0xFFFF ? 
+                    memoryRequestPacket.Address : 
+                    Core.Registers.ProgramCounter, 
+
                 memoryRequestPacket.RequestedLength, 
                 memoryRequestPacket.Tag
             );
