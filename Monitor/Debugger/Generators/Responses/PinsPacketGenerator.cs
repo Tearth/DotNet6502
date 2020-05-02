@@ -45,11 +45,11 @@ namespace Monitor.Debugger.Generators.Responses
                 Other =
                     (byte)
                     (
-                        ((pinsViewModel.Irq ? 1 : 0) << 0) |
-                        ((pinsViewModel.Nmi ? 1 : 0) << 1) |
-                        ((pinsViewModel.Rdy ? 1 : 0) << 2) |
-                        ((pinsViewModel.Res ? 1 : 0) << 3) |
-                        ((pinsViewModel.Rw ? 1 : 0) << 4) |
+                        ((pinsViewModel.InterruptRequest ? 1 : 0) << 0) |
+                        ((pinsViewModel.NonMaskableInterrupt ? 1 : 0) << 1) |
+                        ((pinsViewModel.Ready ? 1 : 0) << 2) |
+                        ((pinsViewModel.Reset ? 1 : 0) << 3) |
+                        ((pinsViewModel.ReadWrite ? 1 : 0) << 4) |
                         ((pinsViewModel.Sync ? 1 : 0) << 5) |
                         ((pinsViewModel.Vcc ? 1 : 0) << 6)
                     )

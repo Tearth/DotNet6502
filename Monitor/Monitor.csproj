@@ -117,6 +117,7 @@
     <Compile Include="Debugger\Handlers\PinsHandler.cs" />
     <Compile Include="Debugger\Handlers\RegistersHandler.cs" />
     <Compile Include="Debugger\PacketHandlerBase.cs" />
+    <Compile Include="Helpers\BitHelpers.cs" />
     <Compile Include="Instructions\Converters\HexJsonConverter.cs" />
     <Compile Include="Instructions\InstructionData.cs" />
     <Compile Include="Instructions\InstructionsContainer.cs" />

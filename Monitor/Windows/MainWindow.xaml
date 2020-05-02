@@ -83,11 +83,11 @@
                     <TextBlock Grid.Row="1" Grid.RowSpan="20" Grid.Column="1" HorizontalAlignment="Center" Text="MOS 6502" VerticalAlignment="Center" Foreground="#FFF7F7F7" FontWeight="Bold"/>
 
                     <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
-                    <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Path=Rdy}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Path=Ready}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
-                    <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding Path=Irq}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding Path=InterruptRequest}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" />
-                    <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=Nmi}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=NonMaskableInterrupt}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding Path=Sync}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="8" Grid.Column="0" IsChecked="{Binding Path=Vcc}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="9" Grid.Column="0" IsChecked="{Binding Path=A0}" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -103,13 +103,13 @@
                     <CheckBox Grid.Row="19" Grid.Column="0" IsChecked="{Binding Path=A10}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="20" Grid.Column="0" IsChecked="{Binding Path=A11}" HorizontalAlignment="Right" VerticalAlignment="Center" />
 
-                    <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=Res}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=Reset}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
                     <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
-                    <CheckBox Grid.Row="7" Grid.Column="2" IsChecked="{Binding Path=Rw}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="7" Grid.Column="2" IsChecked="{Binding Path=ReadWrite}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="8" Grid.Column="2" IsChecked="{Binding Path=D0}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="9" Grid.Column="2" IsChecked="{Binding Path=D1}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="10" Grid.Column="2" IsChecked="{Binding Path=D2}" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -180,7 +180,7 @@
                     </xctk:RichTextBox.TextFormatter>
                     <xctk:RichTextBox.Text>
                         <MultiBinding Converter="{StaticResource CodeConverter}">
-                            <Binding Path="DisassembledCode" />
+                            <Binding Path="Code" />
                             <Binding Path=".Registers.ProgramCounter" />
                         </MultiBinding>
                     </xctk:RichTextBox.Text>

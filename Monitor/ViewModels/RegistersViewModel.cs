@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Monitor.Helpers;
 
 namespace Monitor.ViewModels
 {
@@ -89,7 +90,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 0) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 0, value);
+                Flags = BitHelpers.ChangeBit(Flags, 0, value);
                 OnPropertyChanged("Carry");
             }
         }
@@ -99,7 +100,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 1) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 1, value);
+                Flags = BitHelpers.ChangeBit(Flags, 1, value);
                 OnPropertyChanged("Zero");
             }
         }
@@ -109,7 +110,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 2) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 2, value);
+                Flags = BitHelpers.ChangeBit(Flags, 2, value);
                 OnPropertyChanged("InterruptsOff");
             }
         }
@@ -119,7 +120,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 3) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 3, value);
+                Flags = BitHelpers.ChangeBit(Flags, 3, value);
                 OnPropertyChanged("DecimalMode");
             }
         }
@@ -129,7 +130,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 4) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 4, value);
+                Flags = BitHelpers.ChangeBit(Flags, 4, value);
                 OnPropertyChanged("BrkInterrupt");
             }
         }
@@ -139,7 +140,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 6) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 6, value);
+                Flags = BitHelpers.ChangeBit(Flags, 6, value);
                 OnPropertyChanged("Overflow");
             }
         }
@@ -149,7 +150,7 @@ namespace Monitor.ViewModels
             get => Convert.ToBoolean((Flags >> 7) & 1);
             set
             {
-                Flags = ChangeBit(Flags, 7, value);
+                Flags = BitHelpers.ChangeBit(Flags, 7, value);
                 OnPropertyChanged("Signed");
             }
         }
@@ -160,11 +161,6 @@ namespace Monitor.ViewModels
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private byte ChangeBit(byte val, int bitIndex, bool bitValue)
-        {
-            return (byte)((val & ~(1 << bitIndex)) | ((bitValue ? 1 : 0) << bitIndex));
         }
     }
 }

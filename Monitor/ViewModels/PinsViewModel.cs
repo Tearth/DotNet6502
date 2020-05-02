@@ -15,36 +15,36 @@ namespace Monitor.ViewModels
             }
         }
 
-        private bool _rdy;
-        public bool Rdy
+        private bool _ready;
+        public bool Ready
         {
-            get => _rdy;
+            get => _ready;
             set
             {
-                _rdy = value;
-                OnPropertyChanged("Rdy");
+                _ready = value;
+                OnPropertyChanged("Ready");
             }
         }
 
-        private bool _irq;
-        public bool Irq
+        private bool _interruptRequest;
+        public bool InterruptRequest
         {
-            get => _irq;
+            get => _interruptRequest;
             set
             {
-                _irq = value;
-                OnPropertyChanged("Irq");
+                _interruptRequest = value;
+                OnPropertyChanged("InterruptRequest");
             }
         }
 
-        private bool _nmi;
-        public bool Nmi
+        private bool _nonMaskableInterrupt;
+        public bool NonMaskableInterrupt
         {
-            get => _nmi;
+            get => _nonMaskableInterrupt;
             set
             {
-                _nmi = value;
-                OnPropertyChanged("Nmi");
+                _nonMaskableInterrupt = value;
+                OnPropertyChanged("NonMaskableInterrupt");
             }
         }
 
@@ -56,6 +56,28 @@ namespace Monitor.ViewModels
             {
                 _sync = value;
                 OnPropertyChanged("Sync");
+            }
+        }
+
+        private bool _reset;
+        public bool Reset
+        {
+            get => _reset;
+            set
+            {
+                _reset = value;
+                OnPropertyChanged("Reset");
+            }
+        }
+
+        private bool _readWrite;
+        public bool ReadWrite
+        {
+            get => _readWrite;
+            set
+            {
+                _readWrite = value;
+                OnPropertyChanged("ReadWrite");
             }
         }
 
@@ -232,28 +254,6 @@ namespace Monitor.ViewModels
             {
                 _a15 = value;
                 OnPropertyChanged("A15");
-            }
-        }
-
-        private bool _res;
-        public bool Res
-        {
-            get => _res;
-            set
-            {
-                _res = value;
-                OnPropertyChanged("Res");
-            }
-        }
-
-        private bool _rw;
-        public bool Rw
-        {
-            get => _rw;
-            set
-            {
-                _rw = value;
-                OnPropertyChanged("Rw");
             }
         }
 

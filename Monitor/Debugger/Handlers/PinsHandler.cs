@@ -43,11 +43,11 @@ namespace Monitor.Debugger.Handlers
             ViewModel.Pins.D6 = Convert.ToBoolean((pinsPacket.DataBus >> 6) & 1);
             ViewModel.Pins.D7 = Convert.ToBoolean((pinsPacket.DataBus >> 7) & 1);
 
-            ViewModel.Pins.Irq   = Convert.ToBoolean((pinsPacket.Other >> 0) & 1);
-            ViewModel.Pins.Nmi   = Convert.ToBoolean((pinsPacket.Other >> 1) & 1);
-            ViewModel.Pins.Rdy   = Convert.ToBoolean((pinsPacket.Other >> 2) & 1);
-            ViewModel.Pins.Res   = Convert.ToBoolean((pinsPacket.Other >> 3) & 1);
-            ViewModel.Pins.Rw    = Convert.ToBoolean((pinsPacket.Other >> 4) & 1);
+            ViewModel.Pins.InterruptRequest   = Convert.ToBoolean((pinsPacket.Other >> 0) & 1);
+            ViewModel.Pins.NonMaskableInterrupt   = Convert.ToBoolean((pinsPacket.Other >> 1) & 1);
+            ViewModel.Pins.Ready   = Convert.ToBoolean((pinsPacket.Other >> 2) & 1);
+            ViewModel.Pins.Reset   = Convert.ToBoolean((pinsPacket.Other >> 3) & 1);
+            ViewModel.Pins.ReadWrite    = Convert.ToBoolean((pinsPacket.Other >> 4) & 1);
             ViewModel.Pins.Sync  = Convert.ToBoolean((pinsPacket.Other >> 5) & 1);
             ViewModel.Pins.Vcc   = Convert.ToBoolean((pinsPacket.Other >> 6) & 1);
             ViewModel.Locked = false;

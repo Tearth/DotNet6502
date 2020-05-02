@@ -19,14 +19,14 @@ namespace Monitor.ViewModels
             }
         }
 
-        private byte[] _disassembledCode;
-        public byte[] DisassembledCode
+        private byte[] _code;
+        public byte[] Code
         {
-            get => _disassembledCode;
+            get => _code;
             set
             {
-                _disassembledCode = value;
-                OnPropertyChanged("DisassembledCode");
+                _code = value;
+                OnPropertyChanged("Code");
             }
         }
 

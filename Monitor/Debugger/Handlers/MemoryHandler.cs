@@ -27,7 +27,7 @@ namespace Monitor.Debugger.Handlers
                 // Code
                 case 1:
                 {
-                    ViewModel.DisassembledCode = memoryPacket.Memory;
+                    ViewModel.Code = memoryPacket.Memory;
                     break;
                 }
 
