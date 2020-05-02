@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class RorInstruction : InstructionBase
     {
-        public RorInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ROR", opCode, addressingMode, core)
+        public RorInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("ROR", opCode, addressingMode, core)
         {
 
         }
@@ -95,10 +95,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         private byte DoRol(byte number)
         {
             var result = (byte)(number >> 1);
-            if ((Core.Registers.Flags & StatusFlags.Carry) != 0)
-            {
-                result |= 1 << 7;
-            }
+            result |= (byte)((byte)(Core.Registers.Flags & StatusFlags.Carry) << 7);
 
             var zeroFlag = result == 0;
             Core.Registers.ChangeFlag(StatusFlags.Zero, zeroFlag);

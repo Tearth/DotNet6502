@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class LdyInstruction : InstructionBase
     {
-        public LdyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDY", opCode, addressingMode, core)
+        public LdyInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDY", opCode, addressingMode, core)
         {
 
         }

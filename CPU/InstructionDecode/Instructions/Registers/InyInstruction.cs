@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class InyInstruction : InstructionBase
     {
-        public InyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("INY", opCode, addressingMode, core)
+        public InyInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("INY", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BplInstruction : BranchInstructionBase
     {
-        public BplInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BPL", opCode, addressingMode, core)
+        public BplInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BPL", opCode, addressingMode, core)
         {
 
         }

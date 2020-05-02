@@ -2,7 +2,7 @@
 {
     public abstract class BranchInstructionBase : InstructionBase
     {
-        protected BranchInstructionBase(string name, ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base(name, opCode, addressingMode, core)
+        protected BranchInstructionBase(string name, byte opCode, AddressingMode addressingMode, Mos6502Core core) : base(name, opCode, addressingMode, core)
         {
 
         }

@@ -5,7 +5,7 @@
     /// </summary>
     public class StxInstruction : InstructionBase
     {
-        public StxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("STX", opCode, addressingMode, core)
+        public StxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("STX", opCode, addressingMode, core)
         {
 
         }

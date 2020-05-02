@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class BitInstruction : InstructionBase
     {
-        public BitInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BIT", opCode, addressingMode, core)
+        public BitInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BIT", opCode, addressingMode, core)
         {
 
         }

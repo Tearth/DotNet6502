@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Stack
     /// </summary>
     public class PlaInstruction : InstructionBase
     {
-        public PlaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLA", opCode, addressingMode, core)
+        public PlaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLA", opCode, addressingMode, core)
         {
 
         }

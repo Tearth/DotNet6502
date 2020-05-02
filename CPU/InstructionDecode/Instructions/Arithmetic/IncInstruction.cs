@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class IncInstruction : InstructionBase
     {
-        public IncInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("INC", opCode, addressingMode, core)
+        public IncInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("INC", opCode, addressingMode, core)
         {
 
         }

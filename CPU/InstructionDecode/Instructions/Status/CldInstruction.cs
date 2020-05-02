@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class CldInstruction : InstructionBase
     {
-        public CldInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLD", opCode, addressingMode, core)
+        public CldInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLD", opCode, addressingMode, core)
         {
 
         }

@@ -5,7 +5,7 @@
     /// </summary>
     public class StyInstruction : InstructionBase
     {
-        public StyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("STY", opCode, addressingMode, core)
+        public StyInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("STY", opCode, addressingMode, core)
         {
 
         }

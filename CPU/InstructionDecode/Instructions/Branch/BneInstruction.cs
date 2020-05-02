@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BneInstruction : BranchInstructionBase
     {
-        public BneInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BNE", opCode, addressingMode, core)
+        public BneInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BNE", opCode, addressingMode, core)
         {
 
         }

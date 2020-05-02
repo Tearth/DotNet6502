@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Flow
     /// </summary>
     public class RtiInstruction : InstructionBase
     {
-        public RtiInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("RTI", opCode, addressingMode, core)
+        public RtiInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("RTI", opCode, addressingMode, core)
         {
 
         }

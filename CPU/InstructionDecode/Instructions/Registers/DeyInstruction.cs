@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class DeyInstruction : InstructionBase
     {
-        public DeyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("DEY", opCode, addressingMode, core)
+        public DeyInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("DEY", opCode, addressingMode, core)
         {
 
         }

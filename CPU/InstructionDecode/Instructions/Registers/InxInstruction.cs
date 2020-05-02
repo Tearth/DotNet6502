@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class InxInstruction : InstructionBase
     {
-        public InxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("INX", opCode, addressingMode, core)
+        public InxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("INX", opCode, addressingMode, core)
         {
 
         }

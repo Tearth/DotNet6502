@@ -6,13 +6,13 @@ namespace CPU.InstructionDecode
     public abstract class InstructionBase
     {
         public string Name { get; }
-        public ushort OpCode { get; }
+        public byte OpCode { get; }
         public AddressingMode AddressingMode { get; }
         protected Mos6502Core Core { get; }
 
         private readonly InstructionExecutor _executor;
 
-        protected InstructionBase(string name, ushort opCode, AddressingMode addressingMode, Mos6502Core core)
+        protected InstructionBase(string name, byte opCode, AddressingMode addressingMode, Mos6502Core core)
         {
             Name = name;
             OpCode = opCode;

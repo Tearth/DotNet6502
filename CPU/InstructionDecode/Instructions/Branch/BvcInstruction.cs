@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BvcInstruction : BranchInstructionBase
     {
-        public BvcInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BVC", opCode, addressingMode, core)
+        public BvcInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BVC", opCode, addressingMode, core)
         {
 
         }

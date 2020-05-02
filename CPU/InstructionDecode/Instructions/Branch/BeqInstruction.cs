@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BeqInstruction : BranchInstructionBase
     {
-        public BeqInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BEQ", opCode, addressingMode, core)
+        public BeqInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BEQ", opCode, addressingMode, core)
         {
 
         }

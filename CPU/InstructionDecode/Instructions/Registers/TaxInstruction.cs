@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class TaxInstruction : InstructionBase
     {
-        public TaxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TAX", opCode, addressingMode, core)
+        public TaxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TAX", opCode, addressingMode, core)
         {
 
         }

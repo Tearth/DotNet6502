@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class SbcInstruction : InstructionBase
     {
-        public SbcInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("SBC", opCode, addressingMode, core)
+        public SbcInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("SBC", opCode, addressingMode, core)
         {
 
         }
@@ -123,7 +123,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
         private void DoSub(byte number)
         {
             var a = Core.Registers.Accumulator;
-            var c = (Core.Registers.Flags & StatusFlags.Carry) != 0 ? 1 : 0;
+            var c = (byte)(Core.Registers.Flags & StatusFlags.Carry);
             uint result;
 
             if ((Core.Registers.Flags & StatusFlags.DecimalMode) != 0)
@@ -132,7 +132,6 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
                 var aHighNibble = (a & 0xF0) >> 4;
                 var numberLowNibble = 9 - (number & 0x0F);
                 var numberHighNibble = 9 - ((number & 0xF0) >> 4);
-                var carryNibble = 0;
 
                 var lowNibble = aLowNibble + numberLowNibble + c;
                 if (lowNibble > 9)
@@ -146,11 +145,9 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
                 if (highNibble > 9)
                 {
                     highNibble += 6;
-                    highNibble &= 0x0F;
-                    carryNibble = 1;
                 }
 
-                result = (uint)((carryNibble << 8) | (highNibble << 4) | lowNibble);
+                result = (uint)((highNibble << 4) | lowNibble);
             }
             else
             {

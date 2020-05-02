@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class ClvInstruction : InstructionBase
     {
-        public ClvInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLV", opCode, addressingMode, core)
+        public ClvInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLV", opCode, addressingMode, core)
         {
 
         }

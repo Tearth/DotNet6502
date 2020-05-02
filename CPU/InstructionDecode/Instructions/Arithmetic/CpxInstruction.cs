@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class CpxInstruction : InstructionBase
     {
-        public CpxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPX", opCode, addressingMode, core)
+        public CpxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPX", opCode, addressingMode, core)
         {
 
         }

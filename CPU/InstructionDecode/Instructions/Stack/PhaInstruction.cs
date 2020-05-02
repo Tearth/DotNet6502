@@ -5,7 +5,7 @@
     /// </summary>
     public class PhaInstruction : InstructionBase
     {
-        public PhaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHA", opCode, addressingMode, core)
+        public PhaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHA", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class AndInstruction : InstructionBase
     {
-        public AndInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("AND", opCode, addressingMode, core)
+        public AndInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("AND", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class SeiInstruction : InstructionBase
     {
-        public SeiInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("SEI", opCode, addressingMode, core)
+        public SeiInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("SEI", opCode, addressingMode, core)
         {
 
         }

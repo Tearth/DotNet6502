@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class AslInstruction : InstructionBase
     {
-        public AslInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ASL", opCode, addressingMode, core)
+        public AslInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("ASL", opCode, addressingMode, core)
         {
 
         }

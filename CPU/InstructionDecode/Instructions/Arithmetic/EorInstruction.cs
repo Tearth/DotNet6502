@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class EorInstruction : InstructionBase
     {
-        public EorInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("EOR", opCode, addressingMode, core)
+        public EorInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("EOR", opCode, addressingMode, core)
         {
 
         }

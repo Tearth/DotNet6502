@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BmiInstruction : BranchInstructionBase
     {
-        public BmiInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BMI", opCode, addressingMode, core)
+        public BmiInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BMI", opCode, addressingMode, core)
         {
 
         }

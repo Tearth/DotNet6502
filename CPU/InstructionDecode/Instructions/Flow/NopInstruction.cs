@@ -5,7 +5,7 @@
     /// </summary>
     public class NopInstruction : InstructionBase
     {
-        public NopInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("NOP", opCode, addressingMode, core)
+        public NopInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("NOP", opCode, addressingMode, core)
         {
 
         }

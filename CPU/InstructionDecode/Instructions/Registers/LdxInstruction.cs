@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class LdxInstruction : InstructionBase
     {
-        public LdxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDX", opCode, addressingMode, core)
+        public LdxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDX", opCode, addressingMode, core)
         {
 
         }

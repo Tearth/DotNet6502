@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class DexInstruction : InstructionBase
     {
-        public DexInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("DEX", opCode, addressingMode, core)
+        public DexInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("DEX", opCode, addressingMode, core)
         {
 
         }

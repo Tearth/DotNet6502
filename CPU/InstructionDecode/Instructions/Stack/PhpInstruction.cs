@@ -5,7 +5,7 @@
     /// </summary>
     public class PhpInstruction : InstructionBase
     {
-        public PhpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHP", opCode, addressingMode, core)
+        public PhpInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("PHP", opCode, addressingMode, core)
         {
 
         }

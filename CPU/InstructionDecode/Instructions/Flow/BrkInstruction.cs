@@ -5,7 +5,7 @@
     /// </summary>
     public class BrkInstruction : InstructionBase
     {
-        public BrkInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BRK", opCode, addressingMode, core)
+        public BrkInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BRK", opCode, addressingMode, core)
         {
 
         }

@@ -5,7 +5,7 @@
     /// </summary>
     public class TxsInstruction : InstructionBase
     {
-        public TxsInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TXS", opCode, addressingMode, core)
+        public TxsInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TXS", opCode, addressingMode, core)
         {
 
         }

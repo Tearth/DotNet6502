@@ -5,7 +5,7 @@
     /// </summary>
     public class JmpInstruction : InstructionBase
     {
-        public JmpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("JMP", opCode, addressingMode, core)
+        public JmpInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("JMP", opCode, addressingMode, core)
         {
 
         }

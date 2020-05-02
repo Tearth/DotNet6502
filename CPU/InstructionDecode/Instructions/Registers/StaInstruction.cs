@@ -5,7 +5,7 @@
     /// </summary>
     public class StaInstruction : InstructionBase
     {
-        public StaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("STA", opCode, addressingMode, core)
+        public StaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("STA", opCode, addressingMode, core)
         {
 
         }

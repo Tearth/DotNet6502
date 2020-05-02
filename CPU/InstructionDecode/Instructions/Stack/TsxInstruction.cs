@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Stack
     /// </summary>
     public class TsxInstruction : InstructionBase
     {
-        public TsxInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TSX", opCode, addressingMode, core)
+        public TsxInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TSX", opCode, addressingMode, core)
         {
 
         }

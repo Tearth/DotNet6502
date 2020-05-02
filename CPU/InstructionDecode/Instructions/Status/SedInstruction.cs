@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class SedInstruction : InstructionBase
     {
-        public SedInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("SED", opCode, addressingMode, core)
+        public SedInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("SED", opCode, addressingMode, core)
         {
 
         }

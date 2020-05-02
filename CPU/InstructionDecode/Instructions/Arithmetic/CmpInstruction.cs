@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class CmpInstruction : InstructionBase
     {
-        public CmpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CMP", opCode, addressingMode, core)
+        public CmpInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CMP", opCode, addressingMode, core)
         {
 
         }

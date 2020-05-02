@@ -5,7 +5,7 @@
     /// </summary>
     public class JsrInstruction : InstructionBase
     {
-        public JsrInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("JSR", opCode, addressingMode, core)
+        public JsrInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("JSR", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Stack
     /// </summary>
     public class PlpInstruction : InstructionBase
     {
-        public PlpInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLP", opCode, addressingMode, core)
+        public PlpInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("PLP", opCode, addressingMode, core)
         {
 
         }

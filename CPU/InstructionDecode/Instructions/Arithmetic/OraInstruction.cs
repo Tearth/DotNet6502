@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class OraInstruction : InstructionBase
     {
-        public OraInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("ORA", opCode, addressingMode, core)
+        public OraInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("ORA", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class LsrInstruction : InstructionBase
     {
-        public LsrInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LSR", opCode, addressingMode, core)
+        public LsrInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("LSR", opCode, addressingMode, core)
         {
 
         }

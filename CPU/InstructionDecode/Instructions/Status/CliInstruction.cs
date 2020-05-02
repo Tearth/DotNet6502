@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class CliInstruction : InstructionBase
     {
-        public CliInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLI", opCode, addressingMode, core)
+        public CliInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLI", opCode, addressingMode, core)
         {
 
         }

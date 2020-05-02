@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class TayInstruction : InstructionBase
     {
-        public TayInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TAY", opCode, addressingMode, core)
+        public TayInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TAY", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class LdaInstruction : InstructionBase
     {
-        public LdaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDA", opCode, addressingMode, core)
+        public LdaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("LDA", opCode, addressingMode, core)
         {
 
         }

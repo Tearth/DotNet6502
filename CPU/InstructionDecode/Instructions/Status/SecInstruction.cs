@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class SecInstruction : InstructionBase
     {
-        public SecInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("SEC", opCode, addressingMode, core)
+        public SecInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("SEC", opCode, addressingMode, core)
         {
 
         }

@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class TyaInstruction : InstructionBase
     {
-        public TyaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TYA", opCode, addressingMode, core)
+        public TyaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TYA", opCode, addressingMode, core)
         {
 
         }

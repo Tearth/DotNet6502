@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Registers
     /// </summary>
     public class TxaInstruction : InstructionBase
     {
-        public TxaInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("TXA", opCode, addressingMode, core)
+        public TxaInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("TXA", opCode, addressingMode, core)
         {
 
         }

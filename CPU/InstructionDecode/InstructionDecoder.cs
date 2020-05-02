@@ -12,11 +12,11 @@ namespace CPU.InstructionDecode
     public class InstructionDecoder
     {
         private readonly Mos6502Core _core;
-        private readonly Dictionary<ushort, InstructionBase> _instructions;
+        private readonly Dictionary<byte, InstructionBase> _instructions;
 
         public InstructionDecoder(Mos6502Core core)
         {
-            _instructions = new Dictionary<ushort, InstructionBase>();
+            _instructions = new Dictionary<byte, InstructionBase>();
             _core = core;
 
             // Adding

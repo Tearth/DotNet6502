@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Arithmetic
     /// </summary>
     public class CpyInstruction : InstructionBase
     {
-        public CpyInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPY", opCode, addressingMode, core)
+        public CpyInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CPY", opCode, addressingMode, core)
         {
 
         }

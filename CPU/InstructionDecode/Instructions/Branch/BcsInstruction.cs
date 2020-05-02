@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Branch
     /// </summary>
     public class BcsInstruction : BranchInstructionBase
     {
-        public BcsInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("BCS", opCode, addressingMode, core)
+        public BcsInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("BCS", opCode, addressingMode, core)
         {
 
         }

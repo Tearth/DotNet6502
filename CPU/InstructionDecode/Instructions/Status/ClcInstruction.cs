@@ -7,7 +7,7 @@ namespace CPU.InstructionDecode.Instructions.Status
     /// </summary>
     public class ClcInstruction : InstructionBase
     {
-        public ClcInstruction(ushort opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLC", opCode, addressingMode, core)
+        public ClcInstruction(byte opCode, AddressingMode addressingMode, Mos6502Core core) : base("CLC", opCode, addressingMode, core)
         {
 
         }
