@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Loader;
 using System.Text.RegularExpressions;
+using System.Timers;
 using CommandLine;
 using CPU;
 using CPU.IO;
@@ -13,6 +14,10 @@ namespace Host
 {
     class Program
     {
+        private static Mos6502Emulator _emulator;
+        private static Timer _debugTimer;
+        private static ulong _lastInstructionsCount;
+
         static void Main(string[] args)
         {
             var parser = new Parser(settings =>
@@ -26,26 +31,30 @@ namespace Host
             result.WithParsed(options =>
             {
                 Console.WriteLine("Starting 6502 emulator...");
-                var emulator = new Mos6502Emulator(options.Frequency);
+                _emulator = new Mos6502Emulator(options.Frequency);
 
                 var devices = ParseDevices(string.Join(" ", args));
-                var loadedDevices = LoadDevices(emulator.Core, devices);
-                loadedDevices.ForEach(d => emulator.Core.Bus.AttachDevice(d));
+                var loadedDevices = LoadDevices(_emulator.Core, devices);
+                loadedDevices.ForEach(d => _emulator.Core.Bus.AttachDevice(d));
                 Console.WriteLine($"Added {loadedDevices.Count} peripherals");
 
                 DebuggerServer debugger = null;
                 if (options.IsDebuggerEnabled)
                 {
                     Console.WriteLine($"Starting debugger at {options.DebuggerPort} port...");
-                    debugger = new DebuggerServer(emulator.Core, options.DebuggerPort);
+                    debugger = new DebuggerServer(_emulator.Core, options.DebuggerPort);
                     debugger.Start();
+
+                    _debugTimer = new Timer(1000);
+                    _debugTimer.Elapsed += DebugTimer_Elapsed;
+                    _debugTimer.Start();
                 }
 
                 Console.WriteLine("Starting 6502 core...");
-                emulator.PowerUp();
-                emulator.SetRdyState(!options.WaitForDebugger);
-                emulator.Reset();
-                emulator.Run();
+                _emulator.PowerUp();
+                _emulator.SetRdyState(!options.WaitForDebugger);
+                _emulator.Reset();
+                _emulator.Run();
 
                 Console.WriteLine("Closing 6502 emulator...");
                 debugger?.Dispose();
@@ -98,6 +107,16 @@ namespace Host
             }
 
             return devices;
+        }
+
+        private static void DebugTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            var delta = _emulator.Core.Cycles - _lastInstructionsCount;
+            _lastInstructionsCount = _emulator.Core.Cycles;
+
+            Console.WriteLine($"[{DateTime.Now.TimeOfDay}]: " +
+                              $"{_emulator.Core.Cycles} " +
+                              $"({delta} c/s, {(float)delta / 1000000:0.00} MHz)");
         }
     }
 }
