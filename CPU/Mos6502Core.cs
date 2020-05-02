@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using CPU.InstructionDecode;
 using CPU.Interrupts;
@@ -20,7 +21,7 @@ namespace CPU
 
         private readonly uint _frequency;
         private readonly ulong _ticksPerCycle;
-        private DateTime _startTime;
+        private Stopwatch _stopwatch;
 
         public Mos6502Core(uint frequency)
         {
@@ -30,9 +31,12 @@ namespace CPU
 
             _instructionDecoder = new InstructionDecoder(this);
             _interruptsLogic = new InterruptsLogic(this);
-
             _frequency = frequency;
-            _ticksPerCycle = TimeSpan.TicksPerSecond / (ulong)_frequency;
+
+            if (frequency != 0)
+            {
+                _ticksPerCycle = TimeSpan.TicksPerSecond / (ulong)_frequency;
+            }
         }
 
         public void SetPowerState(bool state)
@@ -49,7 +53,7 @@ namespace CPU
 
         public void Run()
         {
-            _startTime = DateTime.Now;
+            _stopwatch = Stopwatch.StartNew();
             while (Pins.Vcc)
             {
                 if (_interruptsLogic.Process())
@@ -70,17 +74,19 @@ namespace CPU
 
             if (!Pins.Rdy)
             {
-                var pauseStartTime = DateTime.Now;
+                _stopwatch.Stop();
                 while (!Pins.Rdy)
                 {
                     Thread.Sleep(1);
                 }
-
-                _startTime += DateTime.Now - pauseStartTime;
+                _stopwatch.Start();
             }
 
-            var ticksToWait = Cycles * _ticksPerCycle;
-            while ((ulong)(DateTime.Now - _startTime).Ticks < ticksToWait) ;
+            if (_frequency != 0)
+            {
+                var ticksToWait = Cycles * _ticksPerCycle;
+                while ((ulong)_stopwatch.ElapsedTicks < ticksToWait) ;
+            }
 
             Cycles++;
             YieldingCycle = false;
