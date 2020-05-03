@@ -351,3 +351,4 @@ MigrationBackup/
 /cloc.exe
 /cloc.bat
 /.clocignore
+/Host/Properties/launchSettings.json
