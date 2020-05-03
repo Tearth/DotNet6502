@@ -1,5 +1,5 @@
-﻿using CPU;
-using CPU.Registers;
+﻿using M6502;
+using M6502.Registers;
 using Protocol.Packets;
 using Protocol.Packets.Responses;
 
@@ -7,7 +7,7 @@ namespace Host.Debugger.Handlers.Responses
 {
     public class RegistersHandler : PacketHandlerBase
     {
-        public RegistersHandler(Mos6502Core core) : base(core)
+        public RegistersHandler(M6502Core core) : base(core)
         {
         }
 

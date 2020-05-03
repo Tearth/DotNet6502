@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CPU\CPU.csproj" />
+    <ProjectReference Include="..\M6502\M6502.csproj" />
     <ProjectReference Include="..\Peripherals\RAM\RAM.csproj" />
     <ProjectReference Include="..\Peripherals\ROM\ROM.csproj" />
     <ProjectReference Include="..\Protocol\Protocol.csproj" />

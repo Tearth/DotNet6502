@@ -1,5 +1,5 @@
 ﻿using System;
-using CPU;
+using M6502;
 using Protocol.Packets;
 using Protocol.Packets.Responses;
 
@@ -7,7 +7,7 @@ namespace Host.Debugger.Handlers.Responses
 {
     public class PinsHandler : PacketHandlerBase
     {
-        public PinsHandler(Mos6502Core core) : base(core)
+        public PinsHandler(M6502Core core) : base(core)
         {
         }
 

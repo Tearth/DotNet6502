@@ -1,4 +1,4 @@
-﻿using CPU;
+﻿using M6502;
 using Protocol.Packets;
 using Protocol.Packets.Commands;
 
@@ -6,7 +6,7 @@ namespace Host.Debugger.Handlers.Commands
 {
     public class RunToAddressCommandHandler : PacketHandlerBase
     {
-        public RunToAddressCommandHandler(Mos6502Core core) : base(core)
+        public RunToAddressCommandHandler(M6502Core core) : base(core)
         {
 
         }

@@ -1,5 +1,5 @@
-﻿using CPU;
-using Host.Debugger.Generators;
+﻿using Host.Debugger.Generators;
+using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger.Handlers.Requests
@@ -8,7 +8,7 @@ namespace Host.Debugger.Handlers.Requests
     {
         private readonly RegistersPacketGenerator _registersPacketGenerator;
 
-        public RegistersRequestHandler(Mos6502Core core) : base(core)
+        public RegistersRequestHandler(M6502Core core) : base(core)
         {
             _registersPacketGenerator = new RegistersPacketGenerator(core);
         }

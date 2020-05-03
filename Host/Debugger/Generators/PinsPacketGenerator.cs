@@ -1,4 +1,4 @@
-﻿using CPU;
+﻿using M6502;
 using Protocol.Packets;
 using Protocol.Packets.Responses;
 
@@ -6,9 +6,9 @@ namespace Host.Debugger.Generators
 {
     public class PinsPacketGenerator
     {
-        private readonly Mos6502Core _core;
+        private readonly M6502Core _core;
 
-        public PinsPacketGenerator(Mos6502Core core)
+        public PinsPacketGenerator(M6502Core core)
         {
             _core = core;
         }

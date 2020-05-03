@@ -1,13 +1,13 @@
-﻿using CPU;
+﻿using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger
 {
     public abstract class PacketHandlerBase
     {
-        protected Mos6502Core Core;
+        protected M6502Core Core;
 
-        protected PacketHandlerBase(Mos6502Core core)
+        protected PacketHandlerBase(M6502Core core)
         {
             Core = core;
         }

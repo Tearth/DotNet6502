@@ -1,11 +1,11 @@
-﻿using CPU;
+﻿using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger.Handlers.Commands
 {
     public class NextInstructionCommandHandler : PacketHandlerBase
     {
-        public NextInstructionCommandHandler(Mos6502Core core) : base(core)
+        public NextInstructionCommandHandler(M6502Core core) : base(core)
         {
 
         }

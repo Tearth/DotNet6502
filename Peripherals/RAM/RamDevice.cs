@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using CPU.IO;
+using M6502.IO;
 
 namespace RAM
 {

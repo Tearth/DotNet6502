@@ -1,5 +1,5 @@
 ﻿using System;
-using CPU;
+using M6502;
 using Protocol.Packets;
 using Protocol.Packets.Responses;
 
@@ -7,9 +7,9 @@ namespace Host.Debugger.Generators
 {
     public class MemoryPacketGenerator
     {
-        private readonly Mos6502Core _core;
+        private readonly M6502Core _core;
 
-        public MemoryPacketGenerator(Mos6502Core core)
+        public MemoryPacketGenerator(M6502Core core)
         {
             _core = core;
         }

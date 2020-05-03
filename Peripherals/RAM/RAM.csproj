@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CPU\CPU.csproj" />
+    <ProjectReference Include="..\..\M6502\M6502.csproj" />
   </ItemGroup>
 
 </Project>

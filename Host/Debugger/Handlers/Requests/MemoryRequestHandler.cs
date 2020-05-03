@@ -1,5 +1,5 @@
-﻿using CPU;
-using Host.Debugger.Generators;
+﻿using Host.Debugger.Generators;
+using M6502;
 using Protocol.Packets;
 using Protocol.Packets.Requests;
 
@@ -9,7 +9,7 @@ namespace Host.Debugger.Handlers.Requests
     {
         private readonly MemoryPacketGenerator _memoryPacketGenerator;
 
-        public MemoryRequestHandler(Mos6502Core core) : base(core)
+        public MemoryRequestHandler(M6502Core core) : base(core)
         {
             _memoryPacketGenerator = new MemoryPacketGenerator(core);
         }

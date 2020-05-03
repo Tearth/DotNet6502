@@ -1,5 +1,5 @@
-﻿using CPU;
-using Host.Debugger.Generators;
+﻿using Host.Debugger.Generators;
+using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger.Handlers.Requests
@@ -8,7 +8,7 @@ namespace Host.Debugger.Handlers.Requests
     {
         private readonly PinsPacketGenerator _pinsPacketGenerator;
 
-        public PinsRequestHandler(Mos6502Core core) : base(core)
+        public PinsRequestHandler(M6502Core core) : base(core)
         {
             _pinsPacketGenerator = new PinsPacketGenerator(core);
         }

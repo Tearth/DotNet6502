@@ -1,0 +1,23 @@
+﻿using M6502.Registers;
+
+namespace M6502.InstructionDecode.Instructions.Branch
+{
+    /// <summary>
+    /// Branch on oVerflow Clear
+    /// </summary>
+    public class BvcInstruction : BranchInstructionBase
+    {
+        public BvcInstruction(byte opCode, AddressingMode addressingMode, M6502Core core) : base("BVC", opCode, addressingMode, core)
+        {
+
+        }
+
+        /// <summary>
+        /// Length: 2, Cycles: 1F + 1 + 1J + 1B.
+        /// </summary>
+        protected override void ExecuteInRelativeMode()
+        {
+            DoBranch((Core.Registers.Flags & StatusFlags.Overflow) == 0);
+        }
+    }
+}

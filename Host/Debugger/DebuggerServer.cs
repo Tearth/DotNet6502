@@ -5,11 +5,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using CPU;
-using Host.Debugger.Handlers;
 using Host.Debugger.Handlers.Commands;
 using Host.Debugger.Handlers.Requests;
 using Host.Debugger.Handlers.Responses;
+using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger
@@ -25,7 +24,7 @@ namespace Host.Debugger
         private readonly PacketsFactory _packetsFactory;
         private readonly Dictionary<PacketType, PacketHandlerBase> _packetHandler;
 
-        public DebuggerServer(Mos6502Core core, ushort port)
+        public DebuggerServer(M6502Core core, ushort port)
         {
             _port = port;
             _packetValidator = new PacketValidator();

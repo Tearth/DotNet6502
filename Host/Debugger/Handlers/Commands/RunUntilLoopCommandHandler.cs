@@ -1,11 +1,11 @@
-﻿using CPU;
+﻿using M6502;
 using Protocol.Packets;
 
 namespace Host.Debugger.Handlers.Commands
 {
     public class RunUntilLoopCommandHandler : PacketHandlerBase
     {
-        public RunUntilLoopCommandHandler(Mos6502Core core) : base(core)
+        public RunUntilLoopCommandHandler(M6502Core core) : base(core)
         {
 
         }

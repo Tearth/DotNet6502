@@ -6,15 +6,15 @@ using System.Runtime.Loader;
 using System.Text.RegularExpressions;
 using System.Timers;
 using CommandLine;
-using CPU;
-using CPU.IO;
+using M6502.IO;
 using Host.Debugger;
+using M6502;
 
 namespace Host
 {
     class Program
     {
-        private static Mos6502Emulator _emulator;
+        private static M6502Emulator _emulator;
         private static Timer _debugTimer;
         private static ulong _lastInstructionsCount;
 
@@ -31,7 +31,7 @@ namespace Host
             result.WithParsed(options =>
             {
                 WriteDebugInfo(options.DebugInfo, "Starting 6502 emulator...");
-                _emulator = new Mos6502Emulator(options.Frequency);
+                _emulator = new M6502Emulator(options.Frequency);
 
                 var devices = ParseDevices(string.Join(" ", args));
                 var loadedDevices = LoadDevices(_emulator.Core, devices);
@@ -88,7 +88,7 @@ namespace Host
             return definitionsList;
         }
 
-        private static List<IDevice> LoadDevices(Mos6502Core core, List<DeviceDefinition> definitions)
+        private static List<IDevice> LoadDevices(M6502Core core, List<DeviceDefinition> definitions)
         {
             var devices = new List<IDevice>();
             foreach (var definition in definitions)
