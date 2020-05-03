@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Run and connect to emulator" MinHeight="120" MinWidth="400" WindowStartupLocation="CenterScreen"
+        Title="Run and connect to emulator" MinHeight="120" MinWidth="400" MaxWidth="400" WindowStartupLocation="CenterScreen"
         Style="{StaticResource DefaultWindowStyle}" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="29"/>
-            <RowDefinition Height="29"/>
+            <RowDefinition Height="87"/>
             <RowDefinition Height="29"/>
             <RowDefinition Height="29"/>
         </Grid.RowDefinitions>
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*" MinWidth="120"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Path:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+        <TextBlock Text="Path:" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" />
         <TextBox x:Name="PathTextBox" Text="{Binding Path=Path}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="65,2,2,2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" Background="#FF3A3A3A" Grid.Row="0" Grid.Column="0"/>
         <Button x:Name="SelectButton" Content="Select..." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,2,0,2" Grid.Column="1" Grid.Row="0" Click="SelectButton_Click"/>
 
