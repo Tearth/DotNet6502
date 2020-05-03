@@ -8,12 +8,15 @@ namespace Host
         public uint Frequency { get; set; }
 
         [Option('d', "debugger", Required = false, HelpText = "Enable or disable debugger server.", Default = false)]
-        public bool IsDebuggerEnabled { get; set; }
+        public bool DebuggerEnabled { get; set; }
 
         [Option('p', "port", Required = false, HelpText = "Set debugger server port.", Default = (ushort)6502)]
         public ushort DebuggerPort { get; set; }
 
         [Option('w', "wait", Required = false, HelpText = "Wait for debugger (set RDY pin to 0).", Default = false)]
         public bool WaitForDebugger { get; set; }
+
+        [Option('i', "info", Required = false, HelpText = "Display debug information.", Default = false)]
+        public bool DebugInfo { get; set; }
     }
 }

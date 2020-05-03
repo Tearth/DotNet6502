@@ -30,35 +30,46 @@ namespace Host
             var result = parser.ParseArguments<CommandLineOptions>(args);
             result.WithParsed(options =>
             {
-                Console.WriteLine("Starting 6502 emulator...");
+                WriteDebugInfo(options.DebugInfo, "Starting 6502 emulator...");
                 _emulator = new Mos6502Emulator(options.Frequency);
 
                 var devices = ParseDevices(string.Join(" ", args));
                 var loadedDevices = LoadDevices(_emulator.Core, devices);
                 loadedDevices.ForEach(d => _emulator.Core.Bus.AttachDevice(d));
-                Console.WriteLine($"Added {loadedDevices.Count} peripherals");
+                WriteDebugInfo(options.DebugInfo, $"Added {loadedDevices.Count} peripherals");
 
                 DebuggerServer debugger = null;
-                if (options.IsDebuggerEnabled)
+                if (options.DebuggerEnabled)
                 {
-                    Console.WriteLine($"Starting debugger at {options.DebuggerPort} port...");
+                    WriteDebugInfo(options.DebugInfo, $"Starting debugger at {options.DebuggerPort} port...");
                     debugger = new DebuggerServer(_emulator.Core, options.DebuggerPort);
                     debugger.Start();
 
-                    _debugTimer = new Timer(1000);
-                    _debugTimer.Elapsed += DebugTimer_Elapsed;
-                    _debugTimer.Start();
+                    if (options.DebugInfo)
+                    {
+                        _debugTimer = new Timer(1000);
+                        _debugTimer.Elapsed += DebugTimer_Elapsed;
+                        _debugTimer.Start();
+                    }
                 }
 
-                Console.WriteLine("Starting 6502 core...");
+                WriteDebugInfo(options.DebugInfo, "Starting 6502 core...");
                 _emulator.PowerUp();
                 _emulator.SetRdyState(!options.WaitForDebugger);
                 _emulator.Reset();
                 _emulator.Run();
 
-                Console.WriteLine("Closing 6502 emulator...");
+                WriteDebugInfo(options.DebugInfo, "Closing 6502 emulator...");
                 debugger?.Dispose();
             });
+        }
+
+        private static void WriteDebugInfo(bool debugInfoOption, string message)
+        {
+            if (debugInfoOption)
+            {
+                Console.WriteLine(message);
+            }
         }
 
         private static List<DeviceDefinition> ParseDevices(string args)
