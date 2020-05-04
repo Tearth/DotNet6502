@@ -3,17 +3,17 @@ MOS 6502 emulator written for .NET Core platform. It implements all official ope
 
 Documentation: https://tearth.github.io/DotNet6502
 
-#### What is done
+**What is done**
  - full MOS 6502 emulator with support for all official instructions, interrupts and bus operations
  - Host app which allows running emulation using command line parameters
  - Monitor app with debugger abilities
 
-#### TODO
+**TODO**
  - more peripherals, which allow emulating computers like Commodore PET
  - more debugger options (like editing memory content)
 
 ## Projects overview
-#### MOS 6502 emulator
+### MOS 6502 emulator
 This is the core of the project. Contains the implementation of MOS 6502 emulator, where the most important parts are:
  - [Entry emulator class](./M6502/Mos6502Emulator.cs)
  - [Entry core class](./M6502/Mos6502Core.cs)
@@ -22,7 +22,7 @@ This is the core of the project. Contains the implementation of MOS 6502 emulato
  - [Interrupts](./M6502/Interrupts/)
  - [Bus](./M6502/IO/)
 
-#### Host
+### Host
 This app allows running MOS 6502 emulator using a set of the command line options.
 
 ```
@@ -61,12 +61,12 @@ dotnet Host.dll -f 1000000 -d -w
 
 ![Host screenshot example](https://i.imgur.com/S3M66IH.png)
 
-#### Monitor
+### Monitor
 The Monitor allows viewing registers, memory, and pins of emulated MOS 6502 during its work. It's also possible to use basic debugger commands like stepping by cycle or instructions. This is the only app that is not written in .NET Core, so it will work only on Windows (because of used WPF).
 
 ![Monitor screenshot example](https://i.imgur.com/F4RcQR6.png)
 
-#### Protocol
+### Protocol
 
 This project contains a set of classes used to implement custom debugger protocol shared by the client and the server. Every packet contains 5-bytes header (signature with 0x6502 value, length, type) and one byte with a checksum (simple XOR of all bytes in the packet) at the end.
 
