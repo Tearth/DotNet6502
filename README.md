@@ -78,21 +78,21 @@ This project contains a set of classes used to implement custom debugger protoco
 This project contains three main categories of packets: requests, responses, and commands. Requests and responses are used together to transport data between the client and the server. Commands are desired to be used one-way, so they only inform another side that some action is required to process.
 
 | Requests          | Length | Fields            |
-|-------------------|----------------------------|
+|-------------------|--------|-------------------|
 | Cycles Request    | 6      | Header + Checksum |
 | Memory Request    | 11     | Header + Address (2 bytes) + Length (2 bytes) + Tag (1 byte) + Checksum |
 | Pins Request      | 6      | Header + Checksum |
 | Registers Request | 6      | Header + Checksum |
 
 | Responses          | Length | Fields            |
-|--------------------|----------------------------|
+|--------------------|--------|-------------------|
 | Cycles Response    | 14     | Header + Cycles count (8 bytes) + Checksum |
 | Memory Response    | 11 + n | Header + Address (2 bytes) + Length (2 bytes) + Tag (1 byte) + Data (n bytes) + Checksum |
 | Pins Response      | 10     | Header + Address Pins (2 byte) + Data Pins (1 bytes) + Other Pins (1 byte) + Checksum |
 | Registers Response | 13     | Header + Program Counter (2 bytes) + Stack Pointer (1 byte) + Accumulator (1 byte) + X Index Register (1 byte) + Y Index Register (1 byte) + Flags (1 byte) + Checksum |
 
 | Commands                 | Length | Fields            |
-|--------------------------|----------------------------|
+|--------------------------|--------|-------------------|
 | Continue Command         | 6      | Header + Checksum |
 | Next Cycle Command       | 6      | Header + Checksum |
 | Next Instruction Command | 6      | Header + Checksum |
