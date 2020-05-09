@@ -1,0 +1,18 @@
+var namespace_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic =
+[
+    [ "AdcInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_adc_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_adc_instruction" ],
+    [ "AndInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_and_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_and_instruction" ],
+    [ "AslInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_asl_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_asl_instruction" ],
+    [ "BitInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_bit_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_bit_instruction" ],
+    [ "CmpInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cmp_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cmp_instruction" ],
+    [ "CpxInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cpx_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cpx_instruction" ],
+    [ "CpyInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cpy_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_cpy_instruction" ],
+    [ "DecInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_dec_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_dec_instruction" ],
+    [ "EorInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_eor_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_eor_instruction" ],
+    [ "IncInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_inc_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_inc_instruction" ],
+    [ "LsrInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_lsr_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_lsr_instruction" ],
+    [ "OraInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_ora_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_ora_instruction" ],
+    [ "RolInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_rol_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_rol_instruction" ],
+    [ "RorInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_ror_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_ror_instruction" ],
+    [ "SbcInstruction", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_sbc_instruction.html", "class_m6502_1_1_instruction_decode_1_1_instructions_1_1_arithmetic_1_1_sbc_instruction" ]
+];

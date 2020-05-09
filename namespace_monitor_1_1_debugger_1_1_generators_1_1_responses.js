@@ -1,0 +1,5 @@
+var namespace_monitor_1_1_debugger_1_1_generators_1_1_responses =
+[
+    [ "PinsPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_responses_1_1_pins_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_responses_1_1_pins_packet_generator" ],
+    [ "RegistersPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_responses_1_1_registers_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_responses_1_1_registers_packet_generator" ]
+];

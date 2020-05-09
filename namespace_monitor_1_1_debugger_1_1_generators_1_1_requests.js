@@ -1,0 +1,7 @@
+var namespace_monitor_1_1_debugger_1_1_generators_1_1_requests =
+[
+    [ "CyclesRequestPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_cycles_request_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_cycles_request_packet_generator" ],
+    [ "MemoryRequestPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_memory_request_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_memory_request_packet_generator" ],
+    [ "PinsRequestPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_pins_request_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_pins_request_packet_generator" ],
+    [ "RegistersRequestPacketGenerator", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_registers_request_packet_generator.html", "class_monitor_1_1_debugger_1_1_generators_1_1_requests_1_1_registers_request_packet_generator" ]
+];
