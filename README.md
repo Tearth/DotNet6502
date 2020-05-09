@@ -70,10 +70,10 @@ The Monitor allows viewing registers, memory, and pins of emulated MOS 6502 duri
 
 This project contains a set of classes used to implement custom debugger protocol shared by the client and the server. Every packet contains 5-bytes header (signature with 0x6502 value, length, type) and one byte with a checksum (simple XOR of all bytes in the packet) at the end.
 
-|            | Signature | Length | Type | Data | Checksum |
-|------------|-----------|--------|------|------|----------|
-|  **Type**  | ushort    | ushort | byte |      | byte     |
-| **Length** | 2         | 2      | 1    | n    | 1        |
+|            | Signature | Length | Type |   Data   | Checksum |
+|------------|-----------|--------|------|----------|----------|
+|  **Type**  | ushort    | ushort | byte | byte[n]  | byte     |
+| **Length** | 2         | 2      | 1    | n        | 1        |
 
 This project contains three main categories of packets: requests, responses, and commands. Requests and responses are used together to transport data between the client and the server. Commands are desired to be used one-way, so they only inform another side that some action is required to process.
 
